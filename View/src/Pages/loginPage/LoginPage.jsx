@@ -13,7 +13,6 @@ function LoginPage() {
 
   useEffect(() => {
     let data = localStorage.getItem("refresh");
-    console.log(url);
     if (data != null) {
       auth.setIsAuth(true);
       auth.updateToken();
