@@ -1,1 +1,1 @@
-export const url = "https://deploytestback-production.up.railway.app/g";
+export const url = "https://deploy_test_back.railway.internal/";
