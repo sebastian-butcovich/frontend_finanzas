@@ -1,1 +1,1 @@
-export const url = "deploy_test_back.railway.internal/";
+export const url = `${url_dominio}`;
