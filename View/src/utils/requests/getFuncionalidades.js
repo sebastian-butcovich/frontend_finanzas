@@ -7,7 +7,7 @@ export async function getValueCoins() {
     });
     let otherCoins = await axios({
       method: "get",
-      url: "http://dolarapi.com/v1/cotizaciones",
+      url: "https://dolarapi.com/v1/cotizaciones",
     });
     let response = dollars.data.concat(otherCoins.data.filter(coins=> coins.moneda !='USD'));
     return response;
