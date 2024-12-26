@@ -1,1 +1,1 @@
-export const url = "https://deploytestback-production.up.railway.app/";
+export const url = `${url_dominio}`;

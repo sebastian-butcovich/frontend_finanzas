@@ -24,6 +24,9 @@ function LoginPage() {
     axios({
       method: "post",
       url: `${url}auth/login`,
+      headers:{
+        "Access-Control-Allow-Origin":"*"
+      },
       data: {
         email: name,
         password: pass,
