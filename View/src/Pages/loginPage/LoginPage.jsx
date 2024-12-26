@@ -12,6 +12,7 @@ function LoginPage() {
   const auth = useAuth();
 
   useEffect(() => {
+    console.log(url);
     let data = localStorage.getItem("refresh");
     if (data != null) {
       auth.setIsAuth(true);
