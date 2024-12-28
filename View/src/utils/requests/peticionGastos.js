@@ -2,13 +2,14 @@ import axios from "axios";
 import {url} from './../../global'
 export async function obtenerGastos(access, data, page, otherCoins) {
   let respuesta = null;
+  let jwt = "Bearer".concat(' ',access) ; 
+  console.log(jwt);
   try {
     if ( otherCoins ) {
       respuesta = await axios({
         method: "get",
-        headers: { "x-access-token": access },
-        url: `${url}gastos/get_all`,
-        params: {
+        headers: { 
+          'Authorization':`${jwt}`,
           page:page,
           monto_min: data.monto_inicial !=""? data.monto_inicial:null,
           monto_max: data.monto_final!=""? data.monto_final:null,
@@ -19,14 +20,15 @@ export async function obtenerGastos(access, data, page, otherCoins) {
           currency_type: data.currency_type!=""? data.currency_type:null,
           criterion: "last_updated_on_max",
           page_size: 5,
-        },
+         },
+        url:"http://localhost:8080/spent/get_all",
+        
       });
     } else {
       respuesta = await axios({
         method: "get",
-        headers: { "x-access-token": access },
-        url: `${url}gastos/get_all`,
-        params: {
+        headers: { 
+          Authorization:jwt,
           page: page,
           monto_min: data.monto_inicial !=""? data.monto_inicial:null,
           monto_max: data.monto_final!=""? data.monto_final:null,
@@ -35,9 +37,11 @@ export async function obtenerGastos(access, data, page, otherCoins) {
           fecha_fin: data.fecha_fin!=""? data.fecha_fin:null,
           page_size: 5,
           criterion: "last_updated_on_max",
-        },
+         },
+        url: "http://localhost:8080/spent/get_all",
       });
     }
+    console.log("respuesta de petición gastos",respuesta)
     return respuesta;
   } catch (error) {
     console.log(error);

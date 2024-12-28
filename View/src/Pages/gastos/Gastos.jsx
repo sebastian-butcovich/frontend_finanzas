@@ -20,6 +20,7 @@ function Gastos() {
   const filter = useContext(FilterContext);
   var pagContext = useContext(PaginadoContext);
   async function obtenerLosGastos() {
+    console.log("token de acceso",auth.getAccess())
     try {
       let response = null;
       response = await obtenerGastos(

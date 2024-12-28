@@ -42,10 +42,11 @@ function LoginPage() {
     if (response.status == 200) {
       setError(false);
       auth.setIsAuth(true);
+      console.log("respuesta del login", response.data)
       auth.setAccess(response.data.access_token);
       localStorage.setItem("refresh", response.data.refresh_token);
       localStorage.setItem("user", name);
-      navigate("/dashboard");
+      navigate("/gastos");
     } else {
       setError(true);
       navigate("/");
