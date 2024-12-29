@@ -3,14 +3,13 @@ import {url} from './../../global'
 export async function obtenerGastos(access, data, page, otherCoins) {
   let respuesta = null;
   let jwt = "Bearer".concat(' ',access) ; 
-  console.log(jwt);
   try {
     if ( otherCoins ) {
-      respuesta = await axios({
+      respuesta = await axios ({
         method: "get",
-        headers: { 
-          'Authorization':`${jwt}`,
-          page:page,
+        params: { 
+          "token": jwt,
+          "page":page,
           monto_min: data.monto_inicial !=""? data.monto_inicial:null,
           monto_max: data.monto_final!=""? data.monto_final:null,
           tipo: data.tipo!=""? data.tipo:null,
@@ -27,9 +26,9 @@ export async function obtenerGastos(access, data, page, otherCoins) {
     } else {
       respuesta = await axios({
         method: "get",
-        headers: { 
-          Authorization:jwt,
-          page: page,
+        params: { 
+          "token":jwt,
+          "page": page,
           monto_min: data.monto_inicial !=""? data.monto_inicial:null,
           monto_max: data.monto_final!=""? data.monto_final:null,
           tipo: data.tipo!=""? data.tipo:null,
