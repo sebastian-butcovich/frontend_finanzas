@@ -103,11 +103,12 @@ export async function removeGasto(id, access) {
   }
 }
 export async function obtenerTypesGastos(access) {
+  let jwt = "Bearer ".concat(access);
   try {
     const response = await axios({
       method: "get",
-      url: `${url}gastos/tipos`,
-      headers: { "x-access-token": access },
+      url: `${url}spent/tipos`,
+      params: { "token": jwt },
     });
     return response;
   } catch (error) {

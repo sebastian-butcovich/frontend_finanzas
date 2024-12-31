@@ -25,6 +25,7 @@ function Cards({
   });
   const [message, setMessage] = useState("");
   useEffect(() => {
+    
     setTimeout(() => {
       setIsMessage(false);
       setIsTextInfo(false);

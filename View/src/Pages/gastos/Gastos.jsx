@@ -28,7 +28,7 @@ function Gastos() {
         pagContext.getPage(),
         filter.otherCoins,
       );
-      console.log("variable response", response.data);
+      console.log("variable response", response);
       if (response.status == 401) {
         let access = await auth.updateToken();
         response = await obtenerGastos(
@@ -70,7 +70,7 @@ function Gastos() {
   }
   useEffect(() => {
     pagContext.setPage(1);
-    //obtenerTipos();
+    obtenerTipos();
     context.setUpdateTypes(false);
   }, [context.updateTypes]);
   useEffect(() => {
@@ -116,7 +116,7 @@ function Gastos() {
       <DefaultPage>
         <FilterMenu />
         <Cards
-          data={context.data.gastos}
+          data={context.data}
           handleRemove={handleRemove}
           requestEdit={editGasto}
           requestAdd={setGasto}
