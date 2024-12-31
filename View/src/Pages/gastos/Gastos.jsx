@@ -69,7 +69,7 @@ function Gastos() {
     }
   }
   useEffect(() => {
-    pagContext.setPage(1);
+    pagContext.setPage(0);
     obtenerTipos();
     context.setUpdateTypes(false);
   }, [context.updateTypes]);
@@ -116,7 +116,7 @@ function Gastos() {
       <DefaultPage>
         <FilterMenu />
         <Cards
-          data={context.data}
+          data={context.data.content}
           handleRemove={handleRemove}
           requestEdit={editGasto}
           requestAdd={setGasto}
