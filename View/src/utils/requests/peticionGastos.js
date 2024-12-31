@@ -20,7 +20,7 @@ export async function obtenerGastos(access, data, page, otherCoins) {
           criterion: "last_updated_on_max",
           page_size: 5,
          },
-        url:"http://localhost:8080/spent/get_all",
+        url:`${url}spent/get_all`,
         
       });
     } else {
@@ -37,7 +37,7 @@ export async function obtenerGastos(access, data, page, otherCoins) {
           page_size: 5,
           criterion: "last_updated_on_max",
          },
-        url: "http://localhost:8080/spent/get_all",
+         url:`${url}spent/get_all`,
       });
     }
     console.log("respuesta de petición gastos",respuesta)
