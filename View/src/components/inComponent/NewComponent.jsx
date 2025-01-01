@@ -32,7 +32,7 @@ function NewComponent({ newRequest }) {
        let access = await auth.updateToken();
        respuesta = await newRequest(data, access);
     }
-    if (respuesta == 201) {
+    if (respuesta == 200) {
       Swal.fire({
         title: "Se ingreso correctamente",
         text: "Se ingreso un nuevo monto correctamente",

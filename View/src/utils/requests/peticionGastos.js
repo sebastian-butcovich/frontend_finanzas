@@ -18,7 +18,7 @@ export async function obtenerGastos(access, data, page, otherCoins) {
           currency: data.currency!=""? data.currency:null,
           currency_type: data.currency_type!=""? data.currency_type:null,
           criterion: "last_updated_on_max",
-          page_size: 5,
+          page_size: 15,
          },
         url:`${url}spent/get_all`,
         
@@ -34,7 +34,7 @@ export async function obtenerGastos(access, data, page, otherCoins) {
           tipo: data.tipo!=""? data.tipo:null,
           fecha_inicio: data.fecha_inicio!=""? data.fecha_inicio:null,
           fecha_fin: data.fecha_fin!=""? data.fecha_fin:null,
-          page_size: 5,
+          page_size: 15,
           criterion: "last_updated_on_max",
          },
          url:`${url}spent/get_all`,
@@ -49,17 +49,18 @@ export async function obtenerGastos(access, data, page, otherCoins) {
 }
 export async function setGasto(data, access) {
   try {
-    console.log(data);
+    let jwt = "Bearer ".concat(access);
     const respuesta = await axios({
       method: "post",
-      url: `${url}gastos/add`,
-      headers: { "x-access-token": access },
+      url: `${url}spent/add`,
+      params: { "token": jwt },
       data: {
         monto: data.monto,
         descripcion: data.descripcion,
         tipo: data.tipo,
       },
     });
+    console.log("respuesta de agregar gasto",respuesta)
     return respuesta.status;
   } catch (error) {
     console.log(error);
@@ -70,8 +71,8 @@ export async function editGasto(data, access) {
   try {
     const respuesta = await axios({
       method: "put",
-      url: `${url}gastos/update`,
-      headers: { "x-access-token": access },
+      url: `${url}spent/update`,
+      headers: { "xtoken": access },
       data: {
         id: data.id,
         monto: data.monto,
