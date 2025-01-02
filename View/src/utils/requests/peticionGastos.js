@@ -68,11 +68,13 @@ export async function setGasto(data, access) {
   }
 }
 export async function editGasto(data, access) {
+  let jwt = "Bearer".concat(' ',access)
   try {
+    console.log("token del editar", jwt)
     const respuesta = await axios({
-      method: "put",
+      method: "post",
       url: `${url}spent/update`,
-      headers: { "xtoken": access },
+      params: { "token":jwt },
       data: {
         id: data.id,
         monto: data.monto,
@@ -88,12 +90,12 @@ export async function editGasto(data, access) {
 }
 export async function removeGasto(id, access) {
   console.log(id, access);
+  let jwt = "Bearer ".concat(access);
   try {
     const response = await axios({
       method: "delete",
-      url: `${url}gastos/delete`,
-      headers: { "x-access-token": access },
-      params: {
+      url: `${url}spent/delete`,
+      params: { "token": jwt ,
         id,
       },
     });
