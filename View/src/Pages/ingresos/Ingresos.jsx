@@ -49,6 +49,7 @@ function Ingresos() {
       pageContext.getPage(),
       filter.otherCoins,
     );
+    console.log("respuesta de ingresos", response);
     if (response.status == 401) {
       let access = await auth.updateToken();
       response = await getIngresos(
@@ -89,7 +90,7 @@ function Ingresos() {
     <DefaultPage>
       <FilterMenu></FilterMenu>
       <Cards
-        data={context.data.ingresos}
+        data={context.data.content}
         handleRemove={handleRemove}
         requestEdit={editIngreso}
         requestAdd={setIngreso}

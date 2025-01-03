@@ -2,13 +2,15 @@ import axios from "axios";
 import {url} from './../../global'
 export async function getIngresos(access, data, page, otherCoins) {
   let respuesta = null;
+  page = 0;
+  let jwt = "Bearer ".concat(access);
   try {
     if (otherCoins) {
       respuesta = await axios({
         method: "get",
-        headers: { "x-access-token": access },
-        url: `${url}ingresos/get_all`,
+        url: `${url}income/get_all`,
         params: {
+          "token": jwt ,
           page: page,
           page_size: 5,
           monto_min: data.monto_inicial != "" ? data.monto_inicial : null,
@@ -24,9 +26,9 @@ export async function getIngresos(access, data, page, otherCoins) {
     } else {
       respuesta = await axios({
         method: "get",
-        headers: { "x-access-token": access },
-        url: `${url}ingresos/get_all`,
+        url: `${url}income/get_all`,
         params: {
+          "token": jwt ,
           page: page,
           page_size: 5,
           criterion: "last_updated_on_max",
@@ -39,11 +41,14 @@ export async function getIngresos(access, data, page, otherCoins) {
   }
 }
 export async function setIngreso(data, access) {
+  let jwt = "Bearer ".concat(access);
   try {
     const respuesta = await axios({
       method: "post",
-      url: `${url}ingresos/add`,
-      headers: { "x-access-token": access },
+      url: `${url}income/add`,
+      params:{
+        "token": jwt 
+      },
       data: {
         monto: data.monto,
         descripcion: data.descripcion,
