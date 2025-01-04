@@ -62,11 +62,12 @@ export async function setIngreso(data, access) {
   }
 }
 export async function editIngreso(data, access) {
+  let jwt = "Bearer ".concat(access);
   try {
     const respuesta = await axios({
-      method: "put",
-      url: `${url}ingresos/update`,
-      headers: { "x-access-token": access },
+      method: "post",
+      url: `${url}income/update`,
+      params: { "token": jwt },
       data: {
         id: data.id,
         monto: data.monto,
@@ -81,12 +82,13 @@ export async function editIngreso(data, access) {
   }
 }
 export async function removeIngreso(id, access) {
+  let jwt = "Bearer ".concat(access);
   try {
     const response = await axios({
       method: "delete",
-      url: `${url}ingresos/delete`,
-      headers: { "x-access-token": access },
+      url: `${url}income/delete`,
       params: {
+        "token": jwt,
         id,
       },
     });
@@ -98,10 +100,11 @@ export async function removeIngreso(id, access) {
 }
 export async function obtenerTypesIngresos(access) {
   try {
+    let jwt = "Bearer ".concat(access)
     const response = await axios({
       method: "get",
-      url: `${url}ingresos/tipos`,
-      headers: { "x-access-token": access },
+      url: `${url}income/tipos`,
+      params: { "token": jwt },
     });
     return response;
   } catch (error) {
