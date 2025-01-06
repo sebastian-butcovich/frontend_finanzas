@@ -11,10 +11,10 @@ function Dashboard() {
       <DefaultPage>
         <div className={style.container_content_dashboard}>
           <div className={style.container_block}>
-            <BlockCoinsValue request={getValueCoins} className={style.container_coins_value}/>
+            {/* <BlockCoinsValue request={getValueCoins} className={style.container_coins_value}/>*/}
             <BlockTotal />
           </div>
-          <AvaragesGraphics />
+          {/*<AvaragesGraphics />*/}
         </div>
       </DefaultPage>
     </div>

@@ -26,29 +26,17 @@ function BlockTotal() {
         filter.getDataFilter(),
         filter.otherCoins
       );
-      let ingresos = await getTotalIngresos(
-        access,
-        filter.getDataFilter(),
-        filter.otherCoins
-      );
-      if (gastos.status == 401 || ingresos.status == 401) {
-        access = await auth.updateToken();
-        gastos = await getTotalsGasto(
-          access,
-          filter.getDataFilter(),
-          filter.otherCoins
-        );
-        ingresos = await getTotalIngresos(
-          access,
-          filter.getDataFilter(),
-          filter.otherCoins
-        );
-      }
+      //let ingresos = await getTotalIngresos(
+        //access,
+       // filter.getDataFilter(),
+        //filter.otherCoins
+      //);
+      console.log("respuesta de gastos total", gastos);
       setTotals({
         ...totals,
-        gastos: gastos.data.total,
-        ingresos: ingresos.data.total,
-        cotizacion: gastos.data.additional_info.cotizacion,
+        gastos: gastos.data.value,
+        //ingresos: ingresos.data.total,
+        //cotizacion: gastos.data.additional_info.cotizacion,
       });
     } catch (error) {
       console.log(error);

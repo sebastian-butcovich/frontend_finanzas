@@ -120,24 +120,23 @@ export async function obtenerTypesGastos(access) {
 }
 export async function getTotalsGasto(access, filter, otherCoins) {
   let responseGastos = null;
+  let jwt = "Bearer ".concat(access);
   try {
     if (filter.currency != "" && filter.currency_type != "" && otherCoins) {
       responseGastos = await axios({
         method: "get",
-        headers: { "x-access-token": access },
-        url: `${url}gastos/total`,
-        params: {
-          currency: filter.currency,
-          currency_type: filter.currency_type,
-        },
+        params: { "token": jwt,currency: filter.currency,
+          currency_type: filter.currency_type, },
+        url: `${url}spent/total`,
       });
     } else {
       responseGastos = await axios({
         method: "get",
-        headers: { "x-access-token": access },
-        url: `${url}gastos/total`,
+        params: { "token": jwt },
+        url: `${url}spent/total`,
       });
     }
+    console.log(responseGastos);
     return responseGastos;
   } catch (error) {
     console.log("Este error ocurre dentro de la petición getTotalGasto", error);

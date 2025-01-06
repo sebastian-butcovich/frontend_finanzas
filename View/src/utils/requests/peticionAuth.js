@@ -6,8 +6,8 @@ export async function refreshToken(refresh_token)
         const response = await axios({
             method:"post",
             url:`${url}auth/refresh`,
-            headers:{
-                Authorization:"Bearer "+refresh_token
+            params:{
+                "token":"Bearer ".concat(refresh_token)
             }
         })
         return response.data.access_token;

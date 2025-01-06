@@ -113,22 +113,22 @@ export async function obtenerTypesIngresos(access) {
 }
 export async function getTotalIngresos(access, filter, otherCoins) {
   let responseIngresos = null;
+  let jwt = "Bearer ".concat(access);
   try {
     if (filter.currency != "" && filter.currency_type != "" && otherCoins) {
       responseIngresos = await axios({
         method: "get",
-        headers: { "x-access-token": access },
-        url: `${url}ingresos/total`,
-        params: {
+        params: { "token": jwt,
           currency: filter.currency,
           currency_type: filter.currency_type,
-        },
+         },
+        url: `${url}income/total`,
       });
     } else {
       responseIngresos = await axios({
         method: "get",
-        headers: { "x-access-token": access },
-        url: `${url}ingresos/total`,
+        headers: { "token": jwt },
+        url: `${url}income/total`,
       });
     }
     return responseIngresos;
