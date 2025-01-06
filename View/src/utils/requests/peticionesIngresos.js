@@ -127,10 +127,11 @@ export async function getTotalIngresos(access, filter, otherCoins) {
     } else {
       responseIngresos = await axios({
         method: "get",
-        headers: { "token": jwt },
+        params: { "token": jwt },
         url: `${url}income/total`,
       });
     }
+    console.log(responseIngresos);
     return responseIngresos;
   } catch (error) {
     console.log(

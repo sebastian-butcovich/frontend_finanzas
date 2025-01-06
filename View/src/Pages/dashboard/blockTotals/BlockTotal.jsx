@@ -26,16 +26,15 @@ function BlockTotal() {
         filter.getDataFilter(),
         filter.otherCoins
       );
-      //let ingresos = await getTotalIngresos(
-        //access,
-       // filter.getDataFilter(),
-        //filter.otherCoins
-      //);
-      console.log("respuesta de gastos total", gastos);
+      let ingresos = await getTotalIngresos(
+        access,
+        filter.getDataFilter(),
+        filter.otherCoins
+      );
       setTotals({
         ...totals,
         gastos: gastos.data.value,
-        //ingresos: ingresos.data.total,
+        ingresos: ingresos.data.value,
         //cotizacion: gastos.data.additional_info.cotizacion,
       });
     } catch (error) {

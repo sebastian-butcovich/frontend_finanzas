@@ -125,7 +125,9 @@ export async function getTotalsGasto(access, filter, otherCoins) {
     if (filter.currency != "" && filter.currency_type != "" && otherCoins) {
       responseGastos = await axios({
         method: "get",
-        params: { "token": jwt,currency: filter.currency,
+        params: { 
+          "token": jwt,currency: 
+          filter.currency,
           currency_type: filter.currency_type, },
         url: `${url}spent/total`,
       });
