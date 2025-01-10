@@ -60,9 +60,9 @@ function Ingresos() {
       );
     }
     context.setData(response.data);
-    pageContext.setPage(response.data.page);
+    pageContext.setPage(response.data.number);
     pageContext.setNextPage(response.data.next_page);
-    pageContext.setLastPage(response.data.total_pages);
+    pageContext.setLastPage(response.data.totalPages);
   }
   async function handleRemove(id) {
     let response = await removeIngreso(id, auth.getAccess());

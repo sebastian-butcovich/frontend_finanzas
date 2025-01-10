@@ -38,10 +38,11 @@ function Gastos() {
           filter.otherCoins,
         );
       }
+      console.log("tengo que ver este mensaje",response.data.number)
       context.setData(response.data);
-      pagContext.setPage(response.data.page);
+      pagContext.setPage(response.data.number);
       pagContext.setNextPage(response.data.next_page);
-      pagContext.setLastPage(response.data.total_pages);
+      pagContext.setLastPage(response.data.totalPages);
     } catch (mistake) {
       console.log(
         "Este error ocure en la pagina gastos, en la función obtener los gastos",

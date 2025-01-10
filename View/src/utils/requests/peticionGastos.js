@@ -2,6 +2,7 @@ import axios from "axios";
 import {url} from './../../global'
 export async function obtenerGastos(access, data, page, otherCoins) {
   let respuesta = null;
+  console.log(otherCoins)
   let jwt = "Bearer".concat(' ',access) ; 
   try {
     if ( otherCoins ) {
