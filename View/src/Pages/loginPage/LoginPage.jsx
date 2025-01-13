@@ -15,7 +15,7 @@ function LoginPage() {
     let data = localStorage.getItem("refresh");
     if (data != null) {
       auth.setIsAuth(true);
-      auth.updateToken();
+      //auth.updateToken();
       navigate("/dashboard");
     }
   }, []);
@@ -44,7 +44,7 @@ function LoginPage() {
       auth.setAccess(response.data.access_token);
       localStorage.setItem("refresh", response.data.refresh_token);
       localStorage.setItem("user", name);
-      navigate("/gastos");
+      navigate("/dashboard");
     } else {
       setError(true);
       navigate("/");

@@ -17,10 +17,7 @@ function BlockTotal() {
   const filter = useContext(FilterContext);
   async function getTotals() {
     try {
-      let access = await auth.getAccess();
-      if (access == "") {
-        access = await auth.updateToken();
-      }
+      let access = await auth.updateToken();
       let gastos = await getTotalsGasto(
         access,
         filter.getDataFilter(),
@@ -44,7 +41,7 @@ function BlockTotal() {
   useEffect(() => {
     getTotals();
     context.setIsUpdate(false);
-  }, [context.isUpdate]);
+  }, [context.isUpdate],[]);
   return (
     <div className={style.container_value_totals}>
         <div className={style.container_totals}>

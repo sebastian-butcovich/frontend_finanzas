@@ -9,14 +9,23 @@ export function AuthProvider({children}) {
     return isAuth;
   }
    function getAccess(){
-    return access;
+    if(access !== "" && access !==403){
+      return access;
+    }
   }
   async function updateToken()
   {
     let refresh = localStorage.getItem("refresh");
     let accessA = await refreshToken(refresh);
-    setAccess(accessA);
-    return accessA;
+    if(accessA !== 403 && accessA !=="")
+    {
+      setAccess(accessA);
+      localStorage.setItem("refresh",refresh);
+      console.log("retorno de accessA",accessA);
+      return accessA;
+    }
+    console.log("segunda ejecución",access)
+    return access;
   }
   return  <AuthContext.Provider value={{getAuth,setIsAuth,getAccess,setAccess,updateToken}}>{children} </AuthContext.Provider>
 }

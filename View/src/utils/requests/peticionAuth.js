@@ -10,9 +10,11 @@ export async function refreshToken(refresh_token)
                 "token":"Bearer ".concat(refresh_token)
             }
         })
+        console.log("esto pasa y no lo otro",response.data.access_token);
         return response.data.access_token;
     }catch(error)
     {
-        console.log("Erro en la petición auth",error);
+        console.log("Erro en la petición auth",error.response.status);
+        return error.response.status;
     }
 }
