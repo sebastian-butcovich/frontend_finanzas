@@ -9,7 +9,7 @@ export async function obtenerGastos(access, data, page, otherCoins) {
       respuesta = await axios ({
         method: "get",
         params: { 
-          "token": jwt,
+          "token":jwt,
           "page":page,
           monto_min: data.monto_inicial !=""? data.monto_inicial:null,
           monto_max: data.monto_final!=""? data.monto_final:null,
