@@ -28,11 +28,12 @@ function BlockTotal() {
         filter.getDataFilter(),
         filter.otherCoins
       );
+      console.log("gastos totales en blockTotal",gastos);
       setTotals({
         ...totals,
         gastos: gastos.data.value,
         ingresos: ingresos.data.value,
-        //cotizacion: gastos.data.additional_info.cotizacion,
+        cotizacion: gastos.data.moneda
       });
     } catch (error) {
       console.log(error);

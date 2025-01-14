@@ -70,7 +70,7 @@ function Card({ element, handleRemove, requestEdit }) {
               context.getType() ? style.montoGasto : style.montoIngreso
             }
           >
-            {element.monto}
+            {element.monto}{" "}{element.moneda}
           </p>):<div><img className={style.icon_saldo} src ={asterisco}/>
           <img className={style.icon_saldo} src ={asterisco}/>
           <img className={style.icon_saldo} src ={asterisco}/></div>}
