@@ -19,7 +19,7 @@ export async function obtenerGastos(access, data, page, otherCoins) {
           currency: data.currency!=""? data.currency:null,
           currency_type: data.currency_type!=""? data.currency_type:null,
           criterion: "last_updated_on_max",
-          page_size: 15,
+          page_size: 5,
          },
         url:`${url}spent/get_all`,
         
@@ -35,7 +35,7 @@ export async function obtenerGastos(access, data, page, otherCoins) {
           tipo: data.tipo!=""? data.tipo:null,
           fecha_inicio: data.fecha_inicio!=""? data.fecha_inicio:null,
           fecha_fin: data.fecha_fin!=""? data.fecha_fin:null,
-          page_size: 15,
+          page_size: 5,
           criterion: "last_updated_on_max",
          },
          url:`${url}spent/get_all`,
