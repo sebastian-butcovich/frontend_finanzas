@@ -28,7 +28,6 @@ function Gastos() {
         pagContext.getPage(),
         filter.otherCoins,
       );
-      console.log("variable response", response);
       if (response.status == 401) {
         let access = await auth.updateToken();
         response = await obtenerGastos(
@@ -38,11 +37,16 @@ function Gastos() {
           filter.otherCoins,
         );
       }
-      console.log("tengo que ver este mensaje",response.data.number)
-      context.setData(response.data);
-      pagContext.setPage(response.data.number);
+      console.log("Una respuesta",response)
+      context.setData(response.data.movents);
+      pagContext.setPage(response.data.page);
       pagContext.setNextPage(response.data.next_page);
-      pagContext.setLastPage(response.data.totalPages);
+      pagContext.setLastPage(response.data.total_page);
+      filter.setDataFilter({
+        ...filter.getDataFilter(),
+        currency:response.data.additionalInfo.cotizacion,
+        currency_type:response.data.additionalInfo.tipo_de_cotizacion
+      })
     } catch (mistake) {
       console.log(
         "Este error ocure en la pagina gastos, en la función obtener los gastos",
@@ -54,11 +58,9 @@ function Gastos() {
     let response = null;
     try {
       let access = auth.getAccess();
-      console.log('token viejo en obtener tipos en gastos', access)
       response = await obtenerTypesGastos(access);
       if (response.status == 401) {
         access = await auth.updateToken();
-        console.log('token nuevo en obtener tipos en gastos', access)
         response = await obtenerTypesGastos(access);
       }
       context.setListTypes(response.data);
@@ -70,7 +72,7 @@ function Gastos() {
     }
   }
   useEffect(() => {
-    pagContext.setPage(0);
+    pagContext.setPage(1);
     obtenerTipos();
     context.setUpdateTypes(false);
   }, [context.updateTypes]);
@@ -117,7 +119,7 @@ function Gastos() {
       <DefaultPage>
         <FilterMenu />
         <Cards
-          data={context.data.content}
+          data={context.data}
           handleRemove={handleRemove}
           requestEdit={editGasto}
           requestAdd={setGasto}

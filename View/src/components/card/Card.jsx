@@ -4,10 +4,12 @@ import { CardsContext } from "../../utils/context/CardsProvider";
 import UpdateComponent from "../inComponent/UpdateComponent";
 import asterisco from './../../assets/asterisco.png'
 import { message } from "./../../utils/functions/Message";
+import { FilterContext } from "../../utils/context/FilterProvider";
 function Card({ element, handleRemove, requestEdit }) {
   const context = useContext(CardsContext);
   const [isEdit, setIsEdit] = useState(false);
   const [actual, setActual] = useState(-1);
+  const filter = useContext(FilterContext);
   useEffect(() => {
     if (context.lastEdit.id == element.id) {
       setIsEdit(false);
@@ -70,7 +72,7 @@ function Card({ element, handleRemove, requestEdit }) {
               context.getType() ? style.montoGasto : style.montoIngreso
             }
           >
-            {element.monto}{" "}{element.moneda}
+            {element.monto}{" "}{filter.getDataFilter().currency}
           </p>):<div><img className={style.icon_saldo} src ={asterisco}/>
           <img className={style.icon_saldo} src ={asterisco}/>
           <img className={style.icon_saldo} src ={asterisco}/></div>}

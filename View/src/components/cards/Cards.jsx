@@ -25,7 +25,7 @@ function Cards({
   });
   const [message, setMessage] = useState("");
   useEffect(() => {
-    console.log("pagination context", paginationContext)
+    console.log("pagination context", data)
     setTimeout(() => {
       setIsMessage(false);
       setIsTextInfo(false);
@@ -147,8 +147,10 @@ function Cards({
               {paginationContext.getPage() - 1}
             </a>
           ) : null}
+        
         <a
           className={
+            //Boton de la página actual
             paginationContext.getPage() == 1 &&
             paginationContext.getLastPage() != 1
               ? style.buttonPagination_activate_start
@@ -172,6 +174,7 @@ function Cards({
         </a>
         {paginationContext.getLastPage() > paginationContext.getPage() + 1 ? (
           <a
+          //Botón de la pagina siguiente 
             className={style.buttonPagination}
             onClick={async () => {
               if (paginationContext.getNextPage() != null) {
@@ -196,6 +199,7 @@ function Cards({
         ) : null}
         {paginationContext.getLastPage() > paginationContext.getPage()+1 ? (
           <a
+          //Botón de la página final
             className={style.buttonPagination_border_end}
             onClick={async () => {
               if (paginationContext.getNextPage() != null) {

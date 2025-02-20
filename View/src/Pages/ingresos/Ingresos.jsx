@@ -32,11 +32,9 @@ function Ingresos() {
   }, [context.updateTypes]);
   async function obtenerTiposIngresos() {
     let access = auth.getAccess();
-    console.log('Token viejo', access);
     let response = await obtenerTypesIngresos(access);
     if (response.status == 401) {
       access = await auth.updateToken();
-      console.log('Token nuevo', access);
       response = await obtenerTypesIngresos(access);
     }
     context.setListTypes(response.data);
@@ -59,10 +57,15 @@ function Ingresos() {
         filter.otherCoins,
       );
     }
-    context.setData(response.data);
-    pageContext.setPage(response.data.number);
+    context.setData(response.data.movents);
+    pageContext.setPage(response.data.page);
     pageContext.setNextPage(response.data.next_page);
-    pageContext.setLastPage(response.data.totalPages);
+    pageContext.setLastPage(response.data.total_page);
+    filter.setDataFilter({
+      ...filter.getDataFilter(),
+      currency:response.data.additionalInfo.cotizacion,
+      currency_type:response.data.additionalInfo.tipo_de_cotizacion
+    })
   }
   async function handleRemove(id) {
     let response = await removeIngreso(id, auth.getAccess());
@@ -90,7 +93,7 @@ function Ingresos() {
     <DefaultPage>
       <FilterMenu></FilterMenu>
       <Cards
-        data={context.data.content}
+        data={context.data}
         handleRemove={handleRemove}
         requestEdit={editIngreso}
         requestAdd={setIngreso}

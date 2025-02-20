@@ -2,10 +2,9 @@ import axios from "axios";
 import {url} from './../../global'
 export async function obtenerGastos(access, data, page, otherCoins) {
   let respuesta = null;
-  console.log(otherCoins)
   let jwt = "Bearer".concat(' ',access) ; 
   try {
-    if ( otherCoins ) {
+    if ( otherCoins|| (data.monto_inicial!=0 && data.monto_final !=0) || data.tipo !="" || (data.fecha_inicio && data.fecha_fin)) {
       respuesta = await axios ({
         method: "get",
         params: { 
