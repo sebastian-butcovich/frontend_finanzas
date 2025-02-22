@@ -50,7 +50,7 @@ function BlockTotal() {
           <span className={style.text_total_gastado}>Total Gastado: </span>
           {context.isViewSaldo ? (
             <p className={style.valor_total_gastado}>
-              {totals.gastos} {totals.cotizacion}
+              {Intl.NumberFormat("ES-AR").format(totals.gastos)} {totals.cotizacion}
             </p>
           ) : (
             <div className={style.container_asterisco}>
@@ -62,7 +62,7 @@ function BlockTotal() {
           <span className={style.text_total_ingresado}>Total Ingresado: </span>
           {context.isViewSaldo ? (
             <p className={style.valor_total_ingresado}>
-              {totals.ingresos} {totals.cotizacion}
+              {Intl.NumberFormat("ES-AR").format(totals.ingresos)} {totals.cotizacion}
             </p>
           ) : (
             <div className={style.container_asterisco}>

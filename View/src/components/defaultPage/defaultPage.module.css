@@ -25,6 +25,7 @@ input {
   align-items: center;
   text-align: center;
   padding: 2% 0;
+  z-index: 2;
 }
 .header_container {
   color: white;

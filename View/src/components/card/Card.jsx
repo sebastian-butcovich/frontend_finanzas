@@ -72,7 +72,7 @@ function Card({ element, handleRemove, requestEdit }) {
               context.getType() ? style.montoGasto : style.montoIngreso
             }
           >
-            {element.monto}{" "}{filter.getDataFilter().currency}
+            {Intl.NumberFormat("ES-AR").format(element.monto)}{" "}{filter.getDataFilter().currency}
           </p>):<div><img className={style.icon_saldo} src ={asterisco}/>
           <img className={style.icon_saldo} src ={asterisco}/>
           <img className={style.icon_saldo} src ={asterisco}/></div>}
