@@ -25,7 +25,7 @@ function Cards({
   });
   const [message, setMessage] = useState("");
   useEffect(() => {
-    console.log("pagination context", data)
+    console.log("valores de la páginas", paginationContext.getPage(),paginationContext.getLastPage())
     setTimeout(() => {
       setIsMessage(false);
       setIsTextInfo(false);
@@ -66,13 +66,13 @@ function Cards({
       </div>
       <div className={style.message_entradas}>
         <p>
-          Se están mostrando la página {context.data.page} de{" "}
-          {context.data.total_pages} páginas
+          Se están mostrando la página {paginationContext.getPage()} de{" "}
+          {paginationContext.getLastPage()} páginas
         </p>
 
         <p>
           Se están mostrando {data ? data.length : null} entradas de las{" "}
-          {context.data.total_entries} entradas en total
+          {paginationContext.getTotalEntries()} entradas en total
         </p>
       </div>
       {context.isNew ? (
@@ -98,15 +98,14 @@ function Cards({
       <div className={style.paginationButton}>
         {
           //Boton para ir a la pagina 01
-          paginationContext.getPage() - 1 == 0 ? (
+          paginationContext.getPage() - 1 != 0 ? (
             <a
               className={style.buttonPagination_border_start}
               onClick={async () => {
                 if (paginationContext.getPage() != 1) {
-                  paginationContext.setPage(() => {
+                  paginationContext.setPage(
                     paginationContext.getPage() -
-                      (paginationContext.getPage() - 1);
-                  });
+                      (paginationContext.getPage() - 1));
                   let value = isSelected.onePage ? false : true;
                   setIsSelected({
                     ...isSelected,
@@ -123,6 +122,7 @@ function Cards({
             </a>
           ) : null
         }
+        
          {paginationContext.getPage() - 2 > 1 ? (
           <a className={style.buttonPagination}>...</a>
         ) : null} 
@@ -132,7 +132,8 @@ function Cards({
             <a
               className={style.buttonPagination}
               onClick={async () => {
-                paginationContext.setPage(paginationContext.getPage() - 1);
+                let pag = paginationContext.getPage()-1;
+                paginationContext.setPage(pag);
                 let value = isSelected.previusPage ? false : true;
                 setIsSelected({
                   ...isSelected,
@@ -142,6 +143,7 @@ function Cards({
                   lastPage: false,
                 });
                 await obtenerDatos();
+               
               }}
             >
               {paginationContext.getPage() - 1}
@@ -197,7 +199,7 @@ function Cards({
         {paginationContext.getLastPage() > paginationContext.getPage() + 2 ? (
           <a className={style.buttonPagination}>...</a>
         ) : null}
-        {paginationContext.getLastPage() > paginationContext.getPage()+1 ? (
+        {paginationContext.getLastPage() > paginationContext.getPage() ? (
           <a
           //Botón de la página final
             className={style.buttonPagination_border_end}

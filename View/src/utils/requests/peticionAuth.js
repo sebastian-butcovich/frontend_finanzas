@@ -18,3 +18,19 @@ export async function refreshToken(refresh_token)
         return error.response.status;
     }
 }
+export async function isValidateToken(token)
+{
+    try{
+        let response = await axios({
+            method:"get",
+            url:`${url}auth/validate`,
+            params:{
+                "token":token
+            }
+        })
+        return response;
+    }catch(error)
+    {
+        return error.response;
+    }
+}

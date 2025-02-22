@@ -1,6 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import DefaultPage from "../../components/defaultPage/DefaultPage";
 import { CardsContext } from "../../utils/context/CardsProvider";
+import { isValidateToken } from "../../utils/requests/peticionAuth";
 import {
   getIngresos,
   removeIngreso,
@@ -33,22 +34,17 @@ function Ingresos() {
   async function obtenerTiposIngresos() {
     let access = auth.getAccess();
     let response = await obtenerTypesIngresos(access);
-    if (response.status == 401) {
+    if (response.status == 403) {
       access = await auth.updateToken();
       response = await obtenerTypesIngresos(access);
     }
     context.setListTypes(response.data);
   }
   async function obtenerIngresos() {
+    let response1 = await isValidateToken(auth.getAccess())
     let response = null;
-    response = await getIngresos(
-      auth.getAccess(),
-      filter.getDataFilter(),
-      pageContext.getPage(),
-      filter.otherCoins,
-    );
-    console.log("respuesta de ingresos", response);
-    if (response.status == 401) {
+    if(response1.data == 1 && response1.status == 403)
+    {
       let access = await auth.updateToken();
       response = await getIngresos(
         access,
@@ -56,11 +52,20 @@ function Ingresos() {
         pageContext.getPage(),
         filter.otherCoins,
       );
+    }else
+    {
+    response = await getIngresos(
+      auth.getAccess(),
+      filter.getDataFilter(),
+      pageContext.getPage(),
+      filter.otherCoins,
+    );
     }
     context.setData(response.data.movents);
     pageContext.setPage(response.data.page);
     pageContext.setNextPage(response.data.next_page);
-    pageContext.setLastPage(response.data.total_page);
+    pageContext.setLastPage(response.data.total_pages);
+    pageContext.setTotalEntries(response.data.total_entries);
     filter.setDataFilter({
       ...filter.getDataFilter(),
       currency:response.data.additionalInfo.cotizacion,
@@ -69,7 +74,7 @@ function Ingresos() {
   }
   async function handleRemove(id) {
     let response = await removeIngreso(id, auth.getAccess());
-    if (response == 401) {
+    if (response == 403) {
       let access = await auth.updateToken();
       response = await removeIngreso(id, access);
     }

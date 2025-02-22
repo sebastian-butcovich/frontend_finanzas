@@ -4,10 +4,14 @@ function PaginadoProvider({children}) {
   var page = 0;
   var nextPage = 0;
   var lastPage = 0;
+  var totalEntries = 0; 
   const [dashboard,setDashboard] = useState(true);
   var [gastos,setGastos] = useState(false);
   var [ingresos,setIngresos] = useState(false);
- 
+
+  function setTotalEntries(value) {
+    totalEntries = value;
+  }
   function setNextPage(value) {
     nextPage = value;
   }
@@ -16,6 +20,9 @@ function PaginadoProvider({children}) {
   }
   function setLastPage(value) {
     lastPage = value;
+  }
+  function getTotalEntries() {
+    return totalEntries;
   }
   function getPage() {
     return page;
@@ -40,7 +47,9 @@ function PaginadoProvider({children}) {
         gastos,
         setGastos,
         ingresos,
-        setIngresos
+        setIngresos,
+        setTotalEntries,
+        getTotalEntries
       }}
     >
       {children}

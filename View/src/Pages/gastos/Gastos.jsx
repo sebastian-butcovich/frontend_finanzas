@@ -14,6 +14,7 @@ import { FilterContext } from "../../utils/context/FilterProvider";
 import Cards from "../../components/cards/Cards";
 import { PaginadoContext } from "../../utils/context/PaginadoProvider";
 import { messageInfo } from "./../../utils/functions/Message";
+import { isValidateToken } from "../../utils/requests/peticionAuth";
 function Gastos() {
   const context = useContext(CardsContext);
   const auth = useAuth();
@@ -22,13 +23,8 @@ function Gastos() {
   async function obtenerLosGastos() {
     try {
       let response = null;
-      response = await obtenerGastos(
-        auth.getAccess(),
-        filter.getDataFilter(),
-        pagContext.getPage(),
-        filter.otherCoins,
-      );
-      if (response.status == 401) {
+      let response1 = await isValidateToken(auth.getAccess()) 
+      if (response1.data == 1 || response1.status == 403) {
         let access = await auth.updateToken();
         response = await obtenerGastos(
           access,
@@ -36,12 +32,20 @@ function Gastos() {
           pagContext.getPage(),
           filter.otherCoins,
         );
+      }else
+      {
+        response = await obtenerGastos(
+          auth.getAccess(),
+          filter.getDataFilter(),
+          pagContext.getPage(),
+          filter.otherCoins,);
       }
       console.log("Una respuesta",response)
       context.setData(response.data.movents);
       pagContext.setPage(response.data.page);
       pagContext.setNextPage(response.data.next_page);
-      pagContext.setLastPage(response.data.total_page);
+      pagContext.setLastPage(response.data.total_pages);
+      pagContext.setTotalEntries(response.data.total_entries);
       filter.setDataFilter({
         ...filter.getDataFilter(),
         currency:response.data.additionalInfo.cotizacion,
@@ -59,7 +63,7 @@ function Gastos() {
     try {
       let access = auth.getAccess();
       response = await obtenerTypesGastos(access);
-      if (response.status == 401) {
+      if (response.status == 403) {
         access = await auth.updateToken();
         response = await obtenerTypesGastos(access);
       }
@@ -87,7 +91,7 @@ function Gastos() {
     try {
       let access = auth.getAccess();
       let response = await removeGasto(id, access);
-      if (response == 401) {
+      if (response == 403) {
         access= await auth.updateToken();
         response = await removeGasto(id, access);
       }
