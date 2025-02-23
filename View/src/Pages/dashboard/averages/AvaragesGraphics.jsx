@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { getAvaragesGastos } from "../../../utils/requests/peticionGastos";
 import { FilterContext } from "../../../utils/context/FilterProvider";
 import { useAuth } from "../../../Auth/AuthProvider";
+import { isValidateToken } from "../../../utils/requests/peticionAuth";
 import {
   generarFechaAnteriorPorSemana,
   generarFechaPorAño,
@@ -64,7 +65,15 @@ function AvaragesGraphics() {
     }
   }
   async function obtenerDatos(textButton) {
-    let access = await auth.updateToken();
+    let access = await auth.getAccess();
+    let isVal = await isValidateToken(auth.getAccess());
+    if(  auth.getAccess() == "" || auth.getAccess() == null )
+    {
+      access = await auth.updateToken();
+    }else
+    {
+      access = auth.getAccess();
+    }
     let fechasAux = filtrarFunction(textButton);
     let auxGastos = [];
     let auxIngresos = [];
@@ -84,8 +93,8 @@ function AvaragesGraphics() {
         filter.getDataFilter(),
         filter.otherCoins
       );
-      auxGastos[j] = response.data.total
-      auxIngresos[j] = responseI.data.total
+      auxGastos[j] = response.data.value
+      auxIngresos[j] = responseI.data.value
       auxFecha[j] = fechasAux[j].fecha_string;
     }
     setDatos({
@@ -94,6 +103,8 @@ function AvaragesGraphics() {
       ingresos:auxIngresos
     });
     setFechas(auxFecha);
+    console.log('ingresos',datos.ingresos);
+    console.log('gastos',datos.gastos);
   }
 
   useEffect(() => {

@@ -151,12 +151,13 @@ export async function getAvaragesIngresos(
 ) {
   try {
     var response = null;
+    var jwt = "Bearer ".concat(access)
     if (otherCoins && filter.currency != "" && filter.currency_type != "") {
       response = await axios({
         method: "GET",
-        url: `${url}ingresos/total`,
-        headers: { "x-access-token": access },
+        url: `${url}income/total`,
         params: {
+          token:jwt,
           fecha_inicio: fecha_inicio,
           fecha_fin: fecha_fin,
           currency: filter.currency,
@@ -166,9 +167,9 @@ export async function getAvaragesIngresos(
     } else {
       response = await axios({
         method: "GET",
-        url: `${url}ingresos/total`,
-        headers: { "x-access-token": access },
+        url: `${url}income/total`,
         params: {
+          token:jwt,
           fecha_inicio: fecha_inicio,
           fecha_fin: fecha_fin,
         },

@@ -19,7 +19,7 @@ function BlockTotal() {
   async function getTotals() {
       let response = await isValidateToken(auth.getAccess());
       let access = await auth.getAccess();
-      if(response.data == 1 ||response.status == 403)
+      if(response.data == 1 ||response.status == 403|| auth.getAccess() == "" || auth.getAccess() == null)
       {
          access = await auth.updateToken();
       }
@@ -41,9 +41,9 @@ function BlockTotal() {
       });
     }       
   useEffect(() => {
-    getTotals();
+    setTimeout(()=>{getTotals()},1000);
     context.setIsUpdate(false);
-  }, [context.isUpdate],[]);
+  }, [context.isUpdate]);
   return (
     <div className={style.container_value_totals}>
         <div className={style.container_totals}>

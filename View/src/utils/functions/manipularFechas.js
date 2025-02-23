@@ -138,11 +138,21 @@ export function generarFechaAnteriorPorSemana() {
     fechas[0] = { fecha_string: `${year}-${month}-${day} `, day, month, year };
   }
   for (let i = 1; i <= 4; i++) {
-    fechas[i] = generarFechaSiguiente(
-      fechas[i - 1].day,
-      fechas[i - 1].month,
-      fechas[i - 1].year
-    );
+    if(i == 4)
+    {
+      fechas[i] = generarFechaSiguiente(
+        fechas[i - 1].day+1,
+        fechas[i - 1].month,
+        fechas[i - 1].year
+      );
+    }else
+    {
+      fechas[i] = generarFechaSiguiente(
+        fechas[i - 1].day,
+        fechas[i - 1].month,
+        fechas[i - 1].year
+      );
+    }
   }
   console.log(fechas);
   return fechas;
@@ -204,7 +214,7 @@ export function generarFechaPorMes()
   var fechas = [];
   if(mes - 4 < 0)
   {
-    mes = 12 + (mes- 4)
+    mes = 12 + (mes- 3)
     year-=1
   }else
   {
@@ -222,7 +232,14 @@ export function generarFechaPorMes()
     {
       fechas[i] = {fecha_string:`${year}-0${mes}-${day}`}
     }
-    mes++;
+    if(mes == 12)
+    {
+      mes =1;
+      year+=1;
+    }
+    else{
+      mes++;
+    }
   }
   return fechas
 }

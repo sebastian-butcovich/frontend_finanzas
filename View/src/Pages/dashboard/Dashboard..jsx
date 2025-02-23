@@ -14,7 +14,7 @@ function Dashboard() {
              <BlockCoinsValue request={getValueCoins} className={style.container_coins_value}/>
             <BlockTotal />
           </div>
-          {/*<AvaragesGraphics />*/}
+          <AvaragesGraphics />
         </div>
       </DefaultPage>
     </div>

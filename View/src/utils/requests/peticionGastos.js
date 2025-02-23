@@ -155,13 +155,14 @@ export async function getAvaragesGastos(
   otherCoins
 ) {
   let response = null;
+  let jwt = "Bearer ".concat(access);
   try {
     if (otherCoins && filter.currency != "" && filter.currency_type != "") {
       response = await axios({
         method: "GET",
-        headers: { "x-access-token": access },
-        url: `${url}gastos/total`,
+        url: `${url}spent/total`,
         params: {
+          token:jwt,
           fecha_inicio: fecha_inicio,
           fecha_fin: fecha_fin,
           currency:filter.currency,
@@ -171,16 +172,18 @@ export async function getAvaragesGastos(
     } else {
       response = await axios({
         method: "GET",
-        headers: { "x-access-token": access },
-        url: `${url}gastos/total`,
+        url: `${url}spent/total`,
         params: {
+          "token": jwt,
           fecha_inicio: fecha_inicio,
           fecha_fin: fecha_fin,
         },
       });
     }
+    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
+    return error.response;
   }
 }
