@@ -1,5 +1,5 @@
 import axios from "axios";
-import {url} from './../../global'
+import { url } from "../../url";
 export async function obtenerUsuarioLogeado(access)
 {
     try{

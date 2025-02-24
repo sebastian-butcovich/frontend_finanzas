@@ -1,5 +1,5 @@
 import axios from "axios";
-import {url} from './../../global'
+import { url } from "../../url";
 export async function getIngresos(access, data, page, otherCoins) {
   let respuesta = null;
   console.log('esto es page dentro de peticiones ingresos',page);

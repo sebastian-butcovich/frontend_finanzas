@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../Auth/AuthProvider";
-import {url} from '../../global'
+import { url } from "../../url";
 function LoginPage() {
   const [name, setName] = useState("");
   const [pass, setPass] = useState("");
