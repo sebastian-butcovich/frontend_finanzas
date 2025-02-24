@@ -18,19 +18,15 @@ function BlockTotal() {
   const filter = useContext(FilterContext);
   async function getTotals() {
       let access = await auth.getAccess();
+      if(access=="")
+      {
+        access=  await auth.updateToken(); 
+      }
       let gastos = await getTotalsGasto(
         access,
         filter.getDataFilter(),
         filter.otherCoins
       );
-      if(gastos.status ==403){
-          access= auth.updateToken();
-            gastos = await getTotalsGasto(
-            access,
-            filter.getDataFilter(),
-            filter.otherCoins
-          );
-      }
       let ingresos = await getTotalIngresos(
         access,
         filter.getDataFilter(),
@@ -44,7 +40,7 @@ function BlockTotal() {
       });
     }       
   useEffect(() => {
-    setTimeout(()=>{getTotals()},2500);
+    setTimeout(()=>{getTotals()},1000);
     context.setIsUpdate(false);
   }, [context.isUpdate]);
   return (

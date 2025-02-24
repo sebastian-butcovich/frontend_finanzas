@@ -41,26 +41,18 @@ function Ingresos() {
     context.setListTypes(response.data);
   }
   async function obtenerIngresos() {
-    let response1 = await isValidateToken(auth.getAccess())
     let response = null;
-    if(response1.data == 1 && response1.status == 403)
+    let access =  auth.getAccess();
+    if(access == "")
     {
-      let access = await auth.updateToken();
-      response = await getIngresos(
-        access,
-        filter.getDataFilter(),
-        pageContext.getPage(),
-        filter.otherCoins,
-      );
-    }else
-    {
+      access= await auth.updateToken();
+    }
     response = await getIngresos(
-      auth.getAccess(),
+      access,
       filter.getDataFilter(),
       pageContext.getPage(),
       filter.otherCoins,
     );
-    }
     context.setData(response.data.movents);
     pageContext.setPage(response.data.page);
     pageContext.setNextPage(response.data.next_page);

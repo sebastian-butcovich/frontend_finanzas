@@ -23,23 +23,17 @@ function Gastos() {
   async function obtenerLosGastos() {
     try {
       let response = null;
-      let response1 = await isValidateToken(auth.getAccess()) 
-      if (response1.data == 1 || response1.status == 403) {
-        let access = await auth.updateToken();
-        response = await obtenerGastos(
-          access,
-          filter.getDataFilter(),
-          pagContext.getPage(),
-          filter.otherCoins,
-        );
-      }else
+      let access = auth.getAccess();
+      if(access == "")
       {
+        access = auth.updateToken();
+      }
         response = await obtenerGastos(
           auth.getAccess(),
           filter.getDataFilter(),
           pagContext.getPage(),
           filter.otherCoins,);
-      }
+      
       console.log("Una respuesta",response)
       context.setData(response.data.movents);
       pagContext.setPage(response.data.page);
