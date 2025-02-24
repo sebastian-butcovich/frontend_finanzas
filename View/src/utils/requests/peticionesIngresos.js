@@ -160,7 +160,7 @@ export async function getAvaragesIngresos(
           currency: filter.currency,
           currency_type: filter.currency_type,
         },
-
+        data:fechas
       });
     } else {
       response = await axios({
