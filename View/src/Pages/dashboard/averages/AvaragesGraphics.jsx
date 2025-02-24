@@ -66,14 +66,6 @@ function AvaragesGraphics() {
   }
   async function obtenerDatos(textButton) {
     let access = await auth.getAccess();
-    let isVal = await isValidateToken(auth.getAccess());
-    if(  auth.getAccess() == "" || auth.getAccess() == null )
-    {
-      access = await auth.updateToken();
-    }else
-    {
-      access = auth.getAccess();
-    }
     let fechasAux = filtrarFunction(textButton);
     let auxGastos = [];
     let auxIngresos = [];
@@ -84,6 +76,16 @@ function AvaragesGraphics() {
         filter.getDataFilter(),
         filter.otherCoins
     ); 
+    if(response.status == 403)
+    {
+      access = auth.updateToken();
+      response = await getAvaragesGastos(
+        access,
+        fechasAux,
+        filter.getDataFilter(),
+        filter.otherCoins
+    ); 
+    }
     for(let k=0;k<fechasAux.length-1;k++){
       auxGastos[k] = response.data.value[k];
       auxFecha[k] = fechasAux[k].fecha_string;

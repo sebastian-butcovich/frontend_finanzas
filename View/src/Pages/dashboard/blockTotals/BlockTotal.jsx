@@ -17,17 +17,20 @@ function BlockTotal() {
   const context = useContext(CardsContext);
   const filter = useContext(FilterContext);
   async function getTotals() {
-      let response = await isValidateToken(auth.getAccess());
       let access = await auth.getAccess();
-      if(response.data == 1 ||response.status == 403|| auth.getAccess() == "" || auth.getAccess() == null)
-      {
-         access = await auth.updateToken();
-      }
       let gastos = await getTotalsGasto(
         access,
         filter.getDataFilter(),
         filter.otherCoins
       );
+      if(gastos.status ==403){
+          access= auth.updateToken();
+            gastos = await getTotalsGasto(
+            access,
+            filter.getDataFilter(),
+            filter.otherCoins
+          );
+      }
       let ingresos = await getTotalIngresos(
         access,
         filter.getDataFilter(),
