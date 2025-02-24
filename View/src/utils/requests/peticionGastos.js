@@ -149,8 +149,7 @@ export async function getTotalsGasto(access, filter, otherCoins) {
 }
 export async function getAvaragesGastos(
   access,
-  fecha_inicio,
-  fecha_fin,
+  fechas,
   filter,
   otherCoins
 ) {
@@ -159,25 +158,23 @@ export async function getAvaragesGastos(
   try {
     if (otherCoins && filter.currency != "" && filter.currency_type != "") {
       response = await axios({
-        method: "GET",
-        url: `${url}spent/total`,
+        method: "put",
+        url: `${url}spent/totalGraphics`,
         params: {
           token:jwt,
-          fecha_inicio: fecha_inicio,
-          fecha_fin: fecha_fin,
           currency:filter.currency,
           currency_type:filter.currency_type
         },
+        data:fechas
       });
     } else {
       response = await axios({
-        method: "GET",
-        url: `${url}spent/total`,
+        method: "put",
+        url: `${url}spent/totalGraphics`,
         params: {
           "token": jwt,
-          fecha_inicio: fecha_inicio,
-          fecha_fin: fecha_fin,
         },
+        data:fechas
       });
     }
     console.log(response);

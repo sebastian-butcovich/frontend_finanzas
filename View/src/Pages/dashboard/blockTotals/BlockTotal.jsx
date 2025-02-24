@@ -41,7 +41,7 @@ function BlockTotal() {
       });
     }       
   useEffect(() => {
-    setTimeout(()=>{getTotals()},5000);
+    setTimeout(()=>{getTotals()},1000);
     context.setIsUpdate(false);
   }, [context.isUpdate]);
   return (

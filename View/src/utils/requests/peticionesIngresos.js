@@ -144,8 +144,7 @@ export async function getTotalIngresos(access, filter, otherCoins) {
 }
 export async function getAvaragesIngresos(
   access,
-  fecha_inicio,
-  fecha_fin,
+  fechas,
   filter,
   otherCoins
 ) {
@@ -154,25 +153,26 @@ export async function getAvaragesIngresos(
     var jwt = "Bearer ".concat(access)
     if (otherCoins && filter.currency != "" && filter.currency_type != "") {
       response = await axios({
-        method: "GET",
-        url: `${url}income/total`,
+        method: "PUT",
+        url: `${url}income/totalGraphics`,
         params: {
-          token:jwt,
-          fecha_inicio: fecha_inicio,
-          fecha_fin: fecha_fin,
+          "token":jwt,
           currency: filter.currency,
           currency_type: filter.currency_type,
         },
+
       });
     } else {
       response = await axios({
-        method: "GET",
-        url: `${url}income/total`,
+        method: "PUT",
+        url: `${url}income/totalGraphics`,
         params: {
-          token:jwt,
-          fecha_inicio: fecha_inicio,
-          fecha_fin: fecha_fin,
+          "token":jwt,
+          
         },
+        data:
+          fechas
+        
       });
     }
     return response;

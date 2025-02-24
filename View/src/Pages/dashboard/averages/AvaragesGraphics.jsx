@@ -78,24 +78,25 @@ function AvaragesGraphics() {
     let auxGastos = [];
     let auxIngresos = [];
     let auxFecha = [];
-    for (let j = 0; j < fechasAux.length - 1; j++) {
-      let response = await getAvaragesGastos(
+    let response = await getAvaragesGastos(
         access,
-        fechasAux[j].fecha_string,
-        fechasAux[j + 1].fecha_string,
+        fechasAux,
         filter.getDataFilter(),
         filter.otherCoins
-      );
-      let responseI = await getAvaragesIngresos(
-        access,
-        fechasAux[j].fecha_string,
-        fechasAux[j + 1].fecha_string,
-        filter.getDataFilter(),
-        filter.otherCoins
-      );
-      auxGastos[j] = response.data.value
-      auxIngresos[j] = responseI.data.value
-      auxFecha[j] = fechasAux[j].fecha_string;
+    ); 
+    for(let k=0;k<fechasAux.length-1;k++){
+      auxGastos[k] = response.data.value[k];
+      auxFecha[k] = fechasAux[k].fecha_string;
+    }
+    let responseI = await getAvaragesIngresos(
+      access,
+      fechasAux,
+      filter.getDataFilter(),
+      filter.otherCoins
+    );
+    for(let k=0;k<fechasAux.length-1;k++)
+    {
+      auxIngresos[k] = responseI.data.value[k]
     }
     setDatos({
       ...datos,
