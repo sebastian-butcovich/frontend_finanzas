@@ -12,6 +12,7 @@ export function AuthProvider({children}) {
     if(access !== "" && access !==403){
       return access;
     }
+    return "";
   }
   async function updateToken()
   {
