@@ -95,7 +95,7 @@
     } 
     
 }
-@media(min-width:765px)
+@media(max-width:765px)
 {
     .coins_container{
         width:100%;

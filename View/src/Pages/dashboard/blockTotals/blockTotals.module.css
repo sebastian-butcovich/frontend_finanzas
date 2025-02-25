@@ -83,7 +83,7 @@
         margin-left: 5px;
     }
 }
-@media(min-width:768px)
+@media(max-width:768px)
 {
     .container_value_totals{
         width:100%;

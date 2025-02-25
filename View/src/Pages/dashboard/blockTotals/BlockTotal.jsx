@@ -49,13 +49,13 @@ function BlockTotal() {
       });
     }       
   useEffect(() => {
-    setTimeout(()=>{getTotals()},1000);
+    setTimeout(()=>{getTotals()},2000);
     context.setIsUpdate(false);
   }, [context.isUpdate]);
   return (
     <div className={style.container_value_totals}>
         <div className={style.container_totals}>
-          <div className={style.total_gast}> <span className={style.text_total_gastado}>Total Gastado: </span>
+          <span className={style.text_total_gastado}>Total Gastado: </span>
           {context.isViewSaldo ? (
             <p className={style.valor_total_gastado}>
               {Intl.NumberFormat("ES-AR").format(totals.gastos)} {totals.cotizacion}
@@ -66,8 +66,7 @@ function BlockTotal() {
               <img className={style.icons_saldo} src={asterisco} />
               <img className={style.icons_saldo} src={asterisco} />
             </div>
-          )}</div>
-          <div className={style.total_gast}> 
+          )} 
           <span className={style.text_total_ingresado}>Total Ingresado: </span>
           {context.isViewSaldo ? (
             <p className={style.valor_total_ingresado}>
@@ -80,7 +79,6 @@ function BlockTotal() {
               <img className={style.icons_saldo} src={asterisco} />
             </div>
           )}
-          </div>
         </div>
     </div>
   );

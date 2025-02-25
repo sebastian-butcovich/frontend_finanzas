@@ -14,7 +14,7 @@
 .graphics {
  display: flex;
  justify-content: center;
-  min-width: 80%;
+  width: 100%;
   margin: 20px;
   height: 550px;
 }
@@ -127,7 +127,7 @@
     width:100%
   }
 }
-@media(min-width:768px)
+@media(max-width:768px)
 {
   .avarages{
     width: 100%;
