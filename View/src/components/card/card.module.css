@@ -138,7 +138,7 @@
 {
     .card{
         list-style-type: none;
-        width:100%;
+        width:95%;
         align-items: center;
         padding:10px;
         margin:7px;   
@@ -155,11 +155,22 @@
         width:100%
     }
     .montoGasto{
-        width:35%;
+        width:100%;
         font-size: 20px;
         display: flex;
         align-items: center;
         color:red
+    }
+    .montoIngreso{
+        width:100%;
+        font-weight: 700;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        color:rgb(0, 128, 53);
+        height: 29px;
+        
     }
     .tipo{
         width:100%;
@@ -206,6 +217,7 @@
         background-color: #1192ee;
         border: 3px #800000;
         cursor: pointer;
+        height: 3vh;
     }
     .button_edit{
         display: flex;
@@ -222,6 +234,7 @@
         transition: .5;
         cursor: pointer;
         background-color: aliceblue;
+        height: 3vh;
     }
 
 }
