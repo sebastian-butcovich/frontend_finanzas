@@ -168,6 +168,14 @@ input {
     color: white;
     background-color: #333;
   }
+  .titulo_principal {
+    width:auto;
+    justify-content: center;
+    font-family: "Cinzel", sans-serif;
+    font-size: 30px;
+    padding-bottom: 7px;
+    user-select: none;
+  }
   .nav_container {
     display: flex;
     width: 100%;
@@ -175,25 +183,47 @@ input {
   }
   .barra_navegacion_links {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     width: 100%;
-    margin:10px 0;
+    margin:0px 4px;
   }
   .navBar_link {
     margin: 10px 0;
-    font-size: 22px;
+    font-size: 15px;
     color: #fcbc04;
     font-family: "Orbitron";
     text-decoration: none;
-    margin:5px 0px;
+    margin:4px 0px;
+  }
+  .navBar_link_select {
+    font-size: 17px;
+    color: white;
+    font-family: "Orbitron";
+    text-decoration: none;
+    user-select: none;
+  }
+  .icon_saldo{
+    width:40px;
+    height: 40px;
+    margin-right: 10px;
+    cursor: pointer;
   }
   .dataUser {
     position: relative;
     display: flex;
     align-items: center;
     margin:0 10px;
+  }
+  .userName {
+    font-size: 15px;
+    text-transform: uppercase;
+  }
+  .user_image {
+    border-radius: 50%;
+    height: 5vh;
+    margin: 10px;
+    cursor: pointer;
   }
   .principal {
     display: flex;

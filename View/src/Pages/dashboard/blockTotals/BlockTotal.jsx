@@ -27,6 +27,15 @@ function BlockTotal() {
         filter.getDataFilter(),
         filter.otherCoins
       );
+      if(gastos.status == 403 || gastos == null)
+      {
+        access = await auth.updateToken();
+         gastos = await getTotalsGasto(
+          access,
+          filter.getDataFilter(),
+          filter.otherCoins
+        );
+      }
       let ingresos = await getTotalIngresos(
         access,
         filter.getDataFilter(),
@@ -46,18 +55,19 @@ function BlockTotal() {
   return (
     <div className={style.container_value_totals}>
         <div className={style.container_totals}>
-          <span className={style.text_total_gastado}>Total Gastado: </span>
+          <div className={style.total_gast}> <span className={style.text_total_gastado}>Total Gastado: </span>
           {context.isViewSaldo ? (
             <p className={style.valor_total_gastado}>
               {Intl.NumberFormat("ES-AR").format(totals.gastos)} {totals.cotizacion}
-            </p>
+            </p> 
           ) : (
             <div className={style.container_asterisco}>
               <img className={style.icons_saldo} src={asterisco} />
               <img className={style.icons_saldo} src={asterisco} />
               <img className={style.icons_saldo} src={asterisco} />
             </div>
-          )}
+          )}</div>
+          <div className={style.total_gast}> 
           <span className={style.text_total_ingresado}>Total Ingresado: </span>
           {context.isViewSaldo ? (
             <p className={style.valor_total_ingresado}>
@@ -70,6 +80,7 @@ function BlockTotal() {
               <img className={style.icons_saldo} src={asterisco} />
             </div>
           )}
+          </div>
         </div>
     </div>
   );
