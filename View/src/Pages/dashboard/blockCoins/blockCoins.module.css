@@ -72,10 +72,10 @@
         flex-direction: column;
         display: flex;
         align-items: center;
-        margin:10px auto;
+        margin:5px auto;
        border-radius: 10px;
        border:1px solid #333;
-       box-shadow: 5px 5px #555;
+       box-shadow: 3px 3px #555;
     }
     .title_text_selec
 {
@@ -84,18 +84,18 @@
     flex-direction: column;
 }
     .select_coins{
-        width:100%;
+        width:85%;
         margin:8px;
         margin:none;
         background-color: white;
         height:3.5vh;
-        border-color:black;
+        border:none;
         border-bottom: 3px solid black;
         text-align: center;
     } 
     
 }
-@media(max-width:765px)
+@media(min-width:765px)
 {
     .coins_container{
         width:100%;
