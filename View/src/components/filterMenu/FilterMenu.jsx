@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { FilterContext } from "../../utils/context/FilterProvider";
 import style from "./filterMenu.module.css";
 import { CardsContext } from "../../utils/context/CardsProvider";
+import iconSearch from "../../assets/ico1.png"
 function FilterMenu() {
   const filter = useContext(FilterContext);
   const context = useContext(CardsContext);
@@ -36,7 +37,7 @@ function FilterMenu() {
     });
   },[]);
   return (
-     width > 480 || search ? (<div className={style.filterMenu}>
+     width > 480 || search ? (<div className={style.container_filterMenu}> <div className={style.filterMenu}>
       <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
         <label>Monto inicial</label>
         <input
@@ -103,10 +104,10 @@ function FilterMenu() {
         <button tpye="submit" className={style.search_button}>
           Buscar
         </button>
-        {width < 480 ? <button onClick={()=>setSearch(!search)}>Ocultar</button>:null}
+        {width < 480 ? <div className={style.container_button_onHide}><button className={style.button_onHide} onClick={()=>setSearch(!search)}>Ocultar</button></div>:null}
       </form>
       
-    </div>):(<button onClick={()=>setSearch(!search)}>Buscar</button>)
+    </div></div>):( <div className={style.container_img_search}><img className={style.img_search} src={iconSearch} onClick={()=>setSearch(!search)}/></div>)
   );
 }
 
