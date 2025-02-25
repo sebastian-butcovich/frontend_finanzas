@@ -6,7 +6,6 @@ import { getTotalIngresos } from "../../../utils/requests/peticionesIngresos";
 import { FilterContext } from "../../../utils/context/FilterProvider";
 import { CardsContext } from "../../../utils/context/CardsProvider";
 import asterisco from "./../../../assets/asterisco.png";
-import { isValidateToken } from "../../../utils/requests/peticionAuth";
 function BlockTotal() {
   const [totals, setTotals] = useState({
     gastos: 0,
@@ -18,9 +17,9 @@ function BlockTotal() {
   const filter = useContext(FilterContext);
   async function getTotals() {
       let access = await auth.getAccess();
-      if(access=="")
+      if(access == "")
       {
-        access=  await auth.updateToken(); 
+        access = await auth.updateToken();
       }
       let gastos = await getTotalsGasto(
         access,
@@ -47,9 +46,9 @@ function BlockTotal() {
         ingresos: ingresos.data.value,
         cotizacion: gastos.data.moneda
       });
-    }       
+    }      
   useEffect(() => {
-    setTimeout(()=>{getTotals()},2000);
+    setTimeout(()=>{getTotals()}, 3000);
     context.setIsUpdate(false);
   }, [context.isUpdate]);
   return (

@@ -65,15 +65,15 @@ function AvaragesGraphics() {
     }
   }
   async function obtenerDatos(textButton) {
-    let access = await auth.getAccess();
-    if(access == "")
-    {
-      access =  await auth.updateToken();
-    }
     let fechasAux = filtrarFunction(textButton);
     let auxGastos = [];
     let auxIngresos = [];
     let auxFecha = [];
+    let access = await auth.getAccess();
+    if(access == "" )
+    {
+      access = await auth.updateToken();
+    }
     let response = await getAvaragesGastos(
         access,
         fechasAux,

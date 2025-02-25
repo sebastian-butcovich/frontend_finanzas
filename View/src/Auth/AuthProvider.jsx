@@ -22,7 +22,6 @@ export function AuthProvider({children}) {
     {
       setAccess(accessA);
       localStorage.setItem("refresh",refresh);
-      console.log("retorno de accessA",accessA);
       return accessA;
     }
     console.log("segunda ejecución",access)
