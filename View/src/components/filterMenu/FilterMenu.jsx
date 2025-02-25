@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FilterContext } from "../../utils/context/FilterProvider";
 import style from "./filterMenu.module.css";
 import { CardsContext } from "../../utils/context/CardsProvider";
 function FilterMenu() {
   const filter = useContext(FilterContext);
   const context = useContext(CardsContext);
+  const [search,setSearch] = useState(false);
+  const [width,setWidth] = useState(window.innerWidth);
   function handleInputs(event) {
     let { name, value } = event.target;
     filter.setDataFilter({
@@ -34,7 +36,7 @@ function FilterMenu() {
     });
   },[]);
   return (
-    <div className={style.filterMenu}>
+     width > 480 || search ? (<div className={style.filterMenu}>
       <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
         <label>Monto inicial</label>
         <input
@@ -101,8 +103,10 @@ function FilterMenu() {
         <button tpye="submit" className={style.search_button}>
           Buscar
         </button>
+        {width < 480 ? <button onClick={()=>setSearch(!search)}>Ocultar</button>:null}
       </form>
-    </div>
+      
+    </div>):(<button onClick={()=>setSearch(!search)}>Buscar</button>)
   );
 }
 
