@@ -79,7 +79,7 @@ function LoginPage() {
                 type="text"
                 name="username"
                 onChange={(e) => handleName(e)}
-                placeholder="username"
+                placeholder="email"
               ></input>
               <input
                 className={style.input_login}
