@@ -7,13 +7,13 @@
 .container_block{
     width:100%;
     display: flex;
-    justify-content: space-around;
+   
 }
 .container_coins_value{
     display: flex;
     justify-content: flex-start;
 }
-@media (max-width:1400px ){
+@media (max-width:1024px ){
     .container_block{
         display: flex;
         flex-direction: column;

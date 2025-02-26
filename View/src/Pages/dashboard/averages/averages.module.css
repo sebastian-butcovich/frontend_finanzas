@@ -127,11 +127,12 @@
     width:100%
   }
 }
-@media(max-width:768px)
+@media(min-width:768px) and (max-width:1024px)
 {
   .avarages{
-    width: 100%;
-    margin:0;
+    width: 95%;
+    margin:0 auto;
+    
   }
   .container_button_filter{
     display: flex;

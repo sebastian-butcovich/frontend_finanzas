@@ -134,7 +134,7 @@
     transform: translateY(5px);
     box-shadow: 0 0 ;
 }
-@media(max-width:480px)
+@media(max-width:768px)
 {
     .card{
         list-style-type: none;
@@ -238,11 +238,11 @@
     }
 
 }
-@media(min-width:481px) and (max-width:1024px)
+@media(min-width:768px) and (max-width:1024px)
 {
     .card{
         list-style-type: none;
-        width:80%;
+        width:95%;
         align-items: center;
         padding:10px;
         margin:7px;   
@@ -254,52 +254,69 @@
     .monto_fecha{
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        width:100%
+        width:100%;
     }
     .montoGasto{
-        width:35%;
+        width:30%;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        color:red;
+        height: auto;
+    }
+    .montoIngreso{
+        width:30%;
+        font-weight: 700;
         font-size: 20px;
         display: flex;
         align-items: center;
-        color:red
+        justify-content: space-around;
+        color:rgb(0, 128, 53);
+        height: 29px;
+        
     }
     .tipo{
-        width:100%;
+        width:15%;
         display: flex;
         justify-content: center;
         align-items: center;
         margin:10px 0;
+        font-size: 1rem;
+        height: auto;
     }
     .descripcion{
-        width:100%;
+        width:25%;
         display: flex;
         justify-content: center;
-        margin:10px auto;
+        margin:5px 5px;
         align-items: center;
         text-align: center;
+        font-size: 1rem;
+        height: auto;
     }
     .fecha{
         display: flex;
-        width: 100%;
+        width: 15%;
         align-items: center;
         justify-content: center;
         font-weight: bold;
+        height: auto;
     }
     .container_button{
         display: flex;
         justify-content: center;
         align-items: center;
         margin:5px;
-        height:6vh;
+        height:auto;
         width:50%
     }
     .button_deleted{
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 4vh;
+        height: 3vh;
         align-items: center;
         text-align: center;
         font-size: 15px;
@@ -315,7 +332,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 4vh;
+        height: 3vh;
         align-items: center;
         text-align: center;
         font-size: 15px;

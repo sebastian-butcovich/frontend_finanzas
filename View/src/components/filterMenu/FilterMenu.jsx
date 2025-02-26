@@ -37,7 +37,7 @@ function FilterMenu() {
     });
   },[]);
   return (
-     width > 480 || search ? (<div className={style.container_filterMenu}> <div className={style.filterMenu}>
+     width > 1024 || search ? (<div className={style.container_filterMenu}> <div className={style.filterMenu}>
       <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
         <label>Monto inicial</label>
         <input
@@ -104,7 +104,7 @@ function FilterMenu() {
         <button tpye="submit" className={style.search_button}>
           Buscar
         </button>
-        {width < 480 ? <div className={style.container_button_onHide}><button className={style.button_onHide} onClick={()=>setSearch(!search)}>Ocultar</button></div>:null}
+        {width < 769 ? <div className={style.container_button_onHide}><button className={style.button_onHide} onClick={()=>setSearch(!search)}>Ocultar</button></div>:null}
       </form>
       
     </div></div>):( <div className={style.container_img_search}><img className={style.img_search} src={iconSearch} onClick={()=>setSearch(!search)}/></div>)

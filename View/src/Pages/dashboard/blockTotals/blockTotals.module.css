@@ -1,5 +1,5 @@
 .container_value_totals{
-    width: 50%;
+  width: 50%;
    margin:10px;
    border-radius: 10px;
    border:1px solid #333;
@@ -41,7 +41,7 @@
     height: 25px;
     cursor: pointer;
   }
-@media(max-width:480px)
+@media(max-width:768px)
 {
     .container_value_totals{
         width:100%;
@@ -50,6 +50,7 @@
         flex-direction: column;
         align-items: center;
         margin:5px auto;
+        box-shadow: 3px 3px #555;
     }
     .container_totals
     {
@@ -61,5 +62,100 @@
     .total_gast{
         display: flex;
         flex-direction: row;;
+    }
+}
+@media(min-width:769px) and (max-width:1024px)
+{
+    .container_value_totals{
+        width:98%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin:5px auto;
+        box-shadow: 3px 3px #555;
+    }
+    .container_totals{
+        display:flex;
+        width: 100%;
+        justify-content: space-between;
+        padding:1rem;
+    }
+    .container_asterisco{
+        width:80px;
+        height: 25px;
+    }
+    .text_total_gastado{
+        font-size: 25px;
+        width:auto;
+        margin:0;
+    }
+    .valor_total_gastado{
+        font-size: 25px;
+        color:red;
+        font-weight: 600;
+        width:auto;
+        margin:0
+    }
+    .text_total_ingresado{
+        font-size: 25px;
+        width:auto;
+        margin:0
+    }
+    .valor_total_ingresado{
+        font-size: 25px;
+        color:green;
+        font-weight: 600;
+    }
+    .icons_saldo{
+        width:26px;
+        height: 25px;
+        cursor: pointer;
+      }
+}
+@media (min-width:1025px) and (max-width:1400px)
+{
+    .container_value_totals{
+        width: 40%;
+         margin:10px;
+         border-radius: 10px;
+         border:1px solid #333;
+         box-shadow: 5px 5px #555;
+         display: flex;
+         align-items: center;
+      }
+      .container_totals{
+          display:flex;
+          flex-direction: column;
+          text-align: center;
+          width: 100%;
+          justify-content: center;
+          height: auto;
+      }
+}
+@media (min-width:1401px) and (max-width:1630px)
+{
+    .container_totals{
+        display:flex;
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+    .text_total_gastado{
+        font-size: 1.5rem;
+    }
+    .valor_total_gastado{
+        font-size: 1.5rem;
+        color:red;
+        font-weight: 600;
+    }
+    .text_total_ingresado{
+        font-size: 1.5rem;
+    }
+    .valor_total_ingresado{
+        font-size: 1.5rem;
+        color:green;
+        font-weight: 600;
     }
 }
