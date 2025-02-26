@@ -228,7 +228,7 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 70vh;
+    min-height: auto;
     width: 100%;
   }
   .footer_container {
