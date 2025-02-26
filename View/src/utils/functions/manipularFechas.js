@@ -115,12 +115,12 @@ function obtenerDiaActual() {
   }
   if (monthThirtyOne[date.getMonth() - 1].isThirtyOne) {
     if (diaActual < 28) {
-      diaActual = 31 + diaActual - 28;
-    } else diaActual = diaActual - 21;
+      diaActual = 31 + diaActual - 21;
+    } else diaActual = diaActual - 14;
   } else {
     if (diaActual < 28) {
-      diaActual = 30 + diaActual - 28;
-    } else diaActual = diaActual - 21;
+      diaActual = 30 + diaActual - 21;
+    } else diaActual = diaActual - 14;
   }
   return diaActual;
 }
@@ -137,7 +137,7 @@ export function generarFechaAnteriorPorSemana() {
   } else {
     fechas[0] = { fecha_string: `${year}-${month}-${day} `, day, month, year };
   }
-  for (let i = 1; i <= 4; i++) {
+  for (let i = 1; i <=4; i++) {
     if(i == 4)
     {
       fechas[i] = generarFechaSiguiente(
