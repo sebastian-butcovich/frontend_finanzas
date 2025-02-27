@@ -328,7 +328,7 @@ input {
   }
   .user_image {
     border-radius: 50%;
-    height: 5vh;
+    height: 2.5rem;
     margin: 10px;
     cursor: pointer;
   }

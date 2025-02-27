@@ -309,14 +309,14 @@
         justify-content: center;
         align-items: center;
         margin:5px;
-        height:auto;
+        height:2rem;
         width:50%
     }
     .button_deleted{
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 3vh;
+        height: 2rem;
         align-items: center;
         text-align: center;
         font-size: 15px;
@@ -332,7 +332,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 3vh;
+        height: 2rem;
         align-items: center;
         text-align: center;
         font-size: 15px;

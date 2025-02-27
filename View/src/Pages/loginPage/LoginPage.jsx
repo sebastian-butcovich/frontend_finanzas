@@ -15,7 +15,6 @@ function LoginPage() {
     let data = localStorage.getItem("refresh");
     if (data != null) {
       auth.setIsAuth(true);
-      //auth.updateToken();
       navigate("/dashboard");
     }
   }, []);
