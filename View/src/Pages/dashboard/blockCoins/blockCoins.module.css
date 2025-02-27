@@ -156,7 +156,7 @@
         margin:8px;
         margin:none;
         background-color: white;
-        height:3.5vh;
+        height:auto;
         border:none;
         border-bottom: 3px solid black;
         text-align: center;
@@ -220,7 +220,7 @@
         margin:8px;
         margin:none;
         background-color: white;
-        height:3.5vh;
+        height:auto;
         border:none;
         border-bottom: 3px solid black;
         text-align: center;
