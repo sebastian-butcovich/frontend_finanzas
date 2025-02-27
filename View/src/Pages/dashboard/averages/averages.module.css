@@ -16,7 +16,7 @@
  justify-content: center;
   width: 100%;
   margin: 20px;
-  height: 36rem;
+  height: auto;
 }
 .echarts-for-echarts {
   width: 100%;
@@ -87,7 +87,7 @@
     justify-content: center;
      min-width: 90%;
      margin: 5px;
-     height: 25vh;
+     height: auto;
    }
   .container_button_filter {
     display: flex;
@@ -129,13 +129,6 @@
     background-color: red;
     width:100%
   }
-  .graphics {
-    display: flex;
-    justify-content: center;
-     width: 100%;
-     margin: 20px;
-     height: 36rem;
-   }
 }
 @media(min-width:768px) and (max-width:1024px)
 {
@@ -157,7 +150,7 @@
     width: 90%;
   }
   .graphics{
-    height: 36rem;
+    height: auto;
     width: 100%;
     margin:20px 0;
   }
@@ -166,7 +159,7 @@
 @media(min-width:768px) and (max-width:1024px)
 {
   .graphics{
-    height: 36rem;
+    height: auto;
     width: 100%;
   }
 }
@@ -184,7 +177,7 @@
     align-content: center;
     align-items: center;
     margin: 10px auto;
-    height: 40rem;
+    height: auto;
     border: 1px solid #333;
     box-shadow: 5px 5px 5px 5px #555;
     border-radius: 10px;
