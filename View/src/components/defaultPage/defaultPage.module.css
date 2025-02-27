@@ -257,7 +257,7 @@ input {
     display: flex;
     flex-wrap: wrap;
     justify-content: column;
-    width: 100%;
+    width: auto;
   }
   .header_container {
     position: static;

@@ -204,7 +204,7 @@
     .text_coins{
         display: flex;
         align-items: center;
-        width: 189%;
+        width: 100%;
         justify-content: center;
         margin-top:1rem;
     }
