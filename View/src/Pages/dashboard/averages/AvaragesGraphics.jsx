@@ -70,27 +70,25 @@ function AvaragesGraphics() {
     let auxIngresos = [];
     let auxFecha = [];
     let access = await auth.getAccess();
-    if(access == "" )
-    {
+    if (access == "") {
       access = await auth.updateToken();
     }
     let response = await getAvaragesGastos(
-        access,
-        fechasAux,
-        filter.getDataFilter(),
-        filter.otherCoins
-    ); 
-    if(response.status == 403 || response == null)
-    {
+      access,
+      fechasAux,
+      filter.getDataFilter(),
+      filter.otherCoins
+    );
+    if (response.status == 403 || response == null) {
       access = await auth.updateToken();
       response = await getAvaragesGastos(
         access,
         fechasAux,
         filter.getDataFilter(),
         filter.otherCoins
-    ); 
+      );
     }
-    for(let k=0;k<fechasAux.length-1;k++){
+    for (let k = 0; k < fechasAux.length - 1; k++) {
       auxGastos[k] = response.data.value[k];
       auxFecha[k] = fechasAux[k].fecha_string;
     }
@@ -100,18 +98,17 @@ function AvaragesGraphics() {
       filter.getDataFilter(),
       filter.otherCoins
     );
-    for(let k=0;k<fechasAux.length-1;k++)
-    {
+    for (let k = 0; k < fechasAux.length - 1; k++) {
       auxIngresos[k] = responseI.data.value[k]
     }
     setDatos({
       ...datos,
       gastos: auxGastos,
-      ingresos:auxIngresos
+      ingresos: auxIngresos
     });
     setFechas(auxFecha);
-    console.log('ingresos',datos.ingresos);
-    console.log('gastos',datos.gastos);
+    console.log('ingresos', datos.ingresos);
+    console.log('gastos', datos.gastos);
   }
 
   useEffect(() => {
@@ -134,7 +131,7 @@ function AvaragesGraphics() {
   }
   return (
     <div className={style.avarages}>
-      <h3>Filtrar por: </h3>
+      <h3 className={style.title_average}>Filtrar por: </h3>
       <div className={style.container_button_filter}>
         <a
           className={
@@ -191,11 +188,11 @@ function AvaragesGraphics() {
                 borderWidth: 1,
               },
               {
-                label:"Ingresos totales",
-                data:datos.ingresos,
-                backgroundColor:"#0d6efd",
-                borderColor:"black",
-                borderWidth:1,
+                label: "Ingresos totales",
+                data: datos.ingresos,
+                backgroundColor: "#0d6efd",
+                borderColor: "black",
+                borderWidth: 1,
               }
             ],
           }}
