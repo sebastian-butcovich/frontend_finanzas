@@ -70,7 +70,7 @@ function BlockCoinsValue({ request }) {
                 : ""
             }
           >
-            <option value="">Seleccione la moneda de interes</option>
+            <option value="">Seleccione la moneda</option>
             {coins.map((element) => (
               <option key={element.nombre} value={element.nombre}>
                 {element.nombre} {element.moneda}
