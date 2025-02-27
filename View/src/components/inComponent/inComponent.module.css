@@ -2,6 +2,7 @@ input{
     height: 3.0vh;
     text-align: center;
 }
+
 textarea{
     height: 6.0vh;
     width:40%;
@@ -108,10 +109,22 @@ select{
         box-shadow: 5px 5px 12px #222;
         border-radius:10px;
     }
-    textarea{
+    .textArea_inComponent{
         height: auto;
         width:100%;
         text-align: center;
+        border:none;
+        border-bottom:2px solid cadetblue;
+        margin-top:0.5rem;
+    }
+    .textArea_inComponent:focus-within{
+        height: auto;
+        width:100%;
+        text-align: center;
+        border:none;
+        outline: none;
+        border-bottom:2px solid blue;
+        margin-top:0.5rem;
     }
     .container_button{
         display: flex;
@@ -122,12 +135,22 @@ select{
         margin:5px;
     }
     .input_inComponent{
-        width:80%;
-        height: auto;
+        width:90%;
+        height: 2rem;
+        appearance: textfield;
+        border:none;
+        border-bottom: 2px solid cadetblue;
+    }
+    .input_inComponent:focus-within{
+        width:90%;
+        height: 3rem;
+        appearance: textfield;
+        outline: none;
+        border-bottom: 2px solid blue;
     }
     .select_inComponent{
-        width:80%;
-        height: auto;
+        width:90%;
+        height: 2rem;
         text-align: center;
       }
       .container_type{

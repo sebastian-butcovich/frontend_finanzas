@@ -7,7 +7,7 @@ function NewComponent({ newRequest }) {
   const context = useContext(CardsContext);
   const auth = useAuth();
   const [data, setData] = useState({
-    monto: 0,
+    monto: "",
     tipo: "",
     descripcion: "",
   });
