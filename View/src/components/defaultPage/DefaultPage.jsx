@@ -128,7 +128,7 @@ function DefaultPage({ children }) {
       <main className={style.principal}>{children}</main>
       <footer className={style.footer_container}>
         <h3>Aplicacion Finanzas</h3>
-        <p>Autores: Brian Garat y Sebastián Butcovich</p>
+        <p className={style.footer_text_autores}>Autores: Brian Garat y Sebastián Butcovich</p>
       </footer>
     </div>
   );

@@ -38,12 +38,13 @@ function LoginPage() {
   }
 
   function login(response) {
+    console.log("respuesta del inicio de sesión", response);
     if (response.status == 200) {
       setError(false);
       auth.setIsAuth(true);
       auth.setAccess(response.data.access_token);
       localStorage.setItem("refresh", response.data.refresh_token);
-      localStorage.setItem("user", name);
+      localStorage.setItem("user", response.data.username);
       navigate("/dashboard");
     } else {
       setError(true);
