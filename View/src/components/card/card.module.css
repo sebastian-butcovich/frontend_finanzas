@@ -288,6 +288,10 @@
         flex-direction: column;
         box-shadow: 5px 5px 12px #222;
     }
+    .container_edit_card{
+        display: flex;
+        justify-content: center;
+    }
     .monto_fecha{
         display: flex;
         flex-direction: row;

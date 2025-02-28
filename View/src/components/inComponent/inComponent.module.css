@@ -180,7 +180,7 @@ select{
 {
     .container{
         margin:10px 0;
-        width:100%;
+        width:80%;
         padding:20px;
         align-items: center;
         display: flex;
@@ -188,6 +188,7 @@ select{
         box-shadow: 5px 5px 12px #222;
         border-radius:10px;
     }
+    
     .textArea_inComponent{
         height: auto;
         width:100%;
