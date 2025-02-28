@@ -189,9 +189,21 @@ select{
         border-radius:10px;
     }
     .textArea_inComponent{
-        height: 12vh;
-        width:80%;
+        height: auto;
+        width:100%;
         text-align: center;
+        border:none;
+        border-bottom:2px solid cadetblue;
+        margin-top:0.5rem;
+    }
+    .textArea_inComponent:focus-within{
+        height: auto;
+        width:100%;
+        text-align: center;
+        border:none;
+        outline: none;
+        border-bottom:2px solid blue;
+        margin-top:0.5rem;
     }
     .container_button{
         display: flex;
@@ -202,12 +214,22 @@ select{
         margin:5px;
     }
     .input_inComponent{
-        width:50%;
-        height: 5vh;
+        width:90%;
+        height: 2rem;
+        appearance: textfield;
+        border:none;
+        border-bottom: 2px solid cadetblue;
+    }
+    .input_inComponent:focus-within{
+        width:90%;
+        height: 3rem;
+        appearance: textfield;
+        outline: none;
+        border-bottom: 2px solid blue;
     }
     .select_inComponent{
-        width:50%;
-        height: 5vh;
+        width:90%;
+        height: 2rem;
         text-align: center;
       }
       .container_type{
@@ -227,13 +249,13 @@ select{
         justify-content: center;
         align-items: center;
         width:40%;
-        height: 4.4vh;
+        height: 2rem;
         border-radius: 5px;
         background-color: whitesmoke;
     }
     .button_enviar{
         width:40%;
-        height:4.4vh;
+        height:2rem;
     }
     
 }
