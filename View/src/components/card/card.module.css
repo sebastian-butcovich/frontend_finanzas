@@ -217,7 +217,7 @@
         background-color: #1192ee;
         border: 3px #800000;
         cursor: pointer;
-        height: 3vh;
+        height: 2rem;
     }
     .button_edit{
         display: flex;
@@ -234,7 +234,7 @@
         transition: .5;
         cursor: pointer;
         background-color: aliceblue;
-        height: 3vh;
+        height: 2rem;
     }
 
 }
