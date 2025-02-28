@@ -195,6 +195,7 @@ select{
         border:none;
         border-bottom:2px solid cadetblue;
         margin-top:0.5rem;
+        font-size:1rem;
     }
     .textArea_inComponent:focus-within{
         height: auto;
@@ -204,6 +205,7 @@ select{
         outline: none;
         border-bottom:2px solid blue;
         margin-top:0.5rem;
+        font-size: 1.2rem;
     }
     .container_button{
         display: flex;
@@ -216,6 +218,7 @@ select{
     .input_inComponent{
         width:90%;
         height: 2rem;
+        font-size:1rem;
         appearance: textfield;
         border:none;
         border-bottom: 2px solid cadetblue;
@@ -224,6 +227,7 @@ select{
         width:90%;
         height: 3rem;
         appearance: textfield;
+        font-size:1.2rem;
         outline: none;
         border-bottom: 2px solid blue;
     }
@@ -231,6 +235,10 @@ select{
         width:90%;
         height: 2rem;
         text-align: center;
+        font-size:1rem;
+      }
+      .select_inComponent:focus-within{
+        font-size: 1.1rem;
       }
       .container_type{
         display: flex;
