@@ -116,7 +116,7 @@ export async function getTotalIngresos(access, filter, otherCoins) {
   let responseIngresos = null;
   let jwt = "Bearer ".concat(access);
   try {
-    if (filter.currency != "" && filter.currency_type != "" && otherCoins) {
+    if (filter.currency != "" && otherCoins) {
       responseIngresos = await axios({
         method: "get",
         params: { "token": jwt,

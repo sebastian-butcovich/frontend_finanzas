@@ -124,7 +124,7 @@ export async function getTotalsGasto(access, filter, otherCoins) {
   let jwt = "Bearer ".concat(access);
   console.log('como se ve access desde getTotalGastos', access)
   try {
-    if (filter.currency != "" && filter.currency_type != "" && otherCoins) {
+    if (filter.currency != "" &&  otherCoins) {
       responseGastos = await axios({
         method: "get",
         params: { 
