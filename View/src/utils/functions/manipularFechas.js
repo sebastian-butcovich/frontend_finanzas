@@ -2,50 +2,63 @@ const monthThirtyOne = [
   {
     numberMonth: 1,
     isThirtyOne: true,
+    isThirty:false,
   },
   {
     numberMonth: 2,
     isThirtyOne: false,
+    isThirty:false
   },
   {
     numberMonth: 3,
     isThirtyOne: true,
+    isThirty:false
   },
   {
     numberMonth: 4,
     isThirtyOne: false,
+    isThirty:true
   },
   {
     numberMonth: 5,
     isThirtyOne: true,
+    isThirty:false
   },
   {
     numberMonth: 6,
     isThirtyOne: false,
+    isThirty:true
   },
   {
     numberMonth: 7,
     isThirtyOne: true,
+    isThirty:false
   },
   {
     numberMonth: 8,
     isThirtyOne: true,
+    isThirty:false
   },
   {
     numberMonth: 9,
     isThirtyOne: false,
+    isThirty:true,
+    
   },
   {
     numberMonth: 10,
     isThirtyOne: true,
+    isThirty:false,
   },
   {
     numberMonth: 11,
     isThirtyOne: true,
+    isThirty:false
   },
   {
     numberMonth: 12,
     isThirtyOne: true,
+    isThirty:false
   },
 ];
 function generarFechaSiguiente(day, month, year) {
@@ -54,7 +67,7 @@ function generarFechaSiguiente(day, month, year) {
   year = parseInt(year);
   if (day + 7 > 31 && month == 12) {
     year += 1;
-    if (monthThirtyOne[month]) {
+    if (monthThirtyOne[month-1].isThirtyOne) {
       if (day + 7 > 31) {
         month += 1;
         day = day + 7 - 31;
@@ -70,17 +83,24 @@ function generarFechaSiguiente(day, month, year) {
       }
     }
   } else {
-    if (monthThirtyOne[month]) {
+    if (monthThirtyOne[month-1].isThirtyOne) {
       if (day + 7 > 31) {
         month += 1;
         day = day + 7 - 31;
       } else {
         day += 7;
       }
-    } else {
+    } else if(monthThirtyOne[month-1].isThirty) {
       if (day + 7 > 30) {
         month += 1;
         day = day + 7 - 30;
+      } else {
+        day += 7;
+      }
+    }else{
+      if (day + 7 > 28) {
+        month += 1;
+        day = day + 7 - 28;
       } else {
         day += 7;
       }
@@ -99,14 +119,20 @@ function obtenerDiaActual() {
   var month = date.getMonth();
   var diaActual = date.getDate();
   var numDia = date.getDay();
+  if(numDia == 0 )
+  {
+    numDia = 7;
+  }
   for (let i = 1; i < numDia; i++){
     if(diaActual == 1){
       if(monthThirtyOne[month-1].isThirtyOne)
       {
         diaActual = 31;
-      }else
+      }else if(monthThirtyOne[month-1].isThirty)
       {
         diaActual = 30;    
+      }else{
+        diaActual = 28;
       }
     }else
     {
@@ -193,13 +219,40 @@ export function generarFechasAnteriorPorDia()
         dayStart++;
       }
   }
-  else{
+  else if (monthThirtyOne[monthStart-1].isThirty){
     for(let i= 0;i<=31;i++)
       {
         if(dayStart > 30)
         {
           dayStart = 1;
           monthStart +=1;
+        }
+        if(dayStart <10 && monthStart < 10)
+          fechas[i] = {fecha_string:`${year}-0${monthStart}-0${dayStart}`}
+        else if(dayStart < 10)
+        {
+          fechas[i] = {fecha_string:`${year}-${monthStart}-0${dayStart}`}
+        }else {
+          fechas[i] = {fecha_string:`${year}-0${monthStart}-${dayStart}`}
+        }
+        dayStart++;
+      }
+  }else
+  {
+    for(let i= 0;i<=30;i++)
+      {
+        if(year / 4)
+        {
+          if(!monthThirtyOne.isThirty && dayStart> 29){
+            dayStart=1;
+            monthStart+=1;
+          }else
+          {
+            if(!monthThirtyOne.isThirty && dayStart> 28){
+              dayStart=1;
+              monthStart+=1;
+            }
+          }
         }
         if(dayStart <10 && monthStart < 10)
           fechas[i] = {fecha_string:`${year}-0${monthStart}-0${dayStart}`}

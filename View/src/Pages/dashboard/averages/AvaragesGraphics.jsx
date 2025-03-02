@@ -88,6 +88,7 @@ function AvaragesGraphics() {
         filter.otherCoins
       );
     }
+    console.log(response);
     for (let k = 0; k < fechasAux.length - 1; k++) {
       auxGastos[k] = response.data.value[k];
       auxFecha[k] = fechasAux[k].fecha_string;
