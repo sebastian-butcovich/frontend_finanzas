@@ -70,7 +70,7 @@
 @media(max-width:768px)
 {
   .avarages {
-    width: 100%;
+    width: 95%;
     display: flex;
     flex-direction: column;
     justify-content: center;

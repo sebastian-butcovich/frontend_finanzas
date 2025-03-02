@@ -44,7 +44,7 @@
 @media(max-width:768px)
 {
     .container_value_totals{
-        width:100%;
+        width:95%;
         height: auto;
         display: flex;
         flex-direction: column;
