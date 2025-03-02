@@ -239,7 +239,7 @@ export function generarFechasAnteriorPorDia()
       }
   }else
   {
-    for(let i= 0;i<=30;i++)
+    for(let i= 0;i<=29;i++)
       {
         if(year / 4)
         {
