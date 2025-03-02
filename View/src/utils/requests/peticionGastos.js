@@ -156,7 +156,7 @@ export async function getAvaragesGastos(
   let response = null;
   let jwt = "Bearer ".concat(access);
   try {
-    if (otherCoins && filter.currency != "" && filter.currency_type != "") {
+    if (otherCoins && filter.currency != "") {
       response = await axios({
         method: "put",
         url: `${url}spent/totalGraphics`,

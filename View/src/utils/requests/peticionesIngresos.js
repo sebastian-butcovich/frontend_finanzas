@@ -151,7 +151,7 @@ export async function getAvaragesIngresos(
   try {
     var response = null;
     var jwt = "Bearer ".concat(access)
-    if (otherCoins && filter.currency != "" && filter.currency_type != "") {
+    if (otherCoins && filter.currency != "") {
       response = await axios({
         method: "PUT",
         url: `${url}income/totalGraphics`,
