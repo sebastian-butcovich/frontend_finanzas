@@ -192,7 +192,7 @@ select{
   .filterMenu {
     display: flex;
     align-items: end;
-    width: 70%;
+    width: 40%;
     height: auto;
     border-radius: 20px;
   }
