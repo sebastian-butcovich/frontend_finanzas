@@ -68,6 +68,24 @@
   border: 1px solid #000;
   cursor: pointer;
   user-select: none;
+  box-shadow: 2px 2px black;
+}
+.buttonPagination:active{
+    transform: translateY(2px);
+    box-shadow: 0 0px 0 #222;
+}
+.buttonPaginationDecorative{
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  border: 1px solid #000;
+  cursor: pointer;
+  user-select: none;
+  border-top: none;
+  border-bottom: none;
+  font-size: 1.5rem;
 }
 .buttonPagination_border_start{
   display: flex;
@@ -80,6 +98,11 @@
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   user-select: none;
+  box-shadow: 2px 2px black;
+}
+.buttonPagination_border_start:active{
+  transform:translateY(2px);
+  box-shadow: 0 0px 0 black;
 }
 .buttonPagination_border_end{
   display: flex;
@@ -92,6 +115,11 @@
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   user-select: none;
+  box-shadow: 2px 2px black;
+}
+.buttonPagination_border_end:active{
+  transform: translateY(2px);
+  box-shadow: 0 0px 0 black;
 }
 .buttonPagination_activate {
   display: flex;
@@ -164,7 +192,7 @@
     height: 5vh;
   }
   .buttonAdd {
-    width: 80%;
+    width: 60%;
     height: auto;
     border-radius: 20px;
     border: 2px solid white;
@@ -178,8 +206,9 @@
   .buttonAdd:hover {
     background-color: #0d6efd;
     color: black;
-    width: 80%;
+    width: 63%;
     height: auto;
+    font-size: 20px;
     box-shadow: 5px 5px 5px #0d6efd;
   }
   .message_entradas {
@@ -211,23 +240,24 @@
     height: auto;
   }
   .buttonAdd {
-    width: 50%;
+    width: 30%;
     height: 3rem;
     border-radius: 20px;
-    border: 1px solid #00a135;
+    border: 1px solid white;
     text-align: center;
-    font-size: 17px;
-    background-color: #198754;
-    box-shadow: 5px 5px 5px #00a135;
+    font-size: 20px;
+    background-color: #0d6efd;
+    box-shadow: 5px 5px  dodgerblue;
     color: white;
     cursor: pointer;
   }
   .buttonAdd:hover {
     background-color: #0d6efd;
     color: black;
-    width: 50%;
-    height: 3.5rem;
+    width: 32%;
+    height: 3rem;
     box-shadow: 5px 5px 5px #0d6efd;
+    font-size: 25px;
   }
   .new_component{
     display: flex;

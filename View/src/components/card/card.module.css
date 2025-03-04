@@ -194,13 +194,17 @@
         justify-content: center;
         font-weight: bold;
     }
+    .container_edit_card{
+        display: flex;
+        justify-content: center;
+    }
     .container_button{
         display: flex;
         justify-content: center;
         align-items: center;
         margin:5px;
         height:auto;
-        width:100%
+        width:60%;
     }
     .button_deleted{
         display: flex;

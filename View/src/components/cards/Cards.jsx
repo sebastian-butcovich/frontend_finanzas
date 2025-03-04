@@ -124,7 +124,7 @@ function Cards({
         }
         
          {paginationContext.getPage() - 2 > 1 ? (
-          <a className={style.buttonPagination}>...</a>
+          <a className={style.buttonPaginationDecorative}>...</a>
         ) : null} 
         {
           //Boton para ir a la pagina anterior
@@ -197,7 +197,7 @@ function Cards({
           </a>
         ) : null}
         {paginationContext.getLastPage() > paginationContext.getPage() + 2 ? (
-          <a className={style.buttonPagination}>...</a>
+          <a className={style.buttonPaginationDecorative}>...</a>
         ) : null}
         {paginationContext.getLastPage() > paginationContext.getPage() ? (
           <a
