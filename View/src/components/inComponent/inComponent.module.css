@@ -1,11 +1,12 @@
-.input_inComponent{
+input{
     height: 3.0vh;
     text-align: center;
     width:20%;
     appearance: textfield; 
     
 }
-input::-webkit-inner-spin-button {
+
+.input_inComponent::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
     height: 3.0vh;
