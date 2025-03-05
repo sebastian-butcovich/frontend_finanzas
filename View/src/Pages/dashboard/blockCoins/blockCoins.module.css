@@ -205,7 +205,7 @@
         display: flex;
         align-items: center;
         width: 100%;
-        justify-content: center;
+        justify-content: end;
         margin-top:1rem;
     }
     .select_container

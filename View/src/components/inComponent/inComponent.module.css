@@ -1,7 +1,8 @@
-input{
+input[type="textfield"]{
     height: 3.0vh;
     text-align: center;
     width:20%;
+    appearance: textfield;
 }
 
 textarea{
