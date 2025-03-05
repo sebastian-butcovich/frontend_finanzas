@@ -223,6 +223,10 @@
   .message_entradas p {
     margin:10px
   }
+  .paginationButton{
+    width:100%;
+    margin: 20px 5px;
+  }
 }
 @media(min-width:480px) and (max-width:1024px)
 {
