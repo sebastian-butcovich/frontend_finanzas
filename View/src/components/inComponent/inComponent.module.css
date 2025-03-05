@@ -1,16 +1,19 @@
 input{
     height: 3.0vh;
     text-align: center;
+    width:20%;
 }
 
 textarea{
-    height: 6.0vh;
+    height: auto;
+    padding:1rem;
+    padding-top:0;
     width:40%;
     text-align: center;
 }
 select{
     height: 3.0vh;
-    width:auto;
+    width:20%;
 }
 .container{
     margin:10px 0;
