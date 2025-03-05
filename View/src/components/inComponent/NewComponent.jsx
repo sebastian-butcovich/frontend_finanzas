@@ -45,7 +45,14 @@ function NewComponent({ newRequest }) {
           context.setIsUpdate(true);
         }
       });
-    } else {
+    } else if(respuesta == 400){
+      Swal.fire({
+        title: "No se pudo ingresar",
+        text: "Falta algunos de los campos",
+        icon: "error",
+      });
+    }
+    else{
       Swal.fire({
         title: "No se pudo ingresar",
         text: "No se pudo conectar al servidor. Espere mientras trabajamos en una solución",

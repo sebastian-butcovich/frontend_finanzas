@@ -51,7 +51,13 @@ function UpdateComponent({ editRequest, editFunction }) {
           context.setUpdateTypes(true);
         }
       });
-    } else {
+    } else if(respuesta == 400){
+      Swal.fire({
+        title: "No se pudo editar",
+        text: "Hay algún error. Por favor verifique los campos",
+        icon: "error",
+      });
+    }else{
       Swal.fire({
         title: "No se pudo editar",
         text: "No se pudo conectar al servidor. Espere mientras trabajamos en una solución",

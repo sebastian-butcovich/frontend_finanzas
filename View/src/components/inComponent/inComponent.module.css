@@ -1,8 +1,9 @@
-input{
+input::-webkit-inner-spin-button{
     height: 3.0vh;
     text-align: center;
     width:20%;
-    appearance: textfield;
+    appearance: textfield; 
+    -webkit-appearance: none; ;
 }
 input[type="checkbox"]{
     height: 1rem;

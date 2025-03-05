@@ -153,6 +153,7 @@ input {
     flex-wrap: wrap;
     justify-content: column;
     width: 100%;
+    height: 100vh;
   }
   .header_container {
     position: static;
