@@ -49,6 +49,7 @@
     background-color: white;
     border:1px solid white;
     border-radius: 14px;
+    text-align: center;
 }
 .alert_mensaje{
     color:red;

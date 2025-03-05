@@ -46,6 +46,19 @@ select{
   transform: translateY(2px);
   box-shadow: 0 0px 0 #222;
 }
+.input_filter::-webkit-inner-spin-button,::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  height: 3.0vh;
+  text-align: center;
+  width:20%;
+}
+.input_filter{
+  height: 3.0vh;
+  text-align: center;
+  width:20%;
+  appearance: textfield;
+}
 @media (max-width: 768px)  {
 
   .container_filterMenu{
