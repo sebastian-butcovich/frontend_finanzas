@@ -34,7 +34,8 @@ export async function actualizarUsuario(access, data)
                 name:data.username,
                 email:data.email,
                 oldPassword:data.lastPassword,
-                newPassword:data.newPassword
+                newPassword:data.newPassword,
+                foto:data.picture
             }
         })
     return response;

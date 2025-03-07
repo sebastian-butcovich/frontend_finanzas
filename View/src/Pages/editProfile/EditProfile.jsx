@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Auth/AuthProvider";
 import { actualizarUsuario, obtenerUsuarioLogeado } from "../../utils/requests/peticionesUsuarios";
 import style from "../register/Register.module.css";
+import style2 from "./editProfile.module.css"
 import Swal from "sweetalert2";
+import iconUser from "./../../assets/avatar_png.png";
 function EditProfile() {
   const navigate = useNavigate();
   const auth = useAuth();
@@ -13,6 +15,7 @@ function EditProfile() {
     lastPassword: "",
     newPassword: "",
     repeatNewPassword: "",
+    picture:localStorage.getItem("foto")
   });
   const [isEqualsPassword, setIsEqualsPassword] = useState(false);
   async function obtenerQuienSoy() {
@@ -31,6 +34,7 @@ function EditProfile() {
         lastPassword: "",
         newPassword: "",
         repeatNewPassword: "",
+        picture:localStorage.getItem("foto")
       });
     } catch (error) {
       console.log(error);
@@ -38,6 +42,7 @@ function EditProfile() {
   }
   useEffect(() => {
     obtenerQuienSoy();
+    console.log("Que tiene la imagen", user.picture);
   }, []);
   function handleInput(event) {
     const { name, value } = event.target;
@@ -64,7 +69,7 @@ function EditProfile() {
         if(event.isConfirmed)
         {
           localStorage.clear();
-          navigate("/login");
+          navigate("/");
         }
       })
     }
@@ -90,6 +95,23 @@ function EditProfile() {
       setIsEqualsPassword(false);
     }
   }
+  async function handleImage(event)
+  {
+    if(event.target.files[0])
+    {
+      let reader = new FileReader(); 
+      reader.onload = function(e){
+        setUser({
+          ...user,
+          ["picture"]:e.target.result
+        })
+      }
+      setUser({
+        ...user,
+        ["picture"]:reader.readAsDataURL(event.target.files[0])
+      })
+    }
+  }
   return (
     <div className={style.container}>
       <div className={style.container_formulario}>
@@ -100,6 +122,19 @@ function EditProfile() {
           }}
           className={style.formulario}
         >
+          <div className={style2.entrada}>
+            <label className={style.label_form}>Agregar foto (Opcional)</label>
+            <img className={style2.img_user} src={user.picture == undefined || user.picture == ""? iconUser:user.picture}/>
+            <input
+              id="input_img"
+              className={style2.input_img}
+              type="file"
+              //value={user.repeatNewPassword}
+              name="picture"
+              onChange={(e) => handleImage(e)}
+            ></input>
+            <label type="button" for="input_img" className={style2.button_agregar_foto}>Agregar foto</label>
+          </div>
           <div className={style.entrada}>
             <label className={style.label_form}>Nombre</label>
             <input
@@ -166,7 +201,6 @@ function EditProfile() {
               onChange={(e) => handleInput(e)}
             ></input>
           </div>
-
           {isEqualsPassword && (
             <p className={style.alert_mensaje}>Las contraseñas son distintas</p>
           )}

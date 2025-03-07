@@ -5,6 +5,8 @@ import { Navigate, useNavigate } from 'react-router-dom'
 import Swall from 'sweetalert2'
 import { useAuth } from '../../Auth/AuthProvider'
 import { url } from "../../url"
+import style2 from "./../editProfile/editProfile.module.css"
+import iconUser from "./../../assets/avatar_png.png"
 function Register() {
   const auth = useAuth();
   const navigate = new useNavigate();
@@ -13,7 +15,8 @@ function Register() {
     email:"",
     repeatEmail:"",
     password:"",
-    repeatPassword:""
+    repeatPassword:"",
+    picture:""
   })
   useEffect(()=>{
     if(localStorage.getItem('access') && localStorage.getItem('user'))
@@ -54,6 +57,7 @@ function Register() {
             name:values.username,
             email:values.email,
             password:values.password,
+            foto:values.picture
           }
         }).then((res)=>{
           console.log(res);
@@ -97,7 +101,6 @@ function Register() {
   }
   function goToLogin()
   {
-    
     navigate('/'); 
   } 
   function equalsEmails(){
@@ -120,7 +123,23 @@ function Register() {
         setIgualPassword(false);
       }
   }
-  
+  async function handleImage(event)
+  {
+    if(event.target.files[0])
+    {
+      let reader = new FileReader(); 
+      reader.onload = function(e){
+        setValues({
+          ...values,
+          ["picture"]:e.target.result
+        })
+      }
+      setValues({
+        ...values,
+        ["picture"]:reader.readAsDataURL(event.target.files[0])
+      })
+    }
+  }
   if(auth.isAuth)
   {
     return <Navigate to='/dashboard'/>
@@ -132,6 +151,19 @@ function Register() {
         <div className={style.container_formulario}>
           <h1 className={style.title_formulario}>Crear usuario</h1>
           <form className={style.formulario} onSubmit={handleRegister}>
+            <div className={style2.entrada}>
+                        <label className={style.label_form}>Agregar foto (Opcional)</label>
+                        <img className={style2.img_user} src={values.picture == undefined || values.picture == ""? iconUser:values.picture}/>
+                        <input
+                          id="input_img"
+                          className={style2.input_img}
+                          type="file"
+                          //value={user.repeatNewPassword}
+                          name="picture"
+                          onChange={(e) => handleImage(e)}
+                        ></input>
+                        <label type="button" for="input_img" className={style2.button_agregar_foto}>Agregar foto</label>
+                      </div>
             <div className={style.entrada}>
               <label className={style.label_form}> Nombre </label>
               <input

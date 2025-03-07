@@ -16,8 +16,7 @@ function DefaultPage({ children }) {
   const navigate = useNavigate();
 
   function borrarCredenciales() {
-    localStorage.removeItem("user");
-    localStorage.removeItem("refresh");
+    localStorage.clear();
     auth.setIsAuth(false);
     navigate("/");
   }
@@ -107,7 +106,7 @@ function DefaultPage({ children }) {
           <span className={style.userName}>{localStorage.getItem("user")}</span>
           <div className={style.container_userMenu}>
             <img
-              src={iconUser}
+              src={localStorage.getItem("foto")? localStorage.getItem("foto"):iconUser}
               alt="Foto o imagen del usuario"
               className={style.user_image}
               onClick={() => {

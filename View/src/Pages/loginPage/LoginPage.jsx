@@ -44,6 +44,7 @@ function LoginPage() {
       auth.setAccess(response.data.access_token);
       localStorage.setItem("refresh", response.data.refresh_token);
       localStorage.setItem("user", response.data.username);
+      localStorage.setItem("foto",response.data.foto);
       navigate("/dashboard");
     } else {
       setError(true);
