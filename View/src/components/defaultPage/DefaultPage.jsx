@@ -106,7 +106,7 @@ function DefaultPage({ children }) {
           <span className={style.userName}>{localStorage.getItem("user")}</span>
           <div className={style.container_userMenu}>
             <img
-              src={localStorage.getItem("foto")? localStorage.getItem("foto"):iconUser}
+              src={localStorage.getItem("foto")!=""? localStorage.getItem("foto"):iconUser}
               alt="Foto o imagen del usuario"
               className={style.user_image}
               onClick={() => {
