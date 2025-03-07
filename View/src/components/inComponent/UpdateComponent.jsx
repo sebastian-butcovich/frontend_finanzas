@@ -102,7 +102,7 @@ function UpdateComponent({ editRequest, editFunction }) {
       ) : (
         <div className={style.container_type}>
           <input
-          className={style.input_inComponent}
+          className={style.input_inComponent_tipo}
             type="text"
             name="tipo"
             value={data.tipo}

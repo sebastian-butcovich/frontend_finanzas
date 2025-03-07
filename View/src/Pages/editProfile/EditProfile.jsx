@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Auth/AuthProvider";
-import { obtenerUsuarioLogeado } from "../../utils/requests/peticionesUsuarios";
+import { actualizarUsuario, obtenerUsuarioLogeado } from "../../utils/requests/peticionesUsuarios";
 import style from "../register/Register.module.css";
+import Swal from "sweetalert2";
 function EditProfile() {
   const navigate = useNavigate();
   const auth = useAuth();
@@ -15,17 +16,17 @@ function EditProfile() {
   });
   const [isEqualsPassword, setIsEqualsPassword] = useState(false);
   async function obtenerQuienSoy() {
-    var response = null;
+    let response = null;
     var access = auth.getAccess();
     try {
       response = await obtenerUsuarioLogeado(access);
-      if (response.status == 401) {
+      if (response.status == 403) {
         access = await auth.updateToken();
         response = await obtenerUsuarioLogeado(access);
       }
       let data = response.data;
       setUser({
-        username: data.username,
+        username: data.name,
         email: data.email,
         lastPassword: "",
         newPassword: "",
@@ -45,8 +46,42 @@ function EditProfile() {
       [name]: value,
     });
   }
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
+    let response = await actualizarUsuario(auth.getAccess(),user);
+    if(response.status == 403)
+    {
+      let access = auth.updateToken();
+      response = await actualizarUsuario(access,user);
+    }
+    if(response.status == 200)
+    {
+      Swal.fire({
+        title:"Operación realizada con exito",
+        text:"Se edito correctamente el usuario",
+        icon:"success"
+      }).then((event) => {
+        if(event.isConfirmed)
+        {
+          localStorage.clear();
+          navigate("/login");
+        }
+      })
+    }
+    else if (response.status == 403){
+      Swal.fire({
+        title:"Error",
+        text:"Algo salio mal mientras se realizaba la operación. Intente nuevamente en otro momento",
+        icon:"error"
+      })
+    }
+    else{
+      Swal.fire({
+        title:"Error",
+        text:"Alguno de los datos no fueron ingresados o son incorrectos. Asegurese de ingresar nombre de usuario, el email registrado y la contraseña anterior correcta",
+        icon:"error"
+      })
+    }
   }
   function handleEqualPassword() {
     if (user.newPassword != user.repeatNewPassword) {

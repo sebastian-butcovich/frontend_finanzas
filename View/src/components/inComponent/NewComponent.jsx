@@ -91,7 +91,7 @@ function NewComponent({ newRequest }) {
         <option>Agregar un tipo nuevo</option>
       </select>):(<div className={style.container_type}>
       <input
-        className={style.input_inComponent}
+        className={style.input_inComponent_tipo}
         type="text"
         name="tipo"
         value={data.tipo}
