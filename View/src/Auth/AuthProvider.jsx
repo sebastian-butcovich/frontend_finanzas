@@ -13,10 +13,6 @@ export function AuthProvider({children}) {
     if(access !== "" && access !==403){
       return access;
     }else{
-      if(sessionStorage.getItem("token") !=null)
-      {
-        return sessionStorage.getItem("token")
-      }else
         return "";
     }
   }
