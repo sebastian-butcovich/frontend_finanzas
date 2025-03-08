@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import style from "./defaultPage.module.css";
 import iconUser from "./../../assets/avatar_png.png";
@@ -44,6 +44,9 @@ function DefaultPage({ children }) {
         break;
     }
   }
+  useEffect(()=>{
+    console.log(localStorage.getItem("foto"));
+  })
   return (
     <div className={style.container}>
       <header className={style.header_container}>
@@ -106,7 +109,7 @@ function DefaultPage({ children }) {
           <span className={style.userName}>{localStorage.getItem("user")}</span>
           <div className={style.container_userMenu}>
             <img
-              src={localStorage.getItem("foto")!=""? localStorage.getItem("foto"):iconUser}
+              src={localStorage.getItem("foto")? localStorage.getItem("foto"):iconUser}
               alt="Foto o imagen del usuario"
               className={style.user_image}
               onClick={() => {

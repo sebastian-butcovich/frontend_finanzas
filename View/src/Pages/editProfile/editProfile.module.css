@@ -7,7 +7,7 @@
 }
 .img_user{
     width:25%;
-    height:15vh;
+    height:11vh;
     border-radius: 50%;
     border:2px solid white;
 }
@@ -17,7 +17,7 @@
 .button_agregar_foto{
     padding:1rem;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin:0.5rem;
     border-radius:0.2rem;
     background-color:gray;
@@ -28,4 +28,13 @@
 .button_agregar_foto:active{
     transform: translateX(5px);
     box-shadow: 0px 0px black;
+}
+@media (max-width:480px){
+    .img_user{
+        height: 11vh;
+    }
+    .button_agregar_foto{
+        width:55%;
+        padding:0.5rem;
+    }
 }

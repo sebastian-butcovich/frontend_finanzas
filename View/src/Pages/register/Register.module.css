@@ -41,6 +41,7 @@
     flex-direction: column;
     margin-bottom: 10px;
     text-align: center;
+    height: 8.5vh;
 }
 .label_form{
     border-bottom: 10px;
@@ -60,7 +61,7 @@
 .button_form_usuario{
     display:flex;
     justify-content: space-around;
-    height:7vh;
+    height:6vh;
     margin-top:15px;
 }
 .button_f{
@@ -114,6 +115,7 @@
     }
     .button_f{
         width:45%;
+        height:4vh;
     }
 }
 @media(min-width:401px) and (max-width:768px)
