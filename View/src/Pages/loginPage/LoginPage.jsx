@@ -37,7 +37,6 @@ function LoginPage() {
   }
 
   function login(response) {
-    console.log("respuesta del inicio de sesión", response);
     if (response.status == 200) {
       setError(false);
       auth.setIsAuth(true);
