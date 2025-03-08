@@ -25,7 +25,6 @@ function Cards({
   });
   const [message, setMessage] = useState("");
   useEffect(() => {
-    console.log("valores de la páginas", paginationContext.getPage(),paginationContext.getLastPage())
     setTimeout(() => {
       setIsMessage(false);
       setIsTextInfo(false);

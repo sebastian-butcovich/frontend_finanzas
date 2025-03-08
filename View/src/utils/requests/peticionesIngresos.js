@@ -34,7 +34,6 @@ export async function getIngresos(access, data, page, otherCoins) {
         },
       });
     }
-    console.log(respuesta);
     return respuesta;
   } catch (error) {
     return error.response;
