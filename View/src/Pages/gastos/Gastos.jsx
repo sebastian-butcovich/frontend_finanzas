@@ -28,11 +28,11 @@ function Gastos() {
       {
         access = auth.updateToken();
       }
-        response = await obtenerGastos(
-          auth.getAccess(),
-          filter.getDataFilter(),
-          pagContext.getPage(),
-          filter.otherCoins,);
+      response = await obtenerGastos(
+      access,
+      filter.getDataFilter(),
+      pagContext.getPage(),
+      filter.otherCoins,);
       
       context.setData(response.data.movents);
       pagContext.setPage(response.data.page);

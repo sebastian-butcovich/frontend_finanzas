@@ -19,13 +19,16 @@ export function AuthProvider({children}) {
   async function updateToken()
   {
     let refresh = localStorage.getItem("refresh");
-    let accessA = await refreshToken(refresh);
+    let response = await refreshToken(refresh);
+    if (response.status == 403)
+    {
+      localStorage.clear();
+    }
+    let accessA = response.data.access_token;
     if(accessA !== 403 && accessA !=="")
     {
-      sessionStorage.setItem("token",accessA);
-      localStorage.setItem("refresh",refresh);
+      localStorage.setItem("token",accessA);
       setAccess(accessA);
-      console.log("segunda ejecución",access)
       return accessA;
     }
     return accessA;

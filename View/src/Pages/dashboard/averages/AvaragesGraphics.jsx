@@ -69,7 +69,6 @@ function AvaragesGraphics() {
     let auxIngresos = [];
     let auxFecha = [];
     let access =  localStorage.getItem("token");
-
     let response = await getAvaragesGastos(
       access,
       fechasAux,
