@@ -18,20 +18,25 @@ export function AuthProvider({children}) {
   }
   async function updateToken()
   {
-    let refresh = localStorage.getItem("refresh");
-    let response = await refreshToken(refresh);
-    if (response.status == 403)
+    let refresh = null;
+    let response = null;
+    if(access == "")
     {
-      localStorage.clear();
+      refresh = localStorage.getItem("refresh");
+      response = await refreshToken(refresh);  
+      if (response.status == 403)
+        {
+          response = await refreshToken(refresh);
+        }
+        let accessA = response.data.access_token;
+        if(accessA !== 403 && accessA !=="")
+        {
+          localStorage.setItem("refresh",refresh);
+          setAccess(accessA);
+          return accessA;
+        }
     }
-    let accessA = response.data.access_token;
-    if(accessA !== 403 && accessA !=="")
-    {
-      localStorage.setItem("token",accessA);
-      setAccess(accessA);
-      return accessA;
-    }
-    return accessA;
+    return access;
   }
   return  <AuthContext.Provider value={{getAuth,setIsAuth,getAccess,setAccess,updateToken}}>{children} </AuthContext.Provider>
 }

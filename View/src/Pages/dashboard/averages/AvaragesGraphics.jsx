@@ -111,7 +111,7 @@ function AvaragesGraphics() {
 
   useEffect(() => {
     generarFechaPorAño();
-    obtenerDatos(filtradoActual);
+    setTimeout(()=>{obtenerDatos(filtradoActual);},2000);
     context.setIsUpdate(false);
   }, [context.isUpdate],[]);
   async function handleButtonsFilter(textButton) {
