@@ -23,7 +23,7 @@ function Gastos() {
   async function obtenerLosGastos() {
     try {
       let response = null;
-      let access = localStorage.getItem("token");
+      let access = auth.getAccess();
       if(access == "")
       {
         access = auth.updateToken();
@@ -54,7 +54,7 @@ function Gastos() {
   async function obtenerTipos() {
     let response = null;
     try {
-      let access = localStorage.getItem("token");
+      let access = auth.getAccess();
       response = await obtenerTypesGastos(access);
       if (response.status == 403) {
         access = await auth.updateToken();
@@ -82,7 +82,7 @@ function Gastos() {
 
   async function handleRemove(id) {
     try {
-      let access = localStorage.getItem("token");
+      let access = auth.getAccess();
       let response = await removeGasto(id, access);
       if (response == 403) {
         access= await auth.updateToken();

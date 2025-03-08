@@ -42,7 +42,7 @@ function EditProfile() {
   }
   useEffect(() => {
     obtenerQuienSoy();
-    console.log("Que tiene la imagen", user.picture);
+
   }, []);
   function handleInput(event) {
     const { name, value } = event.target;
@@ -133,7 +133,7 @@ function EditProfile() {
               name="picture"
               onChange={(e) => handleImage(e)}
             ></input>
-            <label type="button" for="input_img" className={style2.button_agregar_foto}>Agregar foto</label>
+            <label type="button" htmlFor="input_img" className={style2.button_agregar_foto}>Agregar foto</label>
           </div>
           <div className={style.entrada}>
             <label className={style.label_form}>Nombre</label>

@@ -2,7 +2,6 @@ import axios from "axios";
 import { url } from "../../url";
 export async function getIngresos(access, data, page, otherCoins) {
   let respuesta = null;
-  console.log('esto es page dentro de peticiones ingresos',page);
   let jwt = "Bearer ".concat(access);
   try {
     if (otherCoins || (data.monto_inicial!=0 && data.monto_final !=0) || data.tipo !="" || (data.fecha_inicio && data.fecha_fin)  ) {
@@ -132,7 +131,6 @@ export async function getTotalIngresos(access, filter, otherCoins) {
         url: `${url}income/total`,
       });
     }
-    console.log(responseIngresos);
     return responseIngresos;
   } catch (error) {
     console.log(

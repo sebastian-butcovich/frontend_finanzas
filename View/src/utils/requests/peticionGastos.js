@@ -2,7 +2,6 @@ import axios from "axios";
 import { url } from "../../url";
 export async function obtenerGastos(access, data, page, otherCoins) {
   let respuesta = null;
-  console.log(page);
   let jwt = "Bearer".concat(' ',access) ; 
   try {
     if ( otherCoins|| (data.monto_inicial!=0 && data.monto_final !=0) || data.tipo !="" || (data.fecha_inicio && data.fecha_fin)) {
@@ -41,7 +40,6 @@ export async function obtenerGastos(access, data, page, otherCoins) {
          url:`${url}spent/get_all`,
       });
     }
-    console.log("respuesta de petición gastos",respuesta)
     return respuesta;
   } catch (error) {
     console.log(error);
@@ -61,7 +59,6 @@ export async function setGasto(data, access) {
         tipo: data.tipo,
       },
     });
-    console.log("respuesta de agregar gasto",respuesta)
     return respuesta.status;
   } catch (error) {
     console.log(error);
@@ -71,7 +68,6 @@ export async function setGasto(data, access) {
 export async function editGasto(data, access) {
   let jwt = "Bearer".concat(' ',access)
   try {
-    console.log("token del editar", jwt)
     const respuesta = await axios({
       method: "post",
       url: `${url}spent/update`,
@@ -85,12 +81,11 @@ export async function editGasto(data, access) {
     });
     return respuesta.status;
   } catch (error) {
-    return error.response.status;
     console.log(error);
+    return error.response.status;
   }
 }
 export async function removeGasto(id, access) {
-  console.log(id, access);
   let jwt = "Bearer ".concat(access);
   try {
     const response = await axios({
@@ -122,7 +117,6 @@ export async function obtenerTypesGastos(access) {
 export async function getTotalsGasto(access, filter, otherCoins) {
   let responseGastos = null;
   let jwt = "Bearer ".concat(access);
-  console.log('como se ve access desde getTotalGastos', access)
   try {
     if (filter.currency != "" &&  otherCoins) {
       responseGastos = await axios({
@@ -140,7 +134,6 @@ export async function getTotalsGasto(access, filter, otherCoins) {
         url: `${url}spent/total`,
       });
     }
-    console.log(responseGastos);
     return responseGastos;
   } catch (error) {
     console.log("Este error ocurre dentro de la petición getTotalGasto", error);

@@ -11,7 +11,6 @@ export async function obtenerUsuarioLogeado(access)
                 "token": jwt,
             },
         })
-        console.log(response);
         return response;
     }catch(error)
     {

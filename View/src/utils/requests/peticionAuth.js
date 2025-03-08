@@ -10,7 +10,6 @@ export async function refreshToken(refresh_token)
                 "token":"Bearer ".concat(refresh_token)
             }
         })
-        console.log("esto pasa y no lo otro",response.data.access_token);
         return response;
     }catch(error)
     {
