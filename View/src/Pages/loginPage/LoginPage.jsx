@@ -10,7 +10,7 @@ function LoginPage() {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
   const auth = useAuth();
-
+ 
   useEffect(() => {
     let data = localStorage.getItem("refresh");
     if (data != null) {
@@ -45,6 +45,7 @@ function LoginPage() {
       localStorage.setItem("refresh", response.data.refresh_token);
       localStorage.setItem("user", response.data.username);
       localStorage.setItem("foto",response.data.foto);
+      localStorage.setItem("token",response.data.access_token);
       navigate("/dashboard");
     } else {
       setError(true);

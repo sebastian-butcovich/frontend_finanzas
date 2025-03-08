@@ -23,7 +23,7 @@ function Gastos() {
   async function obtenerLosGastos() {
     try {
       let response = null;
-      let access = auth.getAccess();
+      let access = localStorage.getItem("token");
       if(access == "")
       {
         access = auth.updateToken();
@@ -34,7 +34,6 @@ function Gastos() {
           pagContext.getPage(),
           filter.otherCoins,);
       
-      console.log("Una respuesta",response)
       context.setData(response.data.movents);
       pagContext.setPage(response.data.page);
       pagContext.setNextPage(response.data.next_page);
@@ -55,7 +54,7 @@ function Gastos() {
   async function obtenerTipos() {
     let response = null;
     try {
-      let access = auth.getAccess();
+      let access = localStorage.getItem("token");
       response = await obtenerTypesGastos(access);
       if (response.status == 403) {
         access = await auth.updateToken();
@@ -83,7 +82,7 @@ function Gastos() {
 
   async function handleRemove(id) {
     try {
-      let access = auth.getAccess();
+      let access = localStorage.getItem("token");
       let response = await removeGasto(id, access);
       if (response == 403) {
         access= await auth.updateToken();

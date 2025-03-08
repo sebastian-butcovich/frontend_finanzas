@@ -32,7 +32,7 @@ function Ingresos() {
     context.setUpdateTypes(false);
   }, [context.updateTypes]);
   async function obtenerTiposIngresos() {
-    let access = auth.getAccess();
+    let access = localStorage.getItem("token");
     let response = await obtenerTypesIngresos(access);
     if (response.status == 403) {
       access = await auth.updateToken();
@@ -42,7 +42,7 @@ function Ingresos() {
   }
   async function obtenerIngresos() {
     let response = null;
-    let access =  auth.getAccess();
+    let access =  localStorage.getItem("token");
     if(access == "")
     {
       access= await auth.updateToken();

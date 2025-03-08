@@ -68,11 +68,8 @@ function AvaragesGraphics() {
     let auxGastos = [];
     let auxIngresos = [];
     let auxFecha = [];
-    let access =  auth.getAccess();
-    if(access == "")
-    {
-      access = await auth.updateToken();
-    }
+    let access =  localStorage.getItem("token");
+
     let response = await getAvaragesGastos(
       access,
       fechasAux,
@@ -111,9 +108,9 @@ function AvaragesGraphics() {
 
   useEffect(() => {
     generarFechaPorAño();
-    setTimeout(()=>{obtenerDatos(filtradoActual)})
+    obtenerDatos(filtradoActual);
     context.setIsUpdate(false);
-  }, [context.isUpdate]);
+  }, [context.isUpdate],[]);
   async function handleButtonsFilter(textButton) {
     for (let i = 0; i < isSelected.length; i++) {
       if (textButton == isSelected[i].tipo && !isSelected[i].isSelec) {
