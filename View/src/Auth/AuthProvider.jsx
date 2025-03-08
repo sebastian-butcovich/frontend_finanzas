@@ -20,9 +20,9 @@ export function AuthProvider({children}) {
   {
     let refresh = localStorage.getItem("refresh");
     let accessA = await refreshToken(refresh);
-    sessionStorage.setItem("token",accessA);
     if(accessA !== 403 && accessA !=="")
     {
+      sessionStorage.setItem("token",accessA);
       localStorage.setItem("refresh",refresh);
       setAccess(accessA);
       console.log("segunda ejecución",access)

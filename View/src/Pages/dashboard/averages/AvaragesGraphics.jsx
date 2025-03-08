@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { getAvaragesGastos } from "../../../utils/requests/peticionGastos";
 import { FilterContext } from "../../../utils/context/FilterProvider";
 import { useAuth } from "../../../Auth/AuthProvider";
-import { isValidateToken } from "../../../utils/requests/peticionAuth";
 import {
   generarFechaAnteriorPorSemana,
   generarFechaPorAño,
@@ -72,7 +71,10 @@ function AvaragesGraphics() {
     let access =  auth.getAccess();
     if(access == "" || access == null)
     {
-      access = await auth.updateToken();
+      access = sessionStorage.getItem("token");
+      if(access == null || access == ""){
+        access = await auth.updateToken();
+      }
     }
     let response = await getAvaragesGastos(
       access,
@@ -112,7 +114,7 @@ function AvaragesGraphics() {
 
   useEffect(() => {
     generarFechaPorAño();
-    setTimeout(()=>{obtenerDatos(filtradoActual);},3000)
+    obtenerDatos(filtradoActual);
     context.setIsUpdate(false);
   }, [context.isUpdate]);
   async function handleButtonsFilter(textButton) {

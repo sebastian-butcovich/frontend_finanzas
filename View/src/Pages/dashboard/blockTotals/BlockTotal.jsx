@@ -19,7 +19,11 @@ function BlockTotal() {
       let access = auth.getAccess();
       if(access == "" || access == null)
       {
-        access = await auth.updateToken();
+        access = sessionStorage.getItem("token");
+        if(access == "" || access ==null)
+        {
+          access = await auth.updateToken();
+        }
       }
       let gastos = await getTotalsGasto(
         access,
