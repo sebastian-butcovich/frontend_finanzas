@@ -44,9 +44,6 @@ function DefaultPage({ children }) {
         break;
     }
   }
-  useEffect(()=>{
-    console.log(localStorage.getItem("foto"));
-  })
   return (
     <div className={style.container}>
       <header className={style.header_container}>

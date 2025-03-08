@@ -69,8 +69,9 @@ function AvaragesGraphics() {
     let auxGastos = [];
     let auxIngresos = [];
     let auxFecha = [];
-    let access = await auth.getAccess();
-    if (access == "") {
+    let access =  auth.getAccess();
+    if(access == "" || access == null)
+    {
       access = await auth.updateToken();
     }
     let response = await getAvaragesGastos(
@@ -88,7 +89,6 @@ function AvaragesGraphics() {
         filter.otherCoins
       );
     }
-    console.log(response);
     for (let k = 0; k < fechasAux.length - 1; k++) {
       auxGastos[k] = response.data.value[k];
       auxFecha[k] = fechasAux[k].fecha_string;
@@ -108,13 +108,11 @@ function AvaragesGraphics() {
       ingresos: auxIngresos
     });
     setFechas(auxFecha);
-    console.log('ingresos', datos.ingresos);
-    console.log('gastos', datos.gastos);
   }
 
   useEffect(() => {
     generarFechaPorAño();
-    obtenerDatos(filtradoActual);
+    setTimeout(()=>{obtenerDatos(filtradoActual);},900)
     context.setIsUpdate(false);
   }, [context.isUpdate]);
   async function handleButtonsFilter(textButton) {

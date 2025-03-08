@@ -16,8 +16,8 @@ function BlockTotal() {
   const context = useContext(CardsContext);
   const filter = useContext(FilterContext);
   async function getTotals() {
-      let access = await auth.getAccess();
-      if(access == "")
+      let access = auth.getAccess();
+      if(access == "" || access == null)
       {
         access = await auth.updateToken();
       }
@@ -48,7 +48,7 @@ function BlockTotal() {
       });
     }      
   useEffect(() => {
-    setTimeout(()=>{getTotals()}, 3000);
+    getTotals();
     context.setIsUpdate(false);
   }, [context.isUpdate]);
   return (

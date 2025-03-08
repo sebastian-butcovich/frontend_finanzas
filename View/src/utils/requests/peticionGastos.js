@@ -171,16 +171,15 @@ export async function getAvaragesGastos(
       response = await axios({
         method: "put",
         url: `${url}spent/totalGraphics`,
-        params: {
+        params:{
           "token": jwt,
         },
         data:fechas
       });
     }
-    console.log(response);
     return response;
   } catch (error) {
     console.log(error);
-    return error.response;
+    return error;
   }
 }

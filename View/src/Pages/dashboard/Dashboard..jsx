@@ -5,7 +5,6 @@ import { getValueCoins } from "../../utils/requests/getFuncionalidades";
 import style from "./dashboard.module.css";
 import BlockTotal from "./blockTotals/BlockTotal";
 import AvaragesGraphics from "./averages/AvaragesGraphics";
-import { useAuth } from "../../Auth/AuthProvider";
 
 function Dashboard() {
   return (

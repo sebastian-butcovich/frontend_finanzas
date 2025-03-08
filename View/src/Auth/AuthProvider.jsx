@@ -4,6 +4,7 @@ const AuthContext = createContext({})
 export function AuthProvider({children}) {
     const [isAuth, setIsAuth] = useState(false);
     const [access,setAccess] = useState("")
+  
   function getAuth()
   {
     return isAuth;
@@ -11,21 +12,27 @@ export function AuthProvider({children}) {
    function getAccess(){
     if(access !== "" && access !==403){
       return access;
+    }else{
+      if(sessionStorage.getItem("token") !=null)
+      {
+        return sessionStorage.getItem("token")
+      }else
+        return "";
     }
-    return "";
   }
   async function updateToken()
   {
     let refresh = localStorage.getItem("refresh");
     let accessA = await refreshToken(refresh);
+    sessionStorage.setItem("token",accessA);
     if(accessA !== 403 && accessA !=="")
     {
-      setAccess(accessA);
       localStorage.setItem("refresh",refresh);
+      setAccess(accessA);
+      console.log("segunda ejecución",access)
       return accessA;
     }
-    console.log("segunda ejecución",access)
-    return access;
+    return accessA;
   }
   return  <AuthContext.Provider value={{getAuth,setIsAuth,getAccess,setAccess,updateToken}}>{children} </AuthContext.Provider>
 }
