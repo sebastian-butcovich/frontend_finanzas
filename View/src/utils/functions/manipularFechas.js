@@ -199,89 +199,89 @@ export function generarFechaAnteriorPorSemana() {
 export function generarFechasAnteriorPorDia() {
   var actualDate = new Date();
   var fechas = [];
-  var year = actualDate.getFullYear();
-  var dayStart = actualDate.getDate();
-  var monthStart = actualDate.getMonth();
-  if (monthThirtyOne[monthStart - 1].isThirtyOne) {
-    for (let i = 0; i <= 33; i++) {
-      if (dayStart > 31) {
-        dayStart = 1;
-        monthStart += 1;
-      }
-      if (dayStart < 10 && monthStart < 10)
-        fechas[i] = { fecha_string: `${year}-0${monthStart}-0${dayStart}` };
-      else if (dayStart < 10) {
-        fechas[i] = { fecha_string: `${year}-${monthStart}-0${dayStart}` };
-      } else {
-        fechas[i] = { fecha_string: `${year}-0${monthStart}-${dayStart}` };
-      }
-      dayStart++;
-    }
-  } else if (monthThirtyOne[monthStart - 1].isThirty) {
+  var year = parseInt(actualDate.getFullYear());
+  var day = parseInt(actualDate.getDate());
+  var month = parseInt(actualDate.getMonth());
+  if (monthThirtyOne[month - 1].isThirtyOne) {
     for (let i = 0; i <= 31; i++) {
-      if (dayStart > 30) {
-        dayStart = 1;
-        monthStart += 1;
+      if (day > 31) {
+        day = 1;
+        month += 1;
       }
-      if (dayStart < 10 && monthStart < 10)
-        fechas[i] = { fecha_string: `${year}-0${monthStart}-0${dayStart}` };
-      else if (dayStart < 10) {
-        fechas[i] = { fecha_string: `${year}-${monthStart}-0${dayStart}` };
+      if (day < 10 && month < 10)
+        fechas[i] = { fecha_string: `${year}-0${month}-0${day}`,year,month: month,day: day };
+      else if (day < 10) {
+        fechas[i] = { fecha_string: `${year}-${month}-0${day}`,year,month: month,day: day };
       } else {
-        fechas[i] = { fecha_string: `${year}-0${monthStart}-${dayStart}` };
+        fechas[i] = { fecha_string: `${year}-0${month}-${day}`,year,month: month,day: day };
       }
-      dayStart++;
+      day++;
+    }
+  } else if (monthThirtyOne[month - 1].isThirty) {
+    for (let i = 0; i <= 31; i++) {
+      if (day > 30) {
+        day = 1;
+        month += 1;
+      }
+      if (day < 10 && month < 10)
+        fechas[i] = { fecha_string: `${year}-0${month}-0${day}` ,year,month: month,day: day };
+      else if (day < 10) {
+        fechas[i] = { fecha_string: `${year}-${month}-0${day}` ,year,month: month,day: day };
+      } else {
+        fechas[i] = { fecha_string: `${year}-0${month}-${day}`,year,month: month,day: day  };
+      }
+      day++;
     }
   } else {
     for (let i = 0; i <= 29; i++) {
       if (year / 4) {
-        if (!monthThirtyOne.isThirty && dayStart > 29) {
-          dayStart = 1;
-          monthStart += 1;
+        if (!monthThirtyOne.isThirty && day > 29) {
+          day = 1;
+          month += 1;
         } else {
-          if (!monthThirtyOne.isThirty && dayStart > 28) {
-            dayStart = 1;
-            monthStart += 1;
+          if (!monthThirtyOne.isThirty && day > 28) {
+            day = 1;
+            month += 1;
           }
         }
       }
-      if (dayStart < 10 && monthStart < 10)
-        fechas[i] = { fecha_string: `${year}-0${monthStart}-0${dayStart}` };
-      else if (dayStart < 10) {
-        fechas[i] = { fecha_string: `${year}-${monthStart}-0${dayStart}` };
+      if (day < 10 && month < 10)
+        fechas[i] = { fecha_string: `${year}-0${month}-0${day}` ,year,month: month,day: day };
+      else if (day < 10) {
+        fechas[i] = { fecha_string: `${year}-${month}-0${day}`,year,month: month,day: day };
       } else {
-        fechas[i] = { fecha_string: `${year}-0${monthStart}-${dayStart}` };
+        fechas[i] = { fecha_string: `${year}-0${month}-${day}`,year,month: month,day: day };
       }
-      dayStart++;
+      day++;
     }
   }
   return fechas;
 }
 export function generarFechaPorMes() {
   var fechaActual = new Date();
-  var mes = fechaActual.getMonth() + 1;
+  var month = fechaActual.getMonth() + 1;
   var year = fechaActual.getFullYear();
   var day = 1;
   var fechas = [];
-  if (mes - 4 < 0) {
-    mes = 12 + (mes - 3);
+  if (month - 4 < 0) {
+    month = 12 + (month - 3);
     year -= 1;
   } else {
-    mes -= 3;
+    month -= 3;
   }
   for (let i = 0; i < 5; i++) {
-    if (day < 10 && mes < 10) {
-      fechas[i] = { fecha_string: `${year}-0${mes}-0${day}` };
+    if (day < 10 && month < 10) {
+      fechas[i] = { fecha_string: `${year}-0${month}-0${day}` ,year,month };
     } else if (day < 10) {
-      fechas[i] = { fecha_string: `${year}-${mes}-0${day}` };
+      fechas[i] = { fecha_string: `${year}-${month}-0${day}` ,year,month };
     } else {
-      fechas[i] = { fecha_string: `${year}-0${mes}-${day}` };
+      fechas[i] = { fecha_string: `${year}-0${month}-${day}` ,year,month };
     }
-    if (mes == 12) {
-      mes = 1;
+    if (month == 12) {
+      month = 1;
       year += 1;
     } else {
-      mes++;
+      month++;
     }
   }
   return fechas;
@@ -293,7 +293,7 @@ export function generarFechaPorAño() {
   var year = fechaActual.getFullYear() - 3;
   var fechas = [];
   for (let i = 0; i < 5; i++) {
-    fechas[i] = { fecha_string: `${year}-0${month}-${day}` };
+    fechas[i] = { fecha_string: `${year}-0${month}-${day}`, year };
     year++;
   }
   return fechas;
