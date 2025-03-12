@@ -8,6 +8,8 @@ import not_eye from "./../../assets/not_show.png";
 import { useNavigate } from "react-router-dom";
 import { CardsContext } from "../../utils/context/CardsProvider";
 import { PaginadoContext } from "../../utils/context/PaginadoProvider";
+import Swal from "sweetalert2";
+import { eliminarUsuario } from "../../utils/requests/peticionesUsuarios";
 function DefaultPage({ children }) {
   const [isMenu, setIsMenu] = useState(false);
   const context = useContext(CardsContext);
@@ -43,6 +45,43 @@ function DefaultPage({ children }) {
         pag.setGastos(false);
         break;
     }
+  }
+  function handleDeleteUser(){
+    console.log("Mostra")
+    Swal.fire({
+      title:"Confirmar",
+      text:"Estas seguro que deseas eliminar tu usuario de la aplicación finanzas",
+      icon:"question",
+      cancelButtonText:"Cancelar",
+      showCancelButton:true,
+      cancelButtonColor:"red",
+    }).then(async (e)=>{
+        if(e.isConfirmed)
+        {
+          let response = await eliminarUsuario(auth.getAccess());
+          if(response.status != 200)
+          { 
+            Swal.fire({
+              title:"Operación fallida",
+              text:"Ocurrio un error mientras se realizaba la operación. Vamos a estar trabajando en la solución",
+              icon:"info"
+            })
+          }else
+          {
+            Swal.fire({
+              title:"Operación exitosa",
+              text:"El usuario se elimino correctamente",
+              icon:"success"
+            }).then((e)=>{
+              if(e.isConfirmed)
+              {
+                localStorage.clear();
+                navigate("/");
+              }
+            })
+          }
+        }
+    })
   }
   return (
     <div className={style.container}>
@@ -116,9 +155,10 @@ function DefaultPage({ children }) {
             {isMenu ? (
               <div className={style.userMenu}>
                 <a className={style.button_deslog} onClick={()=>{navigate("/editarPerfil")}}>Editar usuario</a>
-                <a className={style.button_deslog} onClick={borrarCredenciales}>
+                 <a className={style.button_deslog} onClick={borrarCredenciales}>
                   Desloguearse
                 </a>
+                <a className={style.button_deslog_eliminar} onClick={handleDeleteUser}>Eliminar usuario</a>
               </div>
             ) : null}
           </div>

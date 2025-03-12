@@ -44,3 +44,22 @@ export async function actualizarUsuario(access, data)
         return error.response;
     }
 }
+export async function eliminarUsuario(token)
+{
+    let jwt = "Bearer ".concat(token);
+    let response = null;
+    try{
+        response = await axios({
+            method:"DELETE",
+            url:`${url}users/delete`,
+            params:{
+                "token":jwt
+            }
+        })
+    return response;
+    }catch(error)
+    {
+        console.log(error);
+        return error.response;
+    }
+}
