@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import { eliminarUsuario } from "../../utils/requests/peticionesUsuarios";
 function DefaultPage({ children }) {
   const [isMenu, setIsMenu] = useState(false);
+  const [clickEverywhere,setClickEverywhere] = useState(false);
   const context = useContext(CardsContext);
   const auth = useAuth();
   const pag = useContext(PaginadoContext);
@@ -84,7 +85,13 @@ function DefaultPage({ children }) {
     })
   }
   return (
-    <div className={style.container}>
+    <div onClick={()=>{
+      if(clickEverywhere == true)
+        {
+          setClickEverywhere(false);
+          setIsMenu(false);
+        }
+      }} className={style.container}>
       <header className={style.header_container}>
         <h1 className={style.titulo_principal}>Aplicación Finanzas</h1>
         <nav className={style.nav_container}>
@@ -150,9 +157,11 @@ function DefaultPage({ children }) {
               className={style.user_image}
               onClick={() => {
                 isMenu ? setIsMenu(false) : setIsMenu(true);
+                clickEverywhere ? setClickEverywhere(false):setClickEverywhere(true);
+                console.log(clickEverywhere)
               }}
             />
-            {isMenu ? (
+            {(isMenu && clickEverywhere) ? (
               <div className={style.userMenu}>
                 <a className={style.button_deslog} onClick={()=>{navigate("/editarPerfil")}}>Editar usuario</a>
                  <a className={style.button_deslog} onClick={borrarCredenciales}>
