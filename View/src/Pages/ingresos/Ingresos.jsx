@@ -57,7 +57,7 @@ function Ingresos() {
       access,
       filter.getDataFilter(),
       pageContext.getPage(),
-      filter.otherCoins,
+      filter,
     );
     context.setData(response.data.movents);
     pageContext.setPage(response.data.page);

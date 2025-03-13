@@ -4,7 +4,7 @@ export async function getIngresos(access, data, page, otherCoins) {
   let respuesta = null;
   let jwt = "Bearer ".concat(access);
   try {
-    if (otherCoins || (data.monto_inicial!=0 && data.monto_final !=0) || data.tipo !="" || (data.fecha_inicio && data.fecha_fin)  ) {
+    if ((otherCoins.otherCoins && data.currency !="") || (data.monto_inicial!=0 && data.monto_final !=0) || data.tipo !="" || (data.fecha_inicio && data.fecha_fin)  ) {
       respuesta = await axios({
         method: "get",
         url: `${url}income/get_all`,
@@ -114,7 +114,7 @@ export async function getTotalIngresos(access, filter, otherCoins) {
   let responseIngresos = null;
   let jwt = "Bearer ".concat(access);
   try {
-    if (filter.currency != "" && otherCoins) {
+    if (filter.currency != "args" && filter.currency != "" && otherCoins) {
       responseIngresos = await axios({
         method: "get",
         params: { "token": jwt,
@@ -148,7 +148,7 @@ export async function getAvaragesIngresos(
   try {
     var response = null;
     var jwt = "Bearer ".concat(access)
-    if (otherCoins && filter.currency != "") {
+    if (otherCoins && filter.currency != "" && filter.currency != "args") {
       response = await axios({
         method: "PUT",
         url: `${url}income/totalGraphics`,

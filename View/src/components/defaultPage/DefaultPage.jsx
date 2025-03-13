@@ -31,7 +31,7 @@ function DefaultPage({ children }) {
   function handleSelectLink(e) {
     switch (e) {
       case "Dashboard":
-        pag.setDashboard((previus) => !previus);
+        pag.setDashboard(true);
         pag.setGastos(false);
         pag.setIngresos(false);
         break;

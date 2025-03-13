@@ -30,10 +30,8 @@ function Gastos() {
       }
       response = await obtenerGastos(
       access,
-      filter.getDataFilter(),
       pagContext.getPage(),
-      filter.otherCoins,);
-      
+      filter,);
       context.setData(response.data.movents);
       pagContext.setPage(response.data.page);
       pagContext.setNextPage(response.data.next_page);

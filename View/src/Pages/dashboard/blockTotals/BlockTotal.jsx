@@ -23,8 +23,7 @@ function BlockTotal() {
       }
       let gastos = await getTotalsGasto(
         access,
-        filter.getDataFilter(),
-        filter.otherCoins
+        filter
       );
       if( gastos == null || gastos == undefined)
       {

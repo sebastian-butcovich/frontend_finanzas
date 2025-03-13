@@ -13,6 +13,7 @@ export default function FilterProvider({ children }) {
   });
   //Esta la utilizo para buscar cuando se esta filtrando 
   const [isFilter, setIsFilter] = useState(false);
+  //Esta la utilizo para indicar cuando se quiere mostrar los valores en otra moneda
   const [otherCoins, setOtherCoins] = useState(false);
   //Sirve para mostrar la moneada seleccionada del select en pantalla, por defecto se va a mostrar el valor del dólar blue
   const [indexSelec, setIndexSelec] = useState(0);

@@ -145,6 +145,7 @@ input {
 }
 .navBar_link:hover {
   color: #ffff94;
+  user-select: none;
 }
 .principal {
   display: flex;
