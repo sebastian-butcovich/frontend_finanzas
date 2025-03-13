@@ -20,6 +20,7 @@ function Ingresos() {
   const auth = useAuth();
   const filter = useContext(FilterContext);
   const pageContext = useContext(PaginadoContext);
+  const pag = useContext(PaginadoContext);
   useEffect(() => {
     context.setType(false);
     filter.setIsFilter(false);
@@ -31,6 +32,11 @@ function Ingresos() {
     obtenerTiposIngresos();
     context.setUpdateTypes(false);
   }, [context.updateTypes]);
+     useEffect(()=>{
+      pag.setDashboard(false);
+      pag.setGastos(false);
+      pag.setIngresos(true);
+     },[])
   async function obtenerTiposIngresos() {
     let access = auth.getAccess();
     let response = await obtenerTypesIngresos(access);

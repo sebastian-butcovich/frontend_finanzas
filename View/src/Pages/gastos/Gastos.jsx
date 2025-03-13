@@ -14,11 +14,11 @@ import { FilterContext } from "../../utils/context/FilterProvider";
 import Cards from "../../components/cards/Cards";
 import { PaginadoContext } from "../../utils/context/PaginadoProvider";
 import { messageInfo } from "./../../utils/functions/Message";
-import { isValidateToken } from "../../utils/requests/peticionAuth";
 function Gastos() {
   const context = useContext(CardsContext);
   const auth = useAuth();
   const filter = useContext(FilterContext);
+  const pag = useContext(PaginadoContext);
   var pagContext = useContext(PaginadoContext);
   async function obtenerLosGastos() {
     try {
@@ -68,6 +68,11 @@ function Gastos() {
       );
     }
   }
+     useEffect(()=>{
+      pag.setDashboard(false);
+      pag.setGastos(true);
+      pag.setIngresos(false);
+     },[])
   useEffect(() => {
     pagContext.setPage(1);
     obtenerTipos();
@@ -79,7 +84,6 @@ function Gastos() {
     context.setIsUpdate(false);
     obtenerLosGastos();
   }, [context.isUpdate, filter.getIsFilter()]);
-
   async function handleRemove(id) {
     try {
       let access = auth.getAccess();
