@@ -75,7 +75,7 @@
         align-items: center;
         margin:5px auto;
        border-radius: 20px;
-       border:1px solid white;
+       border:1px solid black;
        box-shadow: 2px 2px 2px #333;
        background-color: white;
        padding:0.5rem;
@@ -124,7 +124,7 @@
     }
 
 }
-@media(min-width:481px) and (max-width:767px)
+@media(min-width:481px) and (max-width:768px)
 {
     .coins_container{
         width:95%;
@@ -185,7 +185,7 @@
 @media (min-width:769px)  and (max-width:1023px)
 {
     .coins_container{
-        width:100%;
+        width:95%;
         height: auto;
         flex-direction: column;
         display: flex;
@@ -193,7 +193,7 @@
         margin:5px auto;
        border-radius: 10px;
        border:1px solid #333;
-       box-shadow: 3px 3px #555;
+       box-shadow: 2px 2px 2px #555;
     }
     .title_text_selec
     {
@@ -250,13 +250,13 @@
 @media(min-width:1024px) and  (max-width:1400px)
 {
     .coins_container{
-        width:55%;
+        width:95%;
         display: flex;
         align-items: center;
         margin:10px;
        border-radius: 10px;
        border:1px solid #333;
-       box-shadow: 5px 5px #555;
+       box-shadow: 3px 3px 5px #555;
     }
     .title_coins{
         width:auto;

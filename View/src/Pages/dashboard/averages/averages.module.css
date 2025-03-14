@@ -8,8 +8,9 @@
   margin: 10px auto;
   height: auto;
   border: 1px solid #333;
-  box-shadow: 5px 5px 5px 5px #555;
+  box-shadow: 5px 5px 5px #555;
   border-radius: 10px;
+  border-bottom: 1rem;
 }
 .graphics {
  display: flex;
@@ -79,7 +80,7 @@
     align-items: center;
     margin: 5px auto;
     height: auto;
-    border: 1px solid #fff;
+    border: 1px solid black;
     box-shadow: 3px 3px 2px #333;
     border-radius: 20px;
     padding:0.5rem;
@@ -168,7 +169,7 @@
 {
   .avarages{
     width: 95%;
-    margin:0 auto;
+    margin:5px auto;
     
   }
   .container_button_filter{
@@ -190,7 +191,7 @@
   }
   
 }
-@media(min-width:1025px) and (max-width:1500px)
+@media(min-width:1024px) and (max-width:1500px)
 {
   .graphics{
     height: 48vh;
@@ -206,7 +207,7 @@
     margin: 10px auto;
     height: auto;
     border: 1px solid #333;
-    box-shadow: 5px 5px 5px 5px #555;
+    box-shadow: 2px 2px 2px  #555;
     border-radius: 10px;
   }
 }

@@ -52,7 +52,7 @@
         align-items: center;
         margin:5px auto;
         border-radius: 20px;
-        border:1px solid white;
+        border:1px solid black;
         box-shadow: 2px 2px 2px #333;
         padding: 0.5rem;
     }
@@ -76,43 +76,43 @@
 @media(min-width:769px) and (max-width:1024px)
 {
     .container_value_totals{
-        width:98%;
+        width:95%;
         height: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin:5px auto;
-        box-shadow: 3px 3px #555;
+        margin:10px auto;
+        box-shadow: 2px 2px 2px #555;
     }
     .container_totals{
         display:flex;
         width: 100%;
         justify-content: space-between;
-        padding:2rem;
+        padding:1rem;
     }
     .container_asterisco{
         width:80px;
         height: 25px;
     }
     .text_total_gastado{
-        font-size: 25px;
+        font-size: 1.5rem;
         width:auto;
         margin:0;
     }
     .valor_total_gastado{
-        font-size: 25px;
+        font-size: 1.5rem;
         color:red;
         font-weight: 600;
         width:auto;
         margin:0
     }
     .text_total_ingresado{
-        font-size: 25px;
+        font-size: 1.5rem;
         width:auto;
         margin:0
     }
     .valor_total_ingresado{
-        font-size: 25px;
+        font-size: 1.5rem;
         color:green;
         font-weight: 600;
     }
