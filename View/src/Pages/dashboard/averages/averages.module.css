@@ -73,14 +73,16 @@
     width: 95%;
     display: flex;
     flex-direction: column;
+    background-color: white;
     justify-content: center;
     align-content: center;
     align-items: center;
-    margin: 10px auto;
+    margin: 5px auto;
     height: auto;
-    border: 1px solid #333;
-    box-shadow: 2px 2px 2px #333;
+    border: 1px solid #fff;
+    box-shadow: 3px 3px 2px #333;
     border-radius: 20px;
+    padding:0.5rem;
   }
   .graphics {
     display: flex;

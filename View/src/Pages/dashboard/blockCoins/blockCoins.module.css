@@ -75,8 +75,10 @@
         align-items: center;
         margin:5px auto;
        border-radius: 20px;
-       border:1px solid #333;
+       border:1px solid white;
        box-shadow: 2px 2px 2px #333;
+       background-color: white;
+       padding:0.5rem;
     }
     .title_text_selec
     {
@@ -125,15 +127,16 @@
 @media(min-width:481px) and (max-width:767px)
 {
     .coins_container{
-        width:100%;
+        width:95%;
+        background-color: white;
         height: auto;
         flex-direction: column;
         display: flex;
         align-items: center;
         margin:5px auto;
-       border-radius: 10px;
+       border-radius: 20px;
        border:1px solid #333;
-       box-shadow: 3px 3px #555;
+       box-shadow: 2px 2px 2px #333;
     }
     .title_text_selec
     {
