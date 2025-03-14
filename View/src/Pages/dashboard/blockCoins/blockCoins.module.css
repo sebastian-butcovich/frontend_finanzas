@@ -74,9 +74,9 @@
         display: flex;
         align-items: center;
         margin:5px auto;
-       border-radius: 10px;
+       border-radius: 20px;
        border:1px solid #333;
-       box-shadow: 3px 3px #555;
+       box-shadow: 2px 2px 2px #333;
     }
     .title_text_selec
     {

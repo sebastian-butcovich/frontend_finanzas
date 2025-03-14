@@ -79,8 +79,8 @@
     margin: 10px auto;
     height: auto;
     border: 1px solid #333;
-    box-shadow: 5px 5px 5px 5px #555;
-    border-radius: 10px;
+    box-shadow: 2px 2px 2px #333;
+    border-radius: 20px;
   }
   .graphics {
     display: flex;
