@@ -55,9 +55,8 @@ function Ingresos() {
     }
     response = await getIngresos(
       access,
-      filter.getDataFilter(),
-      pageContext.getPage(),
       filter,
+      pageContext.getPage(),
     );
     context.setData(response.data.movents);
     pageContext.setPage(response.data.page);

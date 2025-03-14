@@ -30,14 +30,12 @@ function BlockTotal() {
         access = await auth.updateToken();
          gastos = await getTotalsGasto(
           access,
-          filter.getDataFilter(),
-          filter.otherCoins
+          filter
         );
       }
       let ingresos = await getTotalIngresos(
         access,
-        filter.getDataFilter(),
-        filter.otherCoins
+        filter
       );
       setTotals({
         ...totals,

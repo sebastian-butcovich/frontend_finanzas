@@ -1,10 +1,11 @@
 import axios from "axios";
 import { url } from "../../url";
-export async function getIngresos(access, data, page, otherCoins) {
+export async function getIngresos(access, filter, page) {
   let respuesta = null;
   let jwt = "Bearer ".concat(access);
   try {
-    if ((otherCoins.otherCoins && data.currency !="") || (data.monto_inicial!=0 && data.monto_final !=0) || data.tipo !="" || (data.fecha_inicio && data.fecha_fin)  ) {
+    if ((filter.otherCoins && filter.getDataFilter().currency !="") || (filter.getDataFilter().monto_inicial!=0 && filter.getDataFilter().monto_final !=0) 
+      || filter.getDataFilter().tipo !="" || (filter.getDataFilter().fecha_inicio && filter.getDataFilter().fecha_fin)  ) {
       respuesta = await axios({
         method: "get",
         url: `${url}income/get_all`,
@@ -12,13 +13,13 @@ export async function getIngresos(access, data, page, otherCoins) {
           "token": jwt ,
           page: page,
           page_size: 5,
-          monto_min: data.monto_inicial != "" ? data.monto_inicial : null,
-          monto_max: data.monto_final != "" ? data.monto_final : null,
-          tipo: data.tipo != "" ? data.tipo : null,
-          fecha_inicio: data.fecha_inicio != "" ? data.fecha_inicio : null,
-          fecha_fin: data.fecha_fin != "" ? data.fecha_fin : null,
-          currency: data.currency != "" ? data.currency : null,
-          currency_type: data.currency_type != "" ? data.currency_type : null,
+          monto_min: filter.getDataFilter().monto_inicial != "" ? filter.getDataFilter().monto_inicial : null,
+          monto_max: filter.getDataFilter().monto_final != "" ? filter.getDataFilter().monto_final : null,
+          tipo: filter.getDataFilter().tipo != "" ? filter.getDataFilter().tipo : null,
+          fecha_inicio: filter.getDataFilter().fecha_inicio != "" ? filter.getDataFilter().fecha_inicio : null,
+          fecha_fin: filter.getDataFilter().fecha_fin != "" ? filter.getDataFilter().fecha_fin : null,
+          currency: filter.getDataFilter().currency != "" ? filter.getDataFilter().currency : null,
+          currency_type: filter.getDataFilter().currency_type != "" ? filter.getDataFilter().currency_type : null,
           criterion: "last_updated_on_max",
         },
       });
@@ -110,16 +111,16 @@ export async function obtenerTypesIngresos(access) {
     return error.response;
   }
 }
-export async function getTotalIngresos(access, filter, otherCoins) {
+export async function getTotalIngresos(access, filter) {
   let responseIngresos = null;
   let jwt = "Bearer ".concat(access);
   try {
-    if (filter.currency != "args" && filter.currency != "" && otherCoins) {
+    if (filter.getDataFilter().currency != "args" && filter.getDataFilter().currency != "" && filter.otherCoins) {
       responseIngresos = await axios({
         method: "get",
         params: { "token": jwt,
-          currency: filter.currency,
-          currency_type: filter.currency_type,
+          currency: filter.getDataFilter().currency,
+          currency_type: filter.getDataFilter().currency_type,
          },
         url: `${url}income/total`,
       });
@@ -141,21 +142,20 @@ export async function getTotalIngresos(access, filter, otherCoins) {
 }
 export async function getAvaragesIngresos(
   access,
-  fechas,
   filter,
-  otherCoins
+  fechas,
 ) {
   try {
     var response = null;
     var jwt = "Bearer ".concat(access)
-    if (otherCoins && filter.currency != "" && filter.currency != "args") {
+    if (filter.otherCoins && filter.getDataFilter().currency != "" && filter.getDataFilter().currency != "args") {
       response = await axios({
         method: "PUT",
         url: `${url}income/totalGraphics`,
         params: {
           "token":jwt,
-          currency: filter.currency,
-          currency_type: filter.currency_type,
+          currency: filter.getDataFilter().currency,
+          currency_type: filter.getDataFilter().currency_type,
         },
         data:fechas
       });

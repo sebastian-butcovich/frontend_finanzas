@@ -75,28 +75,17 @@ function AvaragesGraphics() {
     }
     let response = await getAvaragesGastos(
       access,
+      filter,
       fechasAux,
-      filter.getDataFilter(),
-      filter.otherCoins
     );
-    if (response.status == 403 || response == null) {
-      access = await auth.updateToken();
-      response = await getAvaragesGastos(
-        access,
-        fechasAux,
-        filter.getDataFilter(),
-        filter.otherCoins
-      );
-    }
     for (let k = 0; k < fechasAux.length - 1; k++) {
       auxGastos[k] = response.data.value[k];
       auxFecha[k] = fechasAux[k].fecha_string;
     }
     let responseI = await getAvaragesIngresos(
       access,
+      filter,
       fechasAux,
-      filter.getDataFilter(),
-      filter.otherCoins
     );
     for (let k = 0; k < fechasAux.length - 1; k++) {
       auxIngresos[k] = responseI.data.value[k]
