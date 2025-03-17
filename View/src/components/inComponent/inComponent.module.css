@@ -280,6 +280,14 @@ select{
     .button_enviar{
         width:40%;
         height:2rem;
+    }   
+}
+@media(max-width:1024px) and (max-height:600px)
+{
+    .input_inComponent_tipo{
+        height: 8vh;
     }
-    
+    .button_type{
+        height: 8vh;
+    }
 }

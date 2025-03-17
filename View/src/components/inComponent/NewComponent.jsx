@@ -109,7 +109,7 @@ function NewComponent({ newRequest }) {
         onChange={(e) => {
           handleInputs(e);
         }}
-        placeholder="describa de donde proviene el ingreso"
+        placeholder="describa el motivo de la operación"
       ></textarea>
       <div className={style.container_button}>
          <button className={style.button_enviar} type="submit">Enviar</button> 

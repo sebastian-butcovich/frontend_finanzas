@@ -78,6 +78,15 @@ function AvaragesGraphics() {
       filter,
       fechasAux,
     );
+    if(response == 403 || response == null || response == undefined)
+    {
+      access = auth.updateToken();
+      response = await getAvaragesGastos(
+        access,
+        filter,
+        fechasAux,
+      )
+    }
     for (let k = 0; k < fechasAux.length - 1; k++) {
       auxGastos[k] = response.data.value[k];
       auxFecha[k] = fechasAux[k].fecha_string;
