@@ -203,7 +203,7 @@ export function generarFechasAnteriorPorDia() {
   var day = parseInt(actualDate.getDate());
   var month = parseInt(actualDate.getMonth());
   if (monthThirtyOne[month - 1].isThirtyOne) {
-    for (let i = 0; i <= 31; i++) {
+    for (let i = 0; i <= 32; i++) {
       if (day > 31) {
         day = 1;
         month += 1;
