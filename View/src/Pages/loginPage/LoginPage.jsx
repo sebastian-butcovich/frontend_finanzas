@@ -18,7 +18,7 @@ function LoginPage() {
   {
     let data = localStorage.getItem("refresh");
     let response = await auth.updateToken();
-    if(response.status == 403)
+    if(response == "")
     {
       localStorage.clear();
       navigate('/');
