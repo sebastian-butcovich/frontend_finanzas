@@ -12,6 +12,7 @@ function UpdateComponent({ editRequest, editFunction }) {
     monto: context.dataEditable.monto,
     tipo: context.dataEditable.tipo,
     descripcion: context.dataEditable.descripcion,
+    fecha:new Date(context.dataEditable.fecha)
   });
   //Esta función se ejecuta cada ves que cambia el valor de los inputs. Guarda los valores en el estado data
   //Se utiliza la etiqueta "name" de cada input para que se pueda referenciar al campo correcto de data,

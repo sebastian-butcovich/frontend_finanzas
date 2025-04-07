@@ -73,6 +73,7 @@ export async function editIngreso(data, access) {
         monto: data.monto,
         descripcion: data.descripcion,
         tipo: data.tipo,
+        fecha:data.fecha
       },
     });
     return respuesta.status;

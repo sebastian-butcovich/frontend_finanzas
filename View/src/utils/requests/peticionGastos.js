@@ -72,6 +72,7 @@ export async function editGasto(data, access) {
         monto: data.monto,
         descripcion: data.descripcion,
         tipo: data.tipo,
+        fecha:data.fecha
       },
     });
     return respuesta.status;
