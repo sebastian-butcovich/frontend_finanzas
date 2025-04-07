@@ -32,7 +32,16 @@ function UpdateComponent({ editRequest, editFunction }) {
   //Esta función se ejecuta cuando el usuario da un click en el boton enviar
   async function handleSubmit(event) {
     event.preventDefault();
-    let respuesta = await editRequest(data, auth.getAccess());
+    //Provisional: Esto checkeo de datos tiene que hacerse en el back 
+    if(data.monto == "" || data.monto == null || data.tipo == "" || data.tipo == null || data.descripcion == "" || data.tipo == null)
+    {
+      Swal.fire({
+        title:"Error",
+        text:"No se puede ingresar campos vacios",
+        icon:"error"
+      })
+    }else{
+      let respuesta = await editRequest(data, auth.getAccess());
     if (respuesta == 401) {
       let access = await auth.updateToken();
       respuesta = await editRequest(data, access);
@@ -64,6 +73,8 @@ function UpdateComponent({ editRequest, editFunction }) {
         icon: "error",
       });
     }
+    }
+  
   }
   return (
     <form onSubmit={handleSubmit} className={style.container}>

@@ -10,6 +10,7 @@ input {
   height: 50px;
   margin-right: 10px;
   cursor: pointer;
+  user-select: none;
 }
 .container {
   height: 80vh;
@@ -51,6 +52,7 @@ input {
   margin: 10px;
   cursor: pointer;
   border:2px solid white;
+  user-select: none;
 }
 
 .userName {

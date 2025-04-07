@@ -12,12 +12,23 @@ function LoginPage() {
   const auth = useAuth();
 
   useEffect(() => {
-    let data = localStorage.getItem("refresh");
-    if (data != null) {
-      auth.setIsAuth(true);
-      navigate("/dashboard");
-    }
+    verificarPermiso();
   }, []);
+  async function verificarPermiso()
+  {
+    let data = localStorage.getItem("refresh");
+    let response = await auth.updateToken();
+    if(response.status == 403)
+    {
+      localStorage.clear();
+      navigate('/');
+    }else{
+      if (data != null) {
+        auth.setIsAuth(true);
+        navigate("/dashboard");
+      } 
+    }
+  }
   function obtenerPermiso() {
     axios({
       method: "post",
