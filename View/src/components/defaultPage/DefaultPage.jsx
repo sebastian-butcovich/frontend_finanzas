@@ -105,7 +105,7 @@ function DefaultPage({ children }) {
               }}
               to="/dashboard"
             >
-              Dashboard
+              Inicio
             </Link>
             <Link
               className={
@@ -128,6 +128,14 @@ function DefaultPage({ children }) {
               to="/ingresos"
             >
               Ingresos
+            </Link>
+            <Link
+              className={
+                style.navBar_link
+              }
+              
+            >
+              Deudas
             </Link>
           </ul>
         </nav>
