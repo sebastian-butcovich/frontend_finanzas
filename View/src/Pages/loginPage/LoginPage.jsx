@@ -106,13 +106,13 @@ function LoginPage() {
                   variant="primary"
                   onClick={obtenerPermiso}
                 >
-                  Login
+                  Ingresar
                 </button>
                 <button
                   onClick={llevarARegistros}
                   className={style.boton_login}
                 >
-                  Sign Up
+                  Registrarse
                 </button>
               </div>
             </form>
