@@ -141,7 +141,7 @@ function obtenerDiaActual() {
     }
   }
   if (monthThirtyOne[date.getMonth() - 1].isThirtyOne) {
-    if (diaActual < 21) {
+    if (diaActual <= 21) {
       diaActual = 31 + diaActual - 21;
     } else diaActual = diaActual - 21;
   } else if (monthThirtyOne[date.getMonth() - 1].isThirtyOne) {
