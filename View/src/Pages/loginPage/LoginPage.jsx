@@ -82,7 +82,7 @@ function LoginPage() {
         <div className={style.loginPage}>
           <div className={style.content_form}>
             <div className={style.content_title}>
-              <h1 className={style.loginPage_title}>User Login</h1>
+              <h1 className={style.loginPage_title}>Login</h1>
             </div>
             <form className={style.form} onSubmit={handleSubmit}>
               <input

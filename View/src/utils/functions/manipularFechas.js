@@ -166,7 +166,7 @@ export function generarFechaAnteriorPorSemana() {
   var day = obtenerDiaActual();
   var diaActual = date.getDate();
   var month = 0;
-  if (diaActual - 28 <= 0){
+  if (diaActual - 28 < 0){
     month = date.getMonth();
   } else {
     month = date.getMonth() + 1;  
