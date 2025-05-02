@@ -87,8 +87,8 @@ function BlockCoinsValue({ request }) {
               coins[filter.indexSelec - 1].fechaActualizacion
             ).toLocaleDateString()}
           </p>
-          <p>Valor para la compra : {coins[filter.indexSelec - 1].compra} args</p>
-          <p>Valor para la venta : {coins[filter.indexSelec - 1].venta} args</p>
+          <p>Valor para la compra : {coins[filter.indexSelec - 1].compra} ars</p>
+          <p>Valor para la venta : {coins[filter.indexSelec - 1].venta} ars</p>
         </div>
       ) : <h3 className={style.message_no_select_coin}>No hay ninguna moneda seleccionada</h3>}
     </div>

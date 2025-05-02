@@ -114,7 +114,7 @@ export async function getTotalsGasto(access, filter) {
   let responseGastos = null;
   let jwt = "Bearer ".concat(access);
   try {
-    if (filter.getDataFilter().currency != "args" && filter.getDataFilter().currency != "" &&  filter.otherCoins) {
+    if (filter.getDataFilter().currency != "ars" && filter.getDataFilter().currency != "" &&  filter.otherCoins) {
       responseGastos = await axios({
         method: "get",
         params: { 
@@ -144,7 +144,7 @@ export async function getAvaragesGastos(
   let response = null;
   let jwt = "Bearer ".concat(access);
   try {
-    if (filter.otherCoins && filter.getDataFilter().currency != "" && filter.getDataFilter().currency != "args") {
+    if (filter.otherCoins && filter.getDataFilter().currency != "" && filter.getDataFilter().currency != "ars") {
       response = await axios({
         method: "put",
         url: `${url}spent/totalGraphics`,

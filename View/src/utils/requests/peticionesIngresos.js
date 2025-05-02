@@ -116,7 +116,7 @@ export async function getTotalIngresos(access, filter) {
   let responseIngresos = null;
   let jwt = "Bearer ".concat(access);
   try {
-    if (filter.getDataFilter().currency != "args" && filter.getDataFilter().currency != "" && filter.otherCoins) {
+    if (filter.getDataFilter().currency != "ars" && filter.getDataFilter().currency != "" && filter.otherCoins) {
       responseIngresos = await axios({
         method: "get",
         params: { "token": jwt,
@@ -149,7 +149,7 @@ export async function getAvaragesIngresos(
   try {
     var response = null;
     var jwt = "Bearer ".concat(access)
-    if (filter.otherCoins && filter.getDataFilter().currency != "" && filter.getDataFilter().currency != "args") {
+    if (filter.otherCoins && filter.getDataFilter().currency != "" && filter.getDataFilter().currency != "ars") {
       response = await axios({
         method: "PUT",
         url: `${url}income/totalGraphics`,
