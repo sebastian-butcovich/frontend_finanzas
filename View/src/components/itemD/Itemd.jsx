@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 
 function Itemd({data}) {
   function handleChange(event){
-    console.log(event)
   }
     useEffect(()=>{
     },[])
