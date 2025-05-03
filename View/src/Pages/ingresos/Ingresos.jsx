@@ -36,6 +36,7 @@ function Ingresos() {
       pag.setDashboard(false);
       pag.setGastos(false);
       pag.setIngresos(true);
+      pag.setDeudas(false);
      },[])
   async function obtenerTiposIngresos() {
     let access = auth.getAccess();

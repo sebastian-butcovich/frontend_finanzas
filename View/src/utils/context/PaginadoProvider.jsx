@@ -8,6 +8,7 @@ function PaginadoProvider({children}) {
   const [dashboard,setDashboard] = useState(true);
   var [gastos,setGastos] = useState(false);
   var [ingresos,setIngresos] = useState(false);
+  var [deudas, setDeudas] = useState(false);
 
   function setTotalEntries(value) {
     totalEntries = value;
@@ -49,7 +50,9 @@ function PaginadoProvider({children}) {
         ingresos,
         setIngresos,
         setTotalEntries,
-        getTotalEntries
+        getTotalEntries,
+        deudas,
+        setDeudas
       }}
     >
       {children}

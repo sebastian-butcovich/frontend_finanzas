@@ -11,6 +11,7 @@ import CardsProvider from "./utils/context/CardsProvider";
 import FilterProvider from "./utils/context/FilterProvider";
 import PaginadoProvider from "./utils/context/PaginadoProvider";
 import EditProfile from "./Pages/editProfile/EditProfile";
+import Deudas from "./Pages/deudas/Deudas"
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
         path: "editarPerfil",
         element: <EditProfile />,
       },
+      {
+        path:"deudas",
+        element:<Deudas/>
+      }
     ],
   },
 ]);

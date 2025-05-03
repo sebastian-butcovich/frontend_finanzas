@@ -34,16 +34,25 @@ function DefaultPage({ children }) {
         pag.setDashboard(true);
         pag.setGastos(false);
         pag.setIngresos(false);
+        pag.setDeudas(false);
         break;
       case "Gastos":
         pag.setGastos(true);
         pag.setDashboard(false);
         pag.setIngresos(false);
+        pag.setDeudas(false);
         break;
       case "Ingresos":
         pag.setIngresos(true);
         pag.setDashboard(false);
         pag.setGastos(false);
+        pag.setDeudas(false)
+        break;
+      case "Deudas":
+        pag.setDashboard(false);
+        pag.setGastos(false);
+        pag.setIngresos(false);
+        pag.setDeudas(true);
         break;
     }
   }
@@ -131,9 +140,10 @@ function DefaultPage({ children }) {
             </Link>
             <Link
               className={
-                style.navBar_link
+                pag.deudas ? style.navBar_link_select : style.navBar_link
               }
-              
+              onClick={(e)=>handleSelectLink(e.target.text)}
+              to="/deudas"
             >
               Deudas
             </Link>

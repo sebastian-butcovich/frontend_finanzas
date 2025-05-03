@@ -70,6 +70,7 @@ function Gastos() {
       pag.setDashboard(false);
       pag.setGastos(true);
       pag.setIngresos(false);
+      pag.setDeudas(false);
      },[])
   useEffect(() => {
     pagContext.setPage(1);

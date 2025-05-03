@@ -13,6 +13,7 @@ function Dashboard() {
     pag.setDashboard(true);
     pag.setGastos(false);
     pag.setIngresos(false);
+    pag.setDeudas(false);
    },[])
   return (
     <div className={style.container_dashboard}>
