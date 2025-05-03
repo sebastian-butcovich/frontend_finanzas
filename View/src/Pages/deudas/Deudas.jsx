@@ -42,8 +42,8 @@ function Deudas() {
   return (
     <DefaultPage>
     <div>
-        <h1>Welcome to Deudas</h1>
-        <a>Agregar Deuda</a>
+        <h1>Titulo de deudas</h1>
+        <a>Agregar Deuda(botón)</a>
         {deudas.length !=0? (deudas.value.map((v)=>(<ItemD key={v.id} data={v}></ItemD>))):<p>No hay nada para mostrar</p>}
     </div>
     </DefaultPage>
