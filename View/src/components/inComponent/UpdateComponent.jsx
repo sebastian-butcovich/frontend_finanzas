@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useContext, useState } from "react";
 import { CardsContext } from "../../utils/context/CardsProvider";
 import Swal from "sweetalert2";
 import { useAuth } from "../../Auth/AuthProvider";
 import style from "./inComponent.module.css";
+import { generarFechaParaInput } from "../../utils/functions/manipularFechas";
 function UpdateComponent({ editRequest, editFunction }) {
   const context = useContext(CardsContext);
   const auth = useAuth();
@@ -75,7 +76,15 @@ function UpdateComponent({ editRequest, editFunction }) {
       });
     }
     }
-  
+  }
+  //Actualiza el valor del campo fecha 
+  function handleInputDateChange(event){
+    let aux = event.target.valueAsDate;
+    aux.setDate(aux.getDate()+1);
+    setData({
+      ...data,
+      fecha:aux
+    })
   }
   return (
     <form onSubmit={handleSubmit} className={style.container}>
@@ -140,6 +149,8 @@ function UpdateComponent({ editRequest, editFunction }) {
         }}
         placeholder="describa que fue en lo que gasto"
       ></textarea>
+      
+      <input class={style.input_filter} type="date" defaultValue={generarFechaParaInput(data.fecha)} onChange={(e)=>{handleInputDateChange(e)}}/>
       <div className={style.container_button}>
         <button type="submit" className={style.button_enviar}>
           Enviar

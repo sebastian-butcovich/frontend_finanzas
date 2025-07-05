@@ -298,3 +298,15 @@ export function generarFechaPorAño() {
   }
   return fechas;
 }
+export function generarFechaParaInput(fecha){
+  let day = fecha.getDate();
+  let month = fecha.getMonth()+1;
+  let year = fecha.getFullYear();
+  if(day< 10 && month<10){
+    return `${year}-0${month}-0${day}`;
+  }else if(day<10 && month>=10){
+    return `${year}-${month}-0${day}`;
+  }else{
+    return `${year}-${month}-${day}`;
+  }
+}
