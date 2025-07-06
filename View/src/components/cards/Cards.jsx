@@ -5,6 +5,7 @@ import NewComponent from "../inComponent/NewComponent";
 import { CardsContext } from "../../utils/context/CardsProvider";
 import { PaginadoContext } from "../../utils/context/PaginadoProvider";
 import { message as alert } from "./../../utils/functions/Message";
+import { FilterContext } from "../../utils/context/FilterProvider";
 function Cards({
   data,
   handleRemove,
@@ -15,6 +16,7 @@ function Cards({
 }) {
   const context = useContext(CardsContext);
   const paginationContext = useContext(PaginadoContext);
+  const filterContext = useContext(FilterContext);
   const [isMessage, setIsMessage] = useState(false);
   const [isTextInfo, setIsTextInfo] = useState(true);
   const [isSelected, setIsSelected] = useState({
@@ -35,6 +37,13 @@ function Cards({
     context.setIsEdit(false);
     context.setIsNew(false);
   }, []);
+  function handleNumberCards(event){
+      filterContext.setDataFilter({
+        ...filterContext.getDataFilter(),
+        cantCards:event.target.value
+      })
+      context. setIsUpdate(true);
+  }
   return (
     <div className={style.cards}>
       <div className={style.container_button_add}>
@@ -63,18 +72,14 @@ function Cards({
           Agregar
         </button>
       </div>
-      <div className={style.containerFilterNumberCard}>
-        <label className={style.filterLabelNumber}>Número de entradas</label>
-        <input className={style.filterInterNumber}/>
-      </div>
       <div className={style.message_entradas}>
         <p>
           Se están mostrando la página {paginationContext.getPage()} de{" "}
           {paginationContext.getLastPage()} páginas
         </p>
 
-        <p>
-          Se están mostrando {data ? data.length : null} entradas de las{" "}
+        <p className={style.text_2_top}>
+          Se están mostrando <input className={style.inputNumEntradas} value={filterContext.getDataFilter().cantCards} onChange={(e)=>{handleNumberCards(e)}}/> entradas de las{" "}
           {paginationContext.getTotalEntries()} entradas en total
         </p>
       </div>

@@ -10,6 +10,7 @@ export default function FilterProvider({ children }) {
     fecha_fin: "",
     currency: "",
     currency_type: "",
+    cantCards:3
   });
   //Esta la utilizo para buscar cuando se esta filtrando 
   const [isFilter, setIsFilter] = useState(false);

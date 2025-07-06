@@ -2,6 +2,7 @@ import axios from "axios";
 import { url } from "../../url";
 export async function obtenerGastos(access, page, filter) {
   let respuesta = null;
+  console.log("Que llega a la petición", filter.getDataFilter().cantCards)
   let jwt = "Bearer".concat(' ',access) ; 
   try {
     if ( (filter.otherCoins && filter.getDataFilter().currency !="")|| (filter.getDataFilter().monto_inicial!=0 &&
@@ -19,7 +20,8 @@ export async function obtenerGastos(access, page, filter) {
           fecha_fin: filter.getDataFilter().fecha_fin!=""? filter.getDataFilter().fecha_fin:null,
           currency: filter.getDataFilter().currency!=""? filter.getDataFilter().currency:null,
           currency_type: filter.getDataFilter().currency_type!=""? filter.getDataFilter().currency_type:null,
-          page_size: 5,
+          page_size: filter.getDataFilter().cantCards!=null && filter.getDataFilter().cantCards!="" &&
+          filter.getDataFilter().cantCards>0?filter.getDataFilter().cantCards:5
          },
         url:`${url}spent/get_all`,
         
@@ -30,7 +32,8 @@ export async function obtenerGastos(access, page, filter) {
         params: { 
           "token":jwt,
           "page": page,
-          page_size: 5,
+          page_size: filter.getDataFilter().cantCards!=null && filter.getDataFilter().cantCards!="" &&
+          filter.getDataFilter().cantCards>0?filter.getDataFilter().cantCards:5,
          },
          url:`${url}spent/get_all`,
       });

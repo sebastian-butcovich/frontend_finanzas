@@ -12,7 +12,8 @@ export async function getIngresos(access, filter, page) {
         params: {
           "token": jwt ,
           page: page,
-          page_size: 5,
+          page_size: filter.getDataFilter().cantCards!=null && filter.getDataFilter().cantCards!="" &&
+          filter.getDataFilter().cantCards>0?filter.getDataFilter().cantCards:5,
           monto_min: filter.getDataFilter().monto_inicial != "" ? filter.getDataFilter().monto_inicial : null,
           monto_max: filter.getDataFilter().monto_final != "" ? filter.getDataFilter().monto_final : null,
           tipo: filter.getDataFilter().tipo != "" ? filter.getDataFilter().tipo : null,
@@ -30,7 +31,8 @@ export async function getIngresos(access, filter, page) {
         params: {
           "token": jwt ,
           page: page,
-          page_size: 5,
+          page_size: filter.getDataFilter().cantCards!=null && filter.getDataFilter().cantCards!="" &&
+          filter.getDataFilter().cantCards>0?filter.getDataFilter().cantCards:5,
           criterion: "last_updated_on_max",
         },
       });

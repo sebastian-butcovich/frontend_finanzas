@@ -31,7 +31,7 @@ function Gastos() {
       response = await obtenerGastos(
       access,
       pagContext.getPage(),
-      filter,);
+      filter);
       context.setData(response.data.movents);
       pagContext.setPage(response.data.page);
       pagContext.setNextPage(response.data.next_page);
@@ -40,7 +40,8 @@ function Gastos() {
       filter.setDataFilter({
         ...filter.getDataFilter(),
         currency:response.data.additionalInfo.cotizacion,
-        currency_type:response.data.additionalInfo.tipo_de_cotizacion
+        currency_type:response.data.additionalInfo.tipo_de_cotizacion,
+        cantCards:data.length
       })
     } catch (mistake) {
       console.log(
