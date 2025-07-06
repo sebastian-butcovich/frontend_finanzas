@@ -63,6 +63,10 @@ function Cards({
           Agregar
         </button>
       </div>
+      <div className={style.containerFilterNumberCard}>
+        <label className={style.filterLabelNumber}>Número de entradas</label>
+        <input className={style.filterInterNumber}/>
+      </div>
       <div className={style.message_entradas}>
         <p>
           Se están mostrando la página {paginationContext.getPage()} de{" "}

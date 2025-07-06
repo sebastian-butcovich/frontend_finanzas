@@ -33,6 +33,15 @@
   transform: translateY(5px);
   box-shadow: 0 0px 0 #222;
 }
+.containerFilterNumberCard{
+  width:20%;
+  display:flex;
+  height: 2rem;
+  flex-direction: column;
+  position: relative;
+  left:24rem;
+  bottom:3.3rem;
+}
 .new_component {
   width: 90%;
 }
