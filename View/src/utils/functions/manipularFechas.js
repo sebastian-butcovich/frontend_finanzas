@@ -119,6 +119,8 @@ function generarFechaSiguiente(days, months, years) {
   return { fecha_string: `${year}-${month}-${day}`, day, month, year };
 }
 function obtenerDiaActual() {
+  //getMonth() siempre te da el mes anterior
+  // En el arreglo de los meses, siempre tengo que obtener la posición anterior, ya que el mes de enero se encuentra en la posición 0
   var date = new Date();
   var month = date.getMonth();
   var diaActual = date.getDate();
@@ -127,6 +129,7 @@ function obtenerDiaActual() {
   if (numDia == 0) {
     numDia = 7;
   }
+  //Esta funciön te lleva a lunes de tu semana actual.
   for (let i = 1; i < numDia; i++) {
     if (diaActual == 1) {
       if (monthThirtyOne[month - 1].isThirtyOne) {
@@ -140,11 +143,11 @@ function obtenerDiaActual() {
       diaActual--;
     }
   }
-  if (monthThirtyOne[date.getMonth() - 1].isThirtyOne) {
+  if (monthThirtyOne[date.getMonth()-1].isThirtyOne) {
     if (diaActual <= 21) {
       diaActual = 31 + diaActual - 21;
     } else diaActual = diaActual - 21;
-  } else if (monthThirtyOne[date.getMonth() - 1].isThirtyOne) {
+  } else if (monthThirtyOne[date.getMonth()-1].isThirty) {
     if (diaActual < 21) {
       diaActual = 30 + diaActual - 21;
     } else diaActual = diaActual - 21;

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { url } from "../../url";
-export async function obtenerUsuarioLogeado(access)
+export async function obtenerUsuarioLogeado(access,currency,currency_type)
 {
     let jwt = "Bearer ".concat(access);
     try{
@@ -9,6 +9,8 @@ export async function obtenerUsuarioLogeado(access)
             url:`${url}users/whoami`,
             params:{
                 "token": jwt,
+                "currency":currency,
+                "currency_type":currency_type
             },
         })
         return response;
@@ -60,6 +62,24 @@ export async function eliminarUsuario(token)
     }catch(error)
     {
         console.log(error);
+        return error.response;
+    }
+}
+export async function actualizarValorActual(token, valorActual){
+    let jwt = "Bearer ".concat(token);
+    console.log(valorActual);
+    let response = null;
+    try{
+        response = await axios({
+            method:"PUT",
+            url:`${url}users/actualizarValorActual`,
+            params:{
+                "token":jwt,
+                "valorActual":valorActual
+            }
+        })
+    return response;
+    }catch(error){
         return error.response;
     }
 }
