@@ -1,0 +1,24 @@
+.container{
+    list-style-type: none;
+    width:100%;
+    align-items: center;
+    padding:10px;
+    margin:7px; 
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 5px 5px 12px #222;
+    height:5rem;
+}
+.valueDataShort{
+    text-align: center;
+    font-size:1.2rem;
+    margin:0.2rem;
+    width:15%;
+}
+.valueDataLong{
+    text-align: center;
+    font-size:1.2rem;
+    margin:0.2rem;
+    width:25%;
+}

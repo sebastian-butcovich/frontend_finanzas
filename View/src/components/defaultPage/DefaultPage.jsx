@@ -48,7 +48,7 @@ function DefaultPage({ children }) {
         pag.setGastos(false);
         pag.setDeudas(false)
         break;
-      case "Deudas":
+      case "Deudas/Préstamos":
         pag.setDashboard(false);
         pag.setGastos(false);
         pag.setIngresos(false);
@@ -57,7 +57,6 @@ function DefaultPage({ children }) {
     }
   }
   function handleDeleteUser(){
-    console.log("Mostra")
     Swal.fire({
       title:"Confirmar",
       text:"Estas seguro que deseas eliminar tu usuario de la aplicación finanzas",
@@ -143,9 +142,9 @@ function DefaultPage({ children }) {
                 pag.deudas ? style.navBar_link_select : style.navBar_link
               }
               onClick={(e)=>handleSelectLink(e.target.text)}
-              to="/deudas"
+              to="/DeudasPrestamos"
             >
-              Deudas
+              Deudas/Préstamos
             </Link>
           </ul>
         </nav>
