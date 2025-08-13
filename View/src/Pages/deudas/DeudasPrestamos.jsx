@@ -30,6 +30,8 @@ function Deudas() {
     fechaIngreso: "",
     fechaEstimada: "",
   });
+  //Esta variable se implementa para decidir si mostrar la lista de lo que ya pagaron.
+  const [noPagados, setNoPagados] = useState(false);
   //Funciones
   function handleChangeInput(e) {
     console.log(e.target.name);
@@ -76,13 +78,17 @@ function Deudas() {
     }
   }
   //Obtiene el valor del dalor
-  async function obtenerElValorDelDolar(){
+  async function obtenerElValorDelDolar() {
     let response = await getValueCoins();
     console.log(response);
-     setFlowAdd({
-       ...flowAdd,
-       valorDelDolar:response[1].venta
-     })
+    setFlowAdd({
+      ...flowAdd,
+      valorDelDolar: response[1].venta,
+    });
+  }
+  //Cambiar estado de no pagados
+  function handleNoPagados() {
+    setNoPagados(!noPagados);
   }
   //Llamado de inicio
   useEffect(() => {
@@ -153,9 +159,7 @@ function Deudas() {
                 onChange={(e) => handleChangeInput(e)}
               >
                 <option value="">Seleccione el estado</option>
-                <option  value="INCONCLUSO">
-                  Inconcluso
-                </option>
+                <option value="INCONCLUSO">Inconcluso</option>
                 <option value="PAGADO">Pagado</option>
               </select>
               <label>Estado</label>
@@ -165,15 +169,15 @@ function Deudas() {
                 onChange={(e) => handleChangeInput(e)}
               >
                 <option value="">Seleccione el tipo</option>
-                <option  value="DEUDA">
-                  Deuda
-                </option>
+                <option value="DEUDA">Deuda</option>
                 <option value="PRESTAMO">Prestamo</option>
               </select>
-            <div className={style.rowForm}>
-              <label>Valor del dólar</label>
-              <a className={style.textForm} >{Intl.NumberFormat("ES-AR").format(flowAdd.valorDelDolar)}</a>
-            </div>
+              <div className={style.rowForm}>
+                <label>Valor del dólar</label>
+                <a className={style.textForm}>
+                  {Intl.NumberFormat("ES-AR").format(flowAdd.valorDelDolar)}
+                </a>
+              </div>
             </div>
             <a className={style.button_enviar} onClick={() => AgregarDeuda()}>
               Enviar
@@ -183,10 +187,50 @@ function Deudas() {
             </a>
           </form>
         ) : null}
-        {flows.length != 0 ? (
-          flows.value.map((v) => <ItemD key={v.id} data={v}></ItemD>)
+        <div className={style.container}>
+          <h5 className={style.tituloNoPagado}>No Pagados</h5>
+          {flows.length != 0 ? (
+            flows.value.map((v) =>
+              v.estado != "PAGADO" ? <ItemD key={v.id} data={v}></ItemD> : null
+            )
+          ) : (
+            <p className={style.centerText}>No hay nada para mostrar</p>
+          )}
+        </div>
+        
+        {noPagados ? (
+          <div className={style.container}>
+            <div className={style.contendorBotonPagados}>
+            <h5 className={style.tituloPagado}> Pagados</h5>
+             <div className={style.tamanioBoton}>
+               <button
+                onClick={() => handleNoPagados()}
+                className={style.botonPagados}
+              >
+                Ocultar pagados
+              </button>
+             </div>
+            </div>
+            {flows.length != 0 ? (
+              flows.value.map((v) =>
+                v.estado == "PAGADO" ? (
+                  <ItemD key={v.id} data={v}></ItemD>
+                ) : null
+              )
+            ) : (
+              <p className={style.centerText}>No hay nada para mostrar</p>
+            )}
+            
+          </div>
         ) : (
-          <p className={style.centerText}>No hay nada para mostrar</p>
+          <div className={style.contendorBotonPagados}>
+              <button
+                onClick={() => handleNoPagados()}
+                className={style.botonPagados}
+              >
+                Mostrar pagados
+              </button>
+            </div>
         )}
       </div>
     </DefaultPage>
