@@ -34,6 +34,7 @@ function Deudas() {
   const [noPagados, setNoPagados] = useState(false);
   //Funciones
   function handleChangeInput(e) {
+    console.log("Me estoy ejecutando")
     console.log(e.target.name);
     setFlowAdd({
       ...flowAdd,
@@ -61,15 +62,20 @@ function Deudas() {
       value: response.data.movents,
     });
   }
-  function AgregarDeuda() {
+  async function AgregarDeuda() {
     if (auth.getAccess() == "") {
       auth.updateToken();
     }
     let access = auth.getAccess();
-    let response = agregarFlow(access, flowAdd);
+    let response = await agregarFlow(access, flowAdd);
+    console.log(response);
     if (response.status == 200) {
       Swal.fire({
         title: "Flow agregado correctamente",
+      }).then((event)=>{
+        if(event.isConfirmed){
+          setAddFlow(false)
+        }
       });
     } else {
       Swal.fire({
@@ -162,7 +168,7 @@ function Deudas() {
                 <option value="INCONCLUSO">Inconcluso</option>
                 <option value="PAGADO">Pagado</option>
               </select>
-              <label>Estado</label>
+              <label>Tipo</label>
               <select
                 className={style.inputGeneric}
                 name="tipo"

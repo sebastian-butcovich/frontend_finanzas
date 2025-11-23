@@ -20,7 +20,6 @@ export async function obtenerFlows(token)
     }
 }
 export async function agregarFlow(token,flow){
-    console.log("Mostrame que tiene flow", flow);
     let jwt = "Bearer ".concat(token);
     try{
         let response = await axios({
@@ -42,6 +41,32 @@ export async function agregarFlow(token,flow){
         return response;
     }catch(error){
         console.log(error);
+        return error.response;
+    }
+}
+export async function editarFlow(token,flow){
+    let jwt = "Bearer ".concat(token);
+    try{
+        let response = await axios({
+            method:"PUT",
+            url:`${url}flow/edit`,
+            params:{
+                "token":jwt
+            },
+            data:{
+                id:flow.id,
+                nombreDelAdeudado:flow.nombre,
+                monto:flow.monto,
+                estado:flow.estado,
+                tipo:flow.tipo,
+                fecha:flow.fechaIngreso,
+                fechaEstimadaDePago:flow.fechaEstimada,
+                valorDelDolar:flow.valorDelDolar
+            }
+        })
+        return response;
+    }catch(error){
+        console.log("Error en editar un future-flow",error )
         return error.response;
     }
 }
