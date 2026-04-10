@@ -68,7 +68,7 @@ function AvaragesGraphics() {
     let auxGastos = [];
     let auxIngresos = [];
     let auxFecha = [];
-    let access =  auth.getAccess();
+    let access =  localStorage.getItem("access")
     if(access == "")
     {
       access = await auth.updateToken();

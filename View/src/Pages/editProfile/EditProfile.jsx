@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Auth/AuthProvider";
-import { actualizarUsuario, obtenerUsuarioLogeado } from "../../utils/requests/peticionesUsuarios";
+import {
+  actualizarUsuario,
+  obtenerUsuarioLogeado,
+} from "../../utils/requests/peticionesUsuarios";
 import style from "../register/Register.module.css";
-import style2 from "./editProfile.module.css"
+import style2 from "./editProfile.module.css";
 import Swal from "sweetalert2";
 import iconUser from "./../../assets/avatar_png.png";
 function EditProfile() {
   const navigate = useNavigate();
   const auth = useAuth();
   const [user, setUser] = useState({
-    username: "",
-    email: "",
-    lastPassword: "",
+    email: localStorage.getItem("email"),
+    username: localStorage.getItem("username"),
+    surname: localStorage.getItem("surname"),
+    firstname: localStorage.getItem("firstname"),
+    lastname: localStorage.getItem("lastname"),
+    password: "",
     newPassword: "",
     repeatNewPassword: "",
-    picture:localStorage.getItem("foto")
+    foto: localStorage.getItem("foto"),
   });
   const [isEqualsPassword, setIsEqualsPassword] = useState(false);
   async function obtenerQuienSoy() {
@@ -29,12 +35,16 @@ function EditProfile() {
       }
       let data = response.data;
       setUser({
-        username: data.name,
+        ...user,
+        username: data.username,
         email: data.email,
-        lastPassword: "",
+        surname: localStorage.getItem("surname"),
+        firstname: localStorage.getItem("firstname"),
+        lastname: localStorage.getItem("lastname"),
+        password: "",
         newPassword: "",
         repeatNewPassword: "",
-        picture:localStorage.getItem("foto")
+        foto: localStorage.getItem("foto"),
       });
     } catch (error) {
       console.log(error);
@@ -42,7 +52,6 @@ function EditProfile() {
   }
   useEffect(() => {
     obtenerQuienSoy();
-
   }, []);
   function handleInput(event) {
     const { name, value } = event.target;
@@ -53,39 +62,34 @@ function EditProfile() {
   }
   async function handleSubmit(event) {
     event.preventDefault();
-    let response = await actualizarUsuario(auth.getAccess(),user);
-    if(response.status == 403)
-    {
+    let response = await actualizarUsuario(auth.getAccess(), user);
+    if (response.status == 403) {
       let access = auth.updateToken();
-      response = await actualizarUsuario(access,user);
+      response = await actualizarUsuario(access, user);
     }
-    if(response.status == 200)
-    {
+    if (response.status == 200) {
       Swal.fire({
-        title:"Operación realizada con exito",
-        text:"Se edito correctamente el usuario",
-        icon:"success"
+        title: "Operación realizada con exito",
+        text: "Se edito correctamente el usuario",
+        icon: "success",
       }).then((event) => {
-        if(event.isConfirmed)
-        {
+        if (event.isConfirmed) {
           localStorage.clear();
           navigate("/");
         }
-      })
-    }
-    else if (response.status == 403){
+      });
+    } else if (response.status == 403) {
       Swal.fire({
-        title:"Error",
-        text:"Algo salio mal mientras se realizaba la operación. Intente nuevamente en otro momento",
-        icon:"error"
-      })
-    }
-    else{
+        title: "Error",
+        text: "Algo salio mal mientras se realizaba la operación. Intente nuevamente en otro momento",
+        icon: "error",
+      });
+    } else {
       Swal.fire({
-        title:"Error",
-        text:"Alguno de los datos no fueron ingresados o son incorrectos. Asegurese de ingresar nombre de usuario, el email registrado y la contraseña anterior correcta",
-        icon:"error"
-      })
+        title: "Error",
+        text: "Alguno de los datos no fueron ingresados o son incorrectos. Asegurese de ingresar nombre de usuario, el email registrado y la contraseña anterior correcta",
+        icon: "error",
+      });
     }
   }
   function handleEqualPassword() {
@@ -95,21 +99,19 @@ function EditProfile() {
       setIsEqualsPassword(false);
     }
   }
-  async function handleImage(event)
-  {
-    if(event.target.files[0])
-    {
-      let reader = new FileReader(); 
-      reader.onload = function(e){
+  async function handleImage(event) {
+    if (event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = function (e) {
         setUser({
           ...user,
-          ["picture"]:e.target.result
-        })
-      }
+          ["foto"]: e.target.result,
+        });
+      };
       setUser({
         ...user,
-        ["picture"]:reader.readAsDataURL(event.target.files[0])
-      })
+        ["foto"]: reader.readAsDataURL(event.target.files[0]),
+      });
     }
   }
   return (
@@ -124,7 +126,14 @@ function EditProfile() {
         >
           <div className={style2.entrada}>
             <label className={style.label_form}>Agregar foto (Opcional)</label>
-            <img className={style2.img_user} src={user.picture == undefined || user.picture == ""? iconUser:user.picture}/>
+            <img
+              className={style2.img_user}
+              src={
+                user.foto == undefined || user.foto == ""
+                  ? iconUser
+                  : user.foto
+              }
+            />
             <input
               id="input_img"
               className={style2.input_img}
@@ -133,7 +142,13 @@ function EditProfile() {
               name="picture"
               onChange={(e) => handleImage(e)}
             ></input>
-            <label type="button" htmlFor="input_img" className={style2.button_agregar_foto}>Agregar foto</label>
+            <label
+              type="button"
+              htmlFor="input_img"
+              className={style2.button_agregar_foto}
+            >
+              Agregar foto
+            </label>
           </div>
           <div className={style.entrada}>
             <label className={style.label_form}>Nombre</label>
@@ -164,8 +179,8 @@ function EditProfile() {
             <input
               className={style.input_form}
               type="password"
-              value={user.lastPassword}
-              name="lastPassword"
+              value={user.password}
+              name="password"
               onChange={(e) => {
                 handleInput(e);
               }}

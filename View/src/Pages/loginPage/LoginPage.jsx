@@ -4,6 +4,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../Auth/AuthProvider";
 import { url } from "../../url";
+import Cookies from "universal-cookie";
+import { isValidateToken } from "../../utils/requests/peticionAuth";
 function LoginPage() {
   const [name, setName] = useState("");
   const [pass, setPass] = useState("");
@@ -14,19 +16,26 @@ function LoginPage() {
   useEffect(() => {
     verificarPermiso();
   }, []);
-  async function verificarPermiso()
-  {
-    let data = localStorage.getItem("refresh");
-    let response = await auth.updateToken();
-    if(response == "" || response == null)
-    {
-      localStorage.clear();
-      navigate('/');
-    }else{
-      if (data != null) {
+  async function verificarPermiso() {
+    let access = localStorage.getItem("access");
+    let response = await isValidateToken(access);
+    console.log("Respuesta de petición de validación", response)
+    if (response.data == 1 ) {
+      let refresh = localStorage.getItem("refresh")
+      response = await auth.updateToken(access,refresh)
+      console.log("Respuesta de petición de refresh", response)
+      if(response == 200){
+        localStorage.setItem("access",response.data.newAccessToken)
+        localStorage.setItem("refresh",response.data.refreshToken)
+      }else{
+        localStorage.clear();
+        navigate("/");
+      }
+    } else {
+      if (response.data != null) {
         auth.setIsAuth(true);
         navigate("/dashboard");
-      } 
+      }
     }
   }
   function obtenerPermiso() {
@@ -48,13 +57,21 @@ function LoginPage() {
   }
 
   function login(response) {
+    console.log("respuesta de un logueo ", response);
     if (response.status == 200) {
       setError(false);
       auth.setIsAuth(true);
       auth.setAccess(response.data.access_token);
       localStorage.setItem("refresh", response.data.refresh_token);
-      localStorage.setItem("user", response.data.username);
-      localStorage.setItem("foto",response.data.foto);
+      localStorage.setItem("access", response.data.access_token);
+      let data = response.data;
+      localStorage.setItem("email", data.email);
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("surname", data.surname);
+      localStorage.setItem("firstname", data.firstname);
+      localStorage.setItem("lastname", data.lastname);
+      localStorage.setItem("foto",data.foto)
+      localStorage.setItem("dineroActual",data.dineroActual)
       navigate("/dashboard");
     } else {
       setError(true);

@@ -11,6 +11,12 @@
     border-radius: 50%;
     border:2px solid white;
 }
+.entrada_foto{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+}
 .input_img{
     display:none;
 }

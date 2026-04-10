@@ -11,7 +11,9 @@ function Register() {
   const auth = useAuth();
   const navigate = new useNavigate();
   const [values,setValues]=useState({
-    username:"",
+    firtsname:"",
+    surname:"",
+    username:"",  
     email:"",
     repeatEmail:"",
     password:"",
@@ -47,6 +49,7 @@ function Register() {
       }
   }
   const handleRegister=(event)=>{
+    console.log("Que hay en values", values);
     event.preventDefault();
     if(!igualEmail && !igualPassword)
       {
@@ -54,7 +57,9 @@ function Register() {
           method:"post",
           url:`${url}auth/register`,
           data:{
-            name:values.username,
+            firstname:values.firtsname,
+            surname:values.surname,
+            username:values.username,
             email:values.email,
             password:values.password,
             foto:values.picture
@@ -151,7 +156,7 @@ function Register() {
         <div className={style.container_formulario}>
           <h1 className={style.title_formulario}>Crear usuario</h1>
           <form className={style.formulario} onSubmit={handleRegister}>
-            <div className={style2.entrada}>
+            <div className={style2.entrada_foto}>
                         <label className={style.label_form}>Agregar foto (Opcional)</label>
                         <img className={style2.img_user} src={values.picture == undefined || values.picture == ""? iconUser:values.picture}/>
                         <input
@@ -165,7 +170,35 @@ function Register() {
                         <label type="button" for="input_img" className={style2.button_agregar_foto}>Agregar foto</label>
                       </div>
             <div className={style.entrada}>
-              <label className={style.label_form}> Nombre </label>
+              <label className={style.label_form}> Primer Nombre </label>
+              <input
+                className={style.input_form}
+                name="firtsname"
+                type="text"
+                required
+                value={values.firtsname}
+                maxLength={30}
+                minLength={5}
+                placeholder="ingrese su primer nombre"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className={style.entrada}>
+              <label className={style.label_form}> Apellido </label>
+              <input
+                className={style.input_form}
+                name="surname"
+                type="text"
+                required
+                value={values.surname}
+                maxLength={30}
+                minLength={5}
+                placeholder="ingrese su apellido"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className={style.entrada}>
+              <label className={style.label_form}> Nombre de usuario </label>
               <input
                 className={style.input_form}
                 name="username"
@@ -174,11 +207,10 @@ function Register() {
                 value={values.username}
                 maxLength={30}
                 minLength={5}
-                placeholder="ingrese su nombre"
+                placeholder="ingrese su nombre de usuario"
                 onChange={handleInputChange}
               />
             </div>
-
             <div className={style.entrada}>
               <label className={style.label_form}>Email</label>
               <input
