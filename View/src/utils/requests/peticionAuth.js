@@ -1,13 +1,14 @@
 import axios from "axios";
 import { url } from "../../url";
-export async function refreshToken(refresh_token)
+export async function refreshToken(access_token,refresh_token)
 {
     try{
         const response = await axios({
             method:"post",
             url:`${url}auth/refresh`,
-            params:{
-                "token":"Bearer ".concat(refresh_token)
+            headers:{
+                "Authorization":"Bearer ".concat(access_token),
+                "refreshToken":"Bearer ".concat(refresh_token)
             }
         })
         return response;
@@ -19,12 +20,13 @@ export async function refreshToken(refresh_token)
 }
 export async function isValidateToken(token)
 {
+    let myToken="Bearer ".concat(token)
     try{
         let response = await axios({
-            method:"get",
+            method:"GET",
             url:`${url}auth/validate`,
-            params:{
-                "token":token
+            headers:{
+                "Authorization":myToken
             }
         })
         return response;

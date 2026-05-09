@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { Axios } from "axios";
 import { url } from "../../url";
 export async function obtenerGastos(access, page, filter) {
   let respuesta = null;
@@ -10,8 +10,10 @@ export async function obtenerGastos(access, page, filter) {
        && filter.getDataFilter().fecha_fin)) {
       respuesta = await axios ({
         method: "get",
-        params: { 
-          "token":jwt,
+        headers: { 
+          "Authorization":jwt,
+        }
+        ,params:{
           "page":page,
           monto_min: filter.getDataFilter().monto_inicial !=""? filter.getDataFilter().monto_inicial:null,
           monto_max: filter.getDataFilter().monto_final!=""? filter.getDataFilter().monto_final:null,
@@ -23,14 +25,14 @@ export async function obtenerGastos(access, page, filter) {
           page_size: filter.getDataFilter().cantCards!=null && filter.getDataFilter().cantCards!="" &&
           filter.getDataFilter().cantCards>0?filter.getDataFilter().cantCards:5
          },
-        url:`${url}spent/get_all`,
+        url:`${url}gasto/get_all`,
         
       });
     } else {
       respuesta = await axios({
         method: "get",
-        params: { 
-          "token":jwt,
+        headers: { 
+          "Authorization":jwt,
           "page": page,
           page_size: filter.getDataFilter().cantCards!=null && filter.getDataFilter().cantCards!="" &&
           filter.getDataFilter().cantCards>0?filter.getDataFilter().cantCards:5,
@@ -48,14 +50,19 @@ export async function setGasto(data, access) {
   try {
     let jwt = "Bearer ".concat(access);
     const respuesta = await axios({
-      method: "post",
-      url: `${url}spent/add`,
-      params: { "token": jwt },
+      method: "POST",
+      url: `${url}gasto`,
       data: {
         monto: data.monto,
         descripcion: data.descripcion,
-        tipo: data.tipo,
+        tipo: "GASTO",
+        subtipo:data.tipo,
+        fecha: new Date("yyyy/mm/dd hh:mm:ss")
       },
+      headers:{
+        "Authorization":jwt
+      }
+  
     });
     return respuesta.status;
   } catch (error) {
@@ -68,8 +75,8 @@ export async function editGasto(data, access) {
   try {
     const respuesta = await axios({
       method: "post",
-      url: `${url}spent/update`,
-      params: { "token":jwt },
+      url: `${url}gasto/update`,
+      params: { "Authorization":jwt },
       data: {
         id: data.id,
         monto: data.monto,
@@ -89,8 +96,8 @@ export async function removeGasto(id, access) {
   try {
     const response = await axios({
       method: "delete",
-      url: `${url}spent/delete`,
-      params: { "token": jwt ,
+      url: `${url}gasto/delete`,
+      headers: { "Authorization": jwt ,
         id,
       },
     });
@@ -105,8 +112,8 @@ export async function obtenerTypesGastos(access) {
   try {
     const response = await axios({
       method: "get",
-      url: `${url}spent/tipos`,
-      params: { "token": jwt },
+      url: `${url}gasto/tipos`,
+      headers: { "Authorization": jwt },
     });
     return response;
   } catch (error) {
@@ -120,17 +127,17 @@ export async function getTotalsGasto(access, filter) {
     if (filter.getDataFilter().currency != "ars" && filter.getDataFilter().currency != "" &&  filter.otherCoins) {
       responseGastos = await axios({
         method: "get",
-        params: { 
-          "token": jwt,
+        headers: { 
+          "Authorization": jwt,
           currency: filter.getDataFilter().currency,
           currency_type: filter.getDataFilter().currency_type, },
-        url: `${url}spent/total`,
+        url: `${url}gasto/total`,
       });
     } else {
       responseGastos = await axios({
         method: "get",
-        params: { "token": jwt },
-        url: `${url}spent/total`,
+        headers: { "Authorization": jwt },
+        url: `${url}gasto/total`,
       });
     }
     return responseGastos;
@@ -150,8 +157,8 @@ export async function getAvaragesGastos(
     if (filter.otherCoins && filter.getDataFilter().currency != "" && filter.getDataFilter().currency != "ars") {
       response = await axios({
         method: "put",
-        url: `${url}spent/totalGraphics`,
-        params: {
+        url: `${url}gasto/totalGraphics`,
+        headers: {
           token:jwt,
           currency:filter.getDataFilter().currency,
           currency_type:filter.getDataFilter().currency_type
@@ -161,9 +168,9 @@ export async function getAvaragesGastos(
     } else {
       response = await axios({
         method: "put",
-        url: `${url}spent/totalGraphics`,
-        params:{
-          "token": jwt,
+        url: `${url}gasto/totalGraphics`,
+        headers:{
+          "Authorization": jwt,
         },
         data:fechas
       });

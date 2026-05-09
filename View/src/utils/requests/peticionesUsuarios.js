@@ -6,11 +6,11 @@ export async function obtenerUsuarioLogeado(access,currency,currency_type)
     try{
         const response = await axios({
             method:"GET",
-            url:`${url}users/whoami`,
-            params:{
-                "token": jwt,
-                "currency":currency,
-                "currency_type":currency_type
+            url:`${url}usuarios`,
+            headers:{
+                "Authorization": jwt,
+                //"currency":currency,
+               // "currency_type":currency_type
             },
         })
         return response;
@@ -23,20 +23,24 @@ export async function obtenerUsuarioLogeado(access,currency,currency_type)
 export async function actualizarUsuario(access, data)
 {
     var response = null;
+    console.log("Datos del usuario para actualizar ",data)
     let jwt = "Bearer ".concat(access)
     try{
         response = await axios({
             method:"PUT",
-            url:`${url}users/update`,
-            params:{
-                "token":jwt,
+            url:`${url}usuarios`,
+            headers:{
+                "Authorization":jwt,
             },
             data:{
-                name:data.username,
                 email:data.email,
-                oldPassword:data.lastPassword,
-                newPassword:data.newPassword,
-                foto:data.picture
+                username:data.username,
+                surname:data.surname,
+                firstname:data.firstname,
+                lastname:data.lastname,
+                password:data.newPassword,
+                dineroActual:localStorage.getItem("dineroActual"),
+                foto:data.foto
             }
         })
     return response;

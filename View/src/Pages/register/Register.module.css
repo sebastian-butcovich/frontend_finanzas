@@ -10,7 +10,7 @@
     background-size: cover;
 }
 .title_formulario{
-    font-size: 55px;
+    font-size: 50px;
     font-family:Arial, Helvetica, sans-serif;
     text-transform: uppercase;   
     width:75%;
@@ -41,13 +41,20 @@
     flex-direction: column;
     margin-bottom: 10px;
     text-align: center;
-    height: 8.5vh;
+    height: 7.5vh;
+}
+.entrada_foto{
+    height: 5.5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
 }
 .label_form{
     border-bottom: 10px;
 }
 .input_form{
-    height:50px;
+    height:5vh;
     font-size:20px;
     background-color: white;
     border:1px solid white;
@@ -61,7 +68,7 @@
 .button_form_usuario{
     display:flex;
     justify-content: space-around;
-    height:6vh;
+    height:5vh;
     margin-top:15px;
 }
 .button_f{

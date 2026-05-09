@@ -10,6 +10,7 @@ import { CardsContext } from "../../utils/context/CardsProvider";
 import { PaginadoContext } from "../../utils/context/PaginadoProvider";
 import Swal from "sweetalert2";
 import { eliminarUsuario } from "../../utils/requests/peticionesUsuarios";
+import Cookies from "universal-cookie";
 function DefaultPage({ children }) {
   const [isMenu, setIsMenu] = useState(false);
   const [clickEverywhere,setClickEverywhere] = useState(false);
@@ -166,7 +167,7 @@ function DefaultPage({ children }) {
               }}
             />
           )}
-          <span className={style.userName}>{localStorage.getItem("user")}</span>
+          <span className={style.userName}>{localStorage.getItem("firstname")}</span>
           <div className={style.container_userMenu}>
             <img
               src={localStorage.getItem("foto")? localStorage.getItem("foto"):iconUser}
