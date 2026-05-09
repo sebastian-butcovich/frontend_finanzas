@@ -3,6 +3,7 @@ import { url } from "../../url";
 export async function obtenerUsuarioLogeado(access,currency,currency_type)
 {
     let jwt = "Bearer ".concat(access);
+    console.log("Esta llegando el token a obtenerElUsuarioLogeado ", jwt)
     try{
         const response = await axios({
             method:"GET",
