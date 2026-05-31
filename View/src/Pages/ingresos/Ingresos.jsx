@@ -39,36 +39,31 @@ function Ingresos() {
       pag.setDeudas(false);
      },[])
   async function obtenerTiposIngresos() {
-    let access = auth.getAccess();
+    let access = localStorage.getItem("access")
     let response = await obtenerTypesIngresos(access);
-    if (response.status == 403) {
-      access = await auth.updateToken();
-      response = await obtenerTypesIngresos(access);
-    }
     context.setListTypes(response.data);
   }
   async function obtenerIngresos() {
     let response = null;
-    let access =  auth.getAccess();
-    if(access == "")
-    {
-      access= await auth.updateToken();
-    }
+    let access = localStorage.getItem("access")
     response = await getIngresos(
       access,
       filter,
       pageContext.getPage(),
     );
-    context.setData(response.data.movents);
-    pageContext.setPage(response.data.page);
-    pageContext.setNextPage(response.data.next_page);
-    pageContext.setLastPage(response.data.total_pages);
-    pageContext.setTotalEntries(response.data.total_entries);
-    filter.setDataFilter({
-      ...filter.getDataFilter(),
-      currency:response.data.additionalInfo.cotizacion,
-      currency_type:response.data.additionalInfo.tipo_de_cotizacion
-    })
+    if(response.status == 200){
+      console.log("Respuesta de ingresos: ",response.data.additionalInfo)
+      context.setData(response.data.movements);
+      pageContext.setPage(response.data.page);
+      pageContext.setNextPage(response.data.next_page);
+      pageContext.setLastPage(response.data.total_pages);
+      pageContext.setTotalEntries(response.data.total_entries);
+      filter.setDataFilter({
+        ...filter.getDataFilter(),
+        currency:response.data.additionalInfo.cotizacion,
+        currency_type:response.data.additionalInfo.tipo_de_cotizacion
+      })
+    }
   }
   async function handleRemove(id) {
     let response = await removeIngreso(id, auth.getAccess());

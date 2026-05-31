@@ -46,6 +46,7 @@ function Card({ element, handleRemove, requestEdit }) {
         context.setLastEdit({ id: element.id });
         setIsEdit(true);
         context.setIsEdit(true);
+        context.setIsSelect(true)
       }
     } else {
       message("Esta seguro que quiere  dejar de editar?","Perdera todos sus datos").

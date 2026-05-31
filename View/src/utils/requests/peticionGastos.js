@@ -2,8 +2,7 @@ import axios, { Axios } from "axios";
 import { url } from "../../url";
 export async function obtenerGastos(access, page, filter) {
   let respuesta = null;
-  console.log("Que llega a la petición", filter.getDataFilter().cantCards)
-  let jwt = "Bearer".concat(' ',access) ; 
+  let jwt = "Bearer ".concat(access) ; 
   try {
     if ( (filter.otherCoins && filter.getDataFilter().currency !="")|| (filter.getDataFilter().monto_inicial!=0 &&
        filter.getDataFilter().monto_final !=0) || filter.getDataFilter().tipo !="" || (filter.getDataFilter().fecha_inicio 
@@ -25,7 +24,7 @@ export async function obtenerGastos(access, page, filter) {
           page_size: filter.getDataFilter().cantCards!=null && filter.getDataFilter().cantCards!="" &&
           filter.getDataFilter().cantCards>0?filter.getDataFilter().cantCards:5
          },
-        url:`${url}gasto/get_all`,
+        url:`${url}gasto/list`,
         
       });
     } else {
@@ -33,13 +32,16 @@ export async function obtenerGastos(access, page, filter) {
         method: "get",
         headers: { 
           "Authorization":jwt,
+        },
+        params:{
           "page": page,
           page_size: filter.getDataFilter().cantCards!=null && filter.getDataFilter().cantCards!="" &&
           filter.getDataFilter().cantCards>0?filter.getDataFilter().cantCards:5,
          },
-         url:`${url}spent/get_all`,
+         url:`${url}gasto/list`,
       });
     }
+    console.log("Obtener los gatos", respuesta.data);
     return respuesta;
   } catch (error) {
     console.log(error);
@@ -57,7 +59,7 @@ export async function setGasto(data, access) {
         descripcion: data.descripcion,
         tipo: "GASTO",
         subtipo:data.tipo,
-        fecha: new Date("yyyy/mm/dd hh:mm:ss")
+        fecha: data.fecha
       },
       headers:{
         "Authorization":jwt
@@ -71,14 +73,13 @@ export async function setGasto(data, access) {
   }
 }
 export async function editGasto(data, access) {
-  let jwt = "Bearer".concat(' ',access)
+  let jwt = "Bearer ".concat(access)
   try {
     const respuesta = await axios({
-      method: "post",
-      url: `${url}gasto/update`,
-      params: { "Authorization":jwt },
+      method: "PUT",
+      url: `${url}gasto/${data.id}`,
+      headers: { "Authorization":jwt },
       data: {
-        id: data.id,
         monto: data.monto,
         descripcion: data.descripcion,
         tipo: data.tipo,
@@ -112,7 +113,7 @@ export async function obtenerTypesGastos(access) {
   try {
     const response = await axios({
       method: "get",
-      url: `${url}gasto/tipos`,
+      url: `${url}gasto/subtipos`,
       headers: { "Authorization": jwt },
     });
     return response;

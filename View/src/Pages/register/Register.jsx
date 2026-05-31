@@ -62,11 +62,12 @@ function Register() {
             username:values.username,
             email:values.email,
             password:values.password,
-            foto:values.picture
+            foto:values.picture,
+            dineroActual:0.0
           }
         }).then((res)=>{
           console.log(res);
-          if(res.status !=200){
+          if(res.status !=201){
             Swall.fire({
               title:"No se envio el formulario",
               text: "Intente nuevamente",

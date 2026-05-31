@@ -10,9 +10,9 @@ function NewComponent({ newRequest }) {
     monto: "",
     tipo: "",
     descripcion: "",
+    fecha:""
   });
   function handleInputs(evento) {
-    
     if(evento.target.value == "Agregar un tipo nuevo" && !context.isSelect)
       {
         context.setIsSelect(true);
@@ -27,12 +27,8 @@ function NewComponent({ newRequest }) {
   }
   async function handleSubmit(event) {
     event.preventDefault();
-    let respuesta = await newRequest(data, auth.getAccess());
-    if (respuesta == 401) {
-       let access = await auth.updateToken();
-       respuesta = await newRequest(data, access);
-    }
-    if (respuesta == 200) {
+    let respuesta = await newRequest(data, localStorage.getItem("access"));
+    if (respuesta == 201) {
       Swal.fire({
         title: "Se ingreso correctamente",
         text: "Se ingreso un nuevo monto correctamente",
@@ -111,6 +107,13 @@ function NewComponent({ newRequest }) {
         }}
         placeholder="describa el motivo de la operación"
       ></textarea>
+      <label>Fecha</label>
+      <input 
+        className={style.input_inComponent}
+        type="date"
+        name="fecha"
+        value={data.fecha}
+        onChange={(e)=>{handleInputs(e)}}/>
       <div className={style.container_button}>
          <button className={style.button_enviar} type="submit">Enviar</button> 
     

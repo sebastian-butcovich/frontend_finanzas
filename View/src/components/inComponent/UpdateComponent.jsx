@@ -13,7 +13,7 @@ function UpdateComponent({ editRequest, editFunction }) {
     monto: context.dataEditable.monto,
     tipo: context.dataEditable.tipo,
     descripcion: context.dataEditable.descripcion,
-    fecha:new Date(context.dataEditable.fecha)
+    fecha:context.dataEditable.fecha
   });
   //Esta función se ejecuta cada ves que cambia el valor de los inputs. Guarda los valores en el estado data
   //Se utiliza la etiqueta "name" de cada input para que se pueda referenciar al campo correcto de data,
@@ -149,8 +149,8 @@ function UpdateComponent({ editRequest, editFunction }) {
         }}
         placeholder="describa que fue en lo que gasto"
       ></textarea>
-      
-      <input class={style.input_filter} type="date" defaultValue={generarFechaParaInput(data.fecha)} onChange={(e)=>{handleInputDateChange(e)}}/>
+      <label>Fecha</label>
+      <input class={style.input_filter} type="date" value={(data.fecha)} onChange={(e)=>{handleInputDateChange(e)}}/>
       <div className={style.container_button}>
         <button type="submit" className={style.button_enviar}>
           Enviar

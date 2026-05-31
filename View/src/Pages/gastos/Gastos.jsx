@@ -23,16 +23,12 @@ function Gastos() {
   async function obtenerLosGastos() {
     try {
       let response = null;
-      let access = auth.getAccess();
-      if(access == "")
-      {
-        access = auth.updateToken();
-      }
+      let access = localStorage.getItem("access")
       response = await obtenerGastos(
       access,
       pagContext.getPage(),
       filter);
-      context.setData(response.data.movents);
+      context.setData(response.data.movements);
       pagContext.setPage(response.data.page);
       pagContext.setNextPage(response.data.next_page);
       pagContext.setLastPage(response.data.total_pages);
@@ -41,7 +37,7 @@ function Gastos() {
         ...filter.getDataFilter(),
         currency:response.data.additionalInfo.cotizacion,
         currency_type:response.data.additionalInfo.tipo_de_cotizacion,
-        cantCards:data.length
+        cantCards:response.data.movements.length
       })
     } catch (mistake) {
       console.log(
@@ -53,12 +49,9 @@ function Gastos() {
   async function obtenerTipos() {
     let response = null;
     try {
-      let access = auth.getAccess();
+      let access = localStorage.getItem("access")
       response = await obtenerTypesGastos(access);
-      if (response.status == 403) {
-        access = await auth.updateToken();
-        response = await obtenerTypesGastos(access);
-      }
+      console.log("Respuesta de obtener tipos",response);
       context.setListTypes(response.data);
     } catch (error) {
       console.log(

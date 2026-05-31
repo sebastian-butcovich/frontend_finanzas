@@ -8,9 +8,9 @@ export async function getIngresos(access, filter, page) {
       || filter.getDataFilter().tipo !="" || (filter.getDataFilter().fecha_inicio && filter.getDataFilter().fecha_fin)  ) {
       respuesta = await axios({
         method: "get",
-        url: `${url}income/get_all`,
-        params: {
-          "token": jwt ,
+        url: `${url}ingreso/list`,
+        headers: {
+          "Authorization": jwt ,
           page: page,
           page_size: filter.getDataFilter().cantCards!=null && filter.getDataFilter().cantCards!="" &&
           filter.getDataFilter().cantCards>0?filter.getDataFilter().cantCards:5,
@@ -27,13 +27,14 @@ export async function getIngresos(access, filter, page) {
     } else {
       respuesta = await axios({
         method: "get",
-        url: `${url}income/get_all`,
-        params: {
-          "token": jwt ,
+        url: `${url}ingreso/list`,
+        headers: {
+          "Authorization":jwt,
+        },
+        params:{
           page: page,
           page_size: filter.getDataFilter().cantCards!=null && filter.getDataFilter().cantCards!="" &&
           filter.getDataFilter().cantCards>0?filter.getDataFilter().cantCards:5,
-          criterion: "last_updated_on_max",
         },
       });
     }
@@ -46,15 +47,17 @@ export async function setIngreso(data, access) {
   let jwt = "Bearer ".concat(access);
   try {
     const respuesta = await axios({
-      method: "post",
-      url: `${url}income/add`,
-      params:{
-        "token": jwt 
+      method: "POST",
+      url:`${url}ingreso`,
+      headers:{
+        "Authorization": jwt 
       },
       data: {
-        monto: data.monto,
-        descripcion: data.descripcion,
-        tipo: data.tipo,
+        "monto": data.monto,
+        "descripcion": data.descripcion,
+        "tipo":"INGRESO",
+        "subtipo": data.tipo,
+        "fecha":data.fecha,
       },
     });
     return respuesta.status;
@@ -106,8 +109,8 @@ export async function obtenerTypesIngresos(access) {
     let jwt = "Bearer ".concat(access)
     const response = await axios({
       method: "get",
-      url: `${url}income/tipos`,
-      params: { "token": jwt },
+      url: `${url}ingreso/subtipos`,
+      headers: { "Authorization": jwt },
     });
     return response;
   } catch (error) {
