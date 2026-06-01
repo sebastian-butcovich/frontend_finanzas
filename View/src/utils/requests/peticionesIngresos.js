@@ -124,17 +124,18 @@ export async function getTotalIngresos(access, filter) {
     if (filter.getDataFilter().currency != "ars" && filter.getDataFilter().currency != "" && filter.otherCoins) {
       responseIngresos = await axios({
         method: "get",
-        params: { "token": jwt,
+        headers: { "Authorization": jwt,},
+        params:{
           currency: filter.getDataFilter().currency,
           currency_type: filter.getDataFilter().currency_type,
          },
-        url: `${url}income/total`,
+        url: `${url}ingreso/total`,
       });
     } else {
       responseIngresos = await axios({
         method: "get",
-        params: { "token": jwt },
-        url: `${url}income/total`,
+        headers: { "Authorization": jwt },
+        url: `${url}ingreso/total`,
       });
     }
     return responseIngresos;

@@ -21,11 +21,7 @@ function BlockTotal() {
   const context = useContext(CardsContext);
   const filter = useContext(FilterContext);
   async function getTotals() {
-      let access = auth.getAccess();
-      if(access == "")
-      {
-        access = await auth.updateToken();
-      }
+      let access = localStorage.getItem("access")
       let gastos = await getTotalsGasto(
         access,
         filter
@@ -42,13 +38,14 @@ function BlockTotal() {
         access,
         filter
       );
+       console.log("total ingreso",ingresos)
       let datosUsuario = await obtenerUsuarioLogeado(access,filter.getDataFilter().currency,filter.getDataFilter().currency_type);
       setTotals({
         ...totals,
         gastos: gastos.data.value,
         ingresos: ingresos.data.value,
         cotizacion: gastos.data.moneda,
-        total:datosUsuario.data.actual
+        total:datosUsuario.data.dineroActual
       });
     }      
     function handleEstadoValorActual(){
@@ -67,11 +64,8 @@ function BlockTotal() {
           text:"No  se puede actualizar porque se envío un valor invalido",
         })
       }else{
-        let access = auth.getAccess();
-        if(access == ""){
-          access = auth.updateToken();
-        }
-        actualizarValorActual(auth.getAccess(),totals.total)
+        let access = localStorage.getItem("access");
+        actualizarValorActual(access,totals.total)
         setModifyActual(false);
       }
     }

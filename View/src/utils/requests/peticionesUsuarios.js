@@ -3,7 +3,6 @@ import { url } from "../../url";
 export async function obtenerUsuarioLogeado(access,currency,currency_type)
 {
     let jwt = "Bearer ".concat(access);
-    console.log("Esta llegando el token a obtenerElUsuarioLogeado ", jwt)
     try{
         const response = await axios({
             method:"GET",
@@ -14,6 +13,7 @@ export async function obtenerUsuarioLogeado(access,currency,currency_type)
                // "currency_type":currency_type
             },
         })
+        console.log("Datos de usuario logueado", response)
         return response;
     }catch(error)
     {
@@ -77,9 +77,10 @@ export async function actualizarValorActual(token, valorActual){
     try{
         response = await axios({
             method:"PUT",
-            url:`${url}users/actualizarValorActual`,
+            url:`${url}usuarios/actualizarValorActual`,
+            headers:{
+                "Authorization":jwt,},
             params:{
-                "token":jwt,
                 "valorActual":valorActual
             }
         })
